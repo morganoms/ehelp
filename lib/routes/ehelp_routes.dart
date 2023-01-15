@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class EhelpRoutes {
   EhelpRoutes._();
 
@@ -16,4 +14,10 @@ class EhelpRoutes {
   static const clientCallNowPayment = '/call_now/payment';
   static const clientCallNowCalling = '/call_now/calling';
   static const clientCallNowConfirmation = '/call_now/confirmation';
+
+  //Professional
+  static const personalData = '/professional/sign_in/personal_data';
+  static const addressProfessional = '/professional/sign_in/address';
+  static const bankingProfessional = '/professional/sign_in/banking';
+  static const homeArea = '/professional/home/area';
 }

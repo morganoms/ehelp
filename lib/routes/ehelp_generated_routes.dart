@@ -1,6 +1,10 @@
+import 'package:ehelp/features/home/views/home_client.view.dart';
 import 'package:ehelp/features/home/views/user_profile.view.dart';
 import 'package:ehelp/features/login/views/landing.view.dart';
 import 'package:ehelp/features/login/views/login.view.dart';
+import 'package:ehelp/features/professional/areas/views/home_areas.view.dart';
+import 'package:ehelp/features/professional/sign_in/views/adress_professional.view.dart';
+import 'package:ehelp/features/professional/sign_in/views/banking_professional.view.dart';
 import 'package:ehelp/routes/ehelp_routes.dart';
 import 'package:ehelp/shared/models/user_type.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +15,7 @@ import '../features/booking/views/step3.view.dart';
 import '../features/call_now/views/calling.view.dart';
 import '../features/call_now/views/confirmation_call.view.dart';
 import '../features/call_now/views/payment.view.dart';
+import '../features/professional/sign_in/views/personal_data.view.dart';
 
 typedef WidgetBuilderArgs = Widget Function(BuildContext context, Object args);
 
@@ -21,7 +26,7 @@ extension EhelpGeneratedRoutes on EhelpRoutes {
         EhelpRoutes.login: (context, args) => LoginView(
               userType: args as UserType,
             ),
-        EhelpRoutes.homeClient: (context, args) => UserProfileView(),
+        EhelpRoutes.homeClient: (context, args) => const HomeClientView(),
         EhelpRoutes.clientBookingStep1: (context, args) => const Step1View(),
         EhelpRoutes.clientBookingStep2: (context, args) => const Step1View(),
         EhelpRoutes.clientBookingStep3: (context, args) => const Step3View(),
@@ -32,7 +37,15 @@ extension EhelpGeneratedRoutes on EhelpRoutes {
         EhelpRoutes.clientCallNowCalling: (context, args) =>
             const CallingView(),
         EhelpRoutes.clientCallNowConfirmation: (context, args) =>
-            const ConfirmationCallView()
+            const ConfirmationCallView(),
+        EhelpRoutes.personalData: (context, args) =>
+            const ProfessionalPersonalDataView(),
+        EhelpRoutes.addressProfessional: (context, args) =>
+            const AdressProfessionalView(),
+        EhelpRoutes.bankingProfessional: (context, args) =>
+            const BankingProfessionalView(),
+        EhelpRoutes.homeArea: (context, args) => const HomeAreaView(),
+        EhelpRoutes.clientUserProfile: (context, args) => UserProfileView(),
       };
 
   static Route<dynamic>? generateRoute(RouteSettings settings) {
