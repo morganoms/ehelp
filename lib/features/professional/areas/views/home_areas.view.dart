@@ -121,41 +121,44 @@ class _HomeAreaViewState extends State<HomeAreaView> {
                 ),
                 Observer(builder: (_) {
                   return Column(
-                      children: _controller.areasList
-                          .map((element) => Container(
-                                margin: const EdgeInsets.only(bottom: 16),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(18),
-                                  color: const Color(0xFFD9D9D9),
+                    children: _controller.areasList
+                        .map(
+                          (element) => Container(
+                            margin: const EdgeInsets.only(bottom: 16),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(18),
+                              color: const Color(0xFFD9D9D9),
+                            ),
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 16, horizontal: 24),
+                            width: MediaQuery.of(context).size.width,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  element.nameArea,
+                                  style: FontStyles.size16Weight700,
                                 ),
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 16, horizontal: 24),
-                                width: MediaQuery.of(context).size.width,
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                Row(
                                   children: [
-                                    Text(
-                                      element.nameArea,
-                                      style: FontStyles.size16Weight700,
+                                    IconButton(
+                                      onPressed: () => Navigator.of(context)
+                                          .pushNamed(EhelpRoutes.homeEditArea),
+                                      icon: const Icon(Icons.edit),
                                     ),
-                                    Row(
-                                      children: [
-                                        IconButton(
-                                          onPressed: () {},
-                                          icon: const Icon(Icons.edit),
-                                        ),
-                                        IconButton(
-                                          onPressed: () => _controller
-                                              .removeAreaToList(element),
-                                          icon: const Icon(Icons.delete),
-                                        ),
-                                      ],
-                                    )
+                                    IconButton(
+                                      onPressed: () =>
+                                          _controller.removeAreaToList(element),
+                                      icon: const Icon(Icons.delete),
+                                    ),
                                   ],
-                                ),
-                              ))
-                          .toList());
+                                )
+                              ],
+                            ),
+                          ),
+                        )
+                        .toList(),
+                  );
                 })
               ],
             ),

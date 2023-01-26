@@ -20,4 +20,7 @@ class EhelpRoutes {
   static const addressProfessional = '/professional/sign_in/address';
   static const bankingProfessional = '/professional/sign_in/banking';
   static const homeArea = '/professional/home/area';
+  static const homeEditArea = '/professional/home/area/edit';
+  static const certificationArea = '/professional/home/area/edit/certification';
+  static const workDays = '/professional/home/area/edit/work_days';
 }

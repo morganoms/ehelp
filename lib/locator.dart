@@ -1,4 +1,5 @@
 import 'package:ehelp/features/professional/areas/view_model/home_area.view_model.dart';
+import 'package:ehelp/features/professional/areas/view_model/home_edit_area.view_model.dart';
 import 'package:get_it/get_it.dart';
 
 import 'features/home/view_model/home_client.view_model.dart';
@@ -13,6 +14,9 @@ class EHelpDependencies {
       )
       ..registerSingleton<HomeAreaViewModel>(
         HomeAreaViewModel(),
+      )
+      ..registerSingleton<HomeEditAreaViewModel>(
+        HomeEditAreaViewModel(),
       );
   }
 }

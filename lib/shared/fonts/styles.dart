@@ -20,6 +20,12 @@ class FontStyles {
     fontWeight: FontWeight.w700,
   );
 
+  static TextStyle? size16Weight700White = const TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w700,
+    color: Colors.white,
+  );
+
   static TextStyle? size16Weight400 = const TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w400,
