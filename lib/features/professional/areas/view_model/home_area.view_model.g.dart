@@ -25,6 +25,22 @@ mixin _$HomeAreaViewModel on _HomeAreaViewModelBase, Store {
     });
   }
 
+  late final _$areasListAtom =
+      Atom(name: '_HomeAreaViewModelBase.areasList', context: context);
+
+  @override
+  ObservableList<ServiceAreaEntity> get areasList {
+    _$areasListAtom.reportRead();
+    return super.areasList;
+  }
+
+  @override
+  set areasList(ObservableList<ServiceAreaEntity> value) {
+    _$areasListAtom.reportWrite(value, super.areasList, () {
+      super.areasList = value;
+    });
+  }
+
   late final _$_HomeAreaViewModelBaseActionController =
       ActionController(name: '_HomeAreaViewModelBase', context: context);
 
@@ -40,9 +56,32 @@ mixin _$HomeAreaViewModel on _HomeAreaViewModelBase, Store {
   }
 
   @override
+  void addAreaToList(ServiceAreaEntity newValue) {
+    final _$actionInfo = _$_HomeAreaViewModelBaseActionController.startAction(
+        name: '_HomeAreaViewModelBase.addAreaToList');
+    try {
+      return super.addAreaToList(newValue);
+    } finally {
+      _$_HomeAreaViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void removeAreaToList(ServiceAreaEntity value) {
+    final _$actionInfo = _$_HomeAreaViewModelBaseActionController.startAction(
+        name: '_HomeAreaViewModelBase.removeAreaToList');
+    try {
+      return super.removeAreaToList(value);
+    } finally {
+      _$_HomeAreaViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
-serviceSelected: ${serviceSelected}
+serviceSelected: ${serviceSelected},
+areasList: ${areasList}
     ''';
   }
 }

@@ -24,10 +24,13 @@ class StepperWidget extends StatelessWidget {
               children: [
                 Container(
                   height: 8,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(18),
+                    color: (index < totalActiveSteps)
+                        ? ColorConstants.primaryColor
+                        : ColorConstants.primaryLight,
+                  ),
                   width: MediaQuery.of(context).size.width / totalSteps,
-                  color: (index < totalActiveSteps)
-                      ? ColorConstants.primaryColor
-                      : ColorConstants.primaryLight,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 8),
