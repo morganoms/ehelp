@@ -23,4 +23,6 @@ class EhelpRoutes {
   static const homeEditArea = '/professional/home/area/edit';
   static const certificationArea = '/professional/home/area/edit/certification';
   static const workDays = '/professional/home/area/edit/work_days';
+  static const workHours = '/professional/home/area/edit/work_hours';
+  static const valueCharged = '/professional/home/area/edit/value_carged';
 }

@@ -1,3 +1,5 @@
+import 'package:ehelp/features/professional/areas/models/working_hours.entity.dart';
+import 'package:ehelp/shared/constants/default_area.dart';
 import 'package:mobx/mobx.dart';
 
 import '../models/week_days.entity.dart';
@@ -11,44 +13,49 @@ abstract class _HomeEditAreaViewModelBase with Store {
   bool isUtilDays = false;
 
   @observable
+  bool isComercialHours = false;
+
+  @observable
+  double valuCharged = 0;
+
+  @observable
   ObservableList<String> certificationList = <String>[].asObservable();
 
   @observable
-  ObservableList<WeekDays> workDaysList = <WeekDays>[
-    WeekDays(
-      dayName: 'Segunda',
-      selected: false,
-    ),
-    WeekDays(
-      dayName: 'Terça',
-      selected: false,
-    ),
-    WeekDays(
-      dayName: 'Quarta',
-      selected: false,
-    ),
-    WeekDays(
-      dayName: 'Quinta',
-      selected: false,
-    ),
-    WeekDays(
-      dayName: 'Sexta',
-      selected: false,
-    ),
-    WeekDays(
-      dayName: 'Sábado',
-      selected: false,
-    ),
-    WeekDays(
-      dayName: 'Domingo',
-      selected: false,
-    ),
-  ].asObservable();
+  ObservableList<WeekDays> workDaysList =
+      DefaultArea.workDaysList.asObservable();
+
+  @observable
+  ObservableList<WorkingHours> workHoursList =
+      DefaultArea.workHoursList.asObservable();
+
+  @action
+  double setValueCharged(final double value) => valuCharged = value;
 
   @action
   void setSelectionWeekDay(final int index, final bool value) {
     workDaysList[index].selected = value;
     workDaysList = workDaysList;
+  }
+
+  @action
+  void setSelectionWorkHour(final int index, final bool value) {
+    workHoursList[index].selected = value;
+    workHoursList = workHoursList;
+  }
+
+  @action
+  void setComercialHours(final bool newvalue) {
+    isComercialHours = newvalue;
+
+    for (var i = 0; i < workHoursList.length; i++) {
+      if (i != workHoursList.length - 1 && workHoursList[i].isAvaliable) {
+        workHoursList[i].selected = newvalue;
+      } else {
+        workHoursList[i].selected = false;
+      }
+    }
+    workHoursList = workHoursList;
   }
 
   @action

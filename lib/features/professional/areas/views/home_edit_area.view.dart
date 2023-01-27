@@ -84,7 +84,7 @@ class HomeEditAreaView extends StatelessWidget {
               _buildButton(
                 buttonTitle: 'Horários de Trabalho',
                 context: context,
-                buttonRoute: EhelpRoutes.certificationArea,
+                buttonRoute: EhelpRoutes.workHours,
               ),
               const SizedBox(
                 height: 16,
@@ -92,7 +92,7 @@ class HomeEditAreaView extends StatelessWidget {
               _buildButton(
                 buttonTitle: 'Valor Cobrado',
                 context: context,
-                buttonRoute: EhelpRoutes.certificationArea,
+                buttonRoute: EhelpRoutes.valueCharged,
               ),
             ],
           ),

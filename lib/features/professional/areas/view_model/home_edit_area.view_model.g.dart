@@ -25,6 +25,38 @@ mixin _$HomeEditAreaViewModel on _HomeEditAreaViewModelBase, Store {
     });
   }
 
+  late final _$isComercialHoursAtom = Atom(
+      name: '_HomeEditAreaViewModelBase.isComercialHours', context: context);
+
+  @override
+  bool get isComercialHours {
+    _$isComercialHoursAtom.reportRead();
+    return super.isComercialHours;
+  }
+
+  @override
+  set isComercialHours(bool value) {
+    _$isComercialHoursAtom.reportWrite(value, super.isComercialHours, () {
+      super.isComercialHours = value;
+    });
+  }
+
+  late final _$valuChargedAtom =
+      Atom(name: '_HomeEditAreaViewModelBase.valuCharged', context: context);
+
+  @override
+  double get valuCharged {
+    _$valuChargedAtom.reportRead();
+    return super.valuCharged;
+  }
+
+  @override
+  set valuCharged(double value) {
+    _$valuChargedAtom.reportWrite(value, super.valuCharged, () {
+      super.valuCharged = value;
+    });
+  }
+
   late final _$certificationListAtom = Atom(
       name: '_HomeEditAreaViewModelBase.certificationList', context: context);
 
@@ -57,8 +89,35 @@ mixin _$HomeEditAreaViewModel on _HomeEditAreaViewModelBase, Store {
     });
   }
 
+  late final _$workHoursListAtom =
+      Atom(name: '_HomeEditAreaViewModelBase.workHoursList', context: context);
+
+  @override
+  ObservableList<WorkingHours> get workHoursList {
+    _$workHoursListAtom.reportRead();
+    return super.workHoursList;
+  }
+
+  @override
+  set workHoursList(ObservableList<WorkingHours> value) {
+    _$workHoursListAtom.reportWrite(value, super.workHoursList, () {
+      super.workHoursList = value;
+    });
+  }
+
   late final _$_HomeEditAreaViewModelBaseActionController =
       ActionController(name: '_HomeEditAreaViewModelBase', context: context);
+
+  @override
+  double setValueCharged(double value) {
+    final _$actionInfo = _$_HomeEditAreaViewModelBaseActionController
+        .startAction(name: '_HomeEditAreaViewModelBase.setValueCharged');
+    try {
+      return super.setValueCharged(value);
+    } finally {
+      _$_HomeEditAreaViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   void setSelectionWeekDay(int index, bool value) {
@@ -66,6 +125,28 @@ mixin _$HomeEditAreaViewModel on _HomeEditAreaViewModelBase, Store {
         .startAction(name: '_HomeEditAreaViewModelBase.setSelectionWeekDay');
     try {
       return super.setSelectionWeekDay(index, value);
+    } finally {
+      _$_HomeEditAreaViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setSelectionWorkHour(int index, bool value) {
+    final _$actionInfo = _$_HomeEditAreaViewModelBaseActionController
+        .startAction(name: '_HomeEditAreaViewModelBase.setSelectionWorkHour');
+    try {
+      return super.setSelectionWorkHour(index, value);
+    } finally {
+      _$_HomeEditAreaViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setComercialHours(bool newvalue) {
+    final _$actionInfo = _$_HomeEditAreaViewModelBaseActionController
+        .startAction(name: '_HomeEditAreaViewModelBase.setComercialHours');
+    try {
+      return super.setComercialHours(newvalue);
     } finally {
       _$_HomeEditAreaViewModelBaseActionController.endAction(_$actionInfo);
     }
@@ -109,8 +190,11 @@ mixin _$HomeEditAreaViewModel on _HomeEditAreaViewModelBase, Store {
   String toString() {
     return '''
 isUtilDays: ${isUtilDays},
+isComercialHours: ${isComercialHours},
+valuCharged: ${valuCharged},
 certificationList: ${certificationList},
-workDaysList: ${workDaysList}
+workDaysList: ${workDaysList},
+workHoursList: ${workHoursList}
     ''';
   }
 }

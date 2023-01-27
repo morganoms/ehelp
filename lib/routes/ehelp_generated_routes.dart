@@ -17,7 +17,9 @@ import '../features/call_now/views/calling.view.dart';
 import '../features/call_now/views/confirmation_call.view.dart';
 import '../features/call_now/views/payment.view.dart';
 import '../features/professional/areas/views/certification_attach.view.dart';
+import '../features/professional/areas/views/value_charged.view.dart';
 import '../features/professional/areas/views/work_days.view.dart';
+import '../features/professional/areas/views/work_hours.view.dart';
 import '../features/professional/sign_in/views/personal_data.view.dart';
 
 typedef WidgetBuilderArgs = Widget Function(BuildContext context, Object args);
@@ -53,6 +55,8 @@ extension EhelpGeneratedRoutes on EhelpRoutes {
             const CertificationAttachView(),
         EhelpRoutes.homeEditArea: (context, args) => const HomeEditAreaView(),
         EhelpRoutes.workDays: (context, args) => const WorkDaysView(),
+        EhelpRoutes.workHours: (context, args) => const WorkHoursView(),
+        EhelpRoutes.valueCharged: (context, args) => const ValueChargedView(),
       };
 
   static Route<dynamic>? generateRoute(RouteSettings settings) {
