@@ -12,19 +12,19 @@ class FormPersonalDataWidget extends StatelessWidget {
       key: _formKey,
       child: Column(
         children: const [
-          Input(hintText: 'Nome Completo'),
+          Input(label: Text('Nome Completo')),
           SizedBox(
             height: 16,
           ),
-          Input(hintText: 'CPF'),
+          Input(label: Text('CPF')),
           SizedBox(
             height: 16,
           ),
-          Input(hintText: 'Data de Nascimento'),
+          Input(label: Text('Data de Nascimento')),
           SizedBox(
             height: 16,
           ),
-          Input(hintText: 'Telefone'),
+          Input(label: Text('Telefone')),
           SizedBox(
             height: 16,
           ),

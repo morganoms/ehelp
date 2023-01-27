@@ -56,7 +56,7 @@ extension EhelpGeneratedRoutes on EhelpRoutes {
         EhelpRoutes.homeEditArea: (context, args) => const HomeEditAreaView(),
         EhelpRoutes.workDays: (context, args) => const WorkDaysView(),
         EhelpRoutes.workHours: (context, args) => const WorkHoursView(),
-        EhelpRoutes.valueCharged: (context, args) => const ValueChargedView(),
+        EhelpRoutes.valueCharged: (context, args) => ValueChargedView(),
       };
 
   static Route<dynamic>? generateRoute(RouteSettings settings) {

@@ -32,31 +32,31 @@ class _AdressDialogWidgetState extends State<AdressDialogWidget> {
             key: _formKey,
             child: Column(
               children: [
-                const Input(hintText: 'CEP'),
+                const Input(label: Text('CEP')),
                 const SizedBox(
                   height: 16,
                 ),
-                const Input(hintText: 'Endereço'),
+                const Input(label: Text('Endereço')),
                 const SizedBox(
                   height: 16,
                 ),
-                const Input(hintText: 'Número'),
+                const Input(label: Text('Número')),
                 const SizedBox(
                   height: 16,
                 ),
-                const Input(hintText: 'Complemento'),
+                const Input(label: Text('Complemento')),
                 const SizedBox(
                   height: 16,
                 ),
-                const Input(hintText: 'Bairro'),
+                const Input(label: Text('Bairro')),
                 const SizedBox(
                   height: 16,
                 ),
-                const Input(hintText: 'Estado'),
+                const Input(label: Text('Estado')),
                 const SizedBox(
                   height: 16,
                 ),
-                const Input(hintText: 'Estado'),
+                const Input(label: Text('Estado')),
                 const SizedBox(
                   height: 36,
                 ),

@@ -74,31 +74,31 @@ class _AdressProfessionalViewState extends State<AdressProfessionalView> {
                   key: _formKey,
                   child: Column(
                     children: const [
-                      Input(hintText: 'CEP'),
+                      Input(label: Text('CEP')),
                       SizedBox(
                         height: 16,
                       ),
-                      Input(hintText: 'Endereço'),
+                      Input(label: Text('Endereço')),
                       SizedBox(
                         height: 16,
                       ),
-                      Input(hintText: 'Número'),
+                      Input(label: Text('Número')),
                       SizedBox(
                         height: 16,
                       ),
-                      Input(hintText: 'Complemento'),
+                      Input(label: Text('Complemento')),
                       SizedBox(
                         height: 16,
                       ),
-                      Input(hintText: 'Bairro'),
+                      Input(label: Text('Bairro')),
                       SizedBox(
                         height: 16,
                       ),
-                      Input(hintText: 'Estado'),
+                      Input(label: Text('Estado')),
                       SizedBox(
                         height: 16,
                       ),
-                      Input(hintText: 'Estado'),
+                      Input(label: Text('Estado')),
                       SizedBox(
                         height: 36,
                       ),

@@ -50,11 +50,7 @@ class _HomeAreaViewState extends State<HomeAreaView> {
     return Scaffold(
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(24),
-        child: GenericButton(
-          label: 'Solicitar Aprovação',
-          onPressed: () =>
-              Navigator.of(context).pushNamed(EhelpRoutes.addressProfessional),
-        ),
+        child: GenericButton(label: 'Solicitar Aprovação', onPressed: () {}),
       ),
       body: SafeArea(
         bottom: false,

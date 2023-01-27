@@ -1,10 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 
-import '../../../../shared/components/input.widget.dart';
+import '../../../../locator.dart';
+import '../../../../shared/components/money_input.widget.dart';
 import '../../../../shared/fonts/styles.dart';
+import '../view_model/home_edit_area.view_model.dart';
 
-class ValueChargedView extends StatelessWidget {
-  const ValueChargedView({Key? key}) : super(key: key);
+class ValueChargedView extends StatefulWidget {
+  ValueChargedView({Key? key}) : super(key: key);
+
+  @override
+  State<ValueChargedView> createState() => _ValueChargedViewState();
+}
+
+class _ValueChargedViewState extends State<ValueChargedView> {
+  late HomeEditAreaViewModel _controller;
+
+  late MoneyMaskedTextController _controllerMoney;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = locator.get<HomeEditAreaViewModel>();
+    _controllerMoney = MoneyMaskedTextController(
+      leftSymbol: r'R$ ',
+      initialValue: _controller.valuCharged,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +80,14 @@ class ValueChargedView extends StatelessWidget {
               const SizedBox(
                 height: 36,
               ),
-              const Input(hintText: 'Valor que deseja cobrar'),
+              MenyInput(
+                label: const Text('Valor que deseja cobrar'),
+                controller: _controllerMoney,
+                onChanged: (final double value) {
+                  _controllerMoney.updateValue(value);
+                  _controller.setValueCharged(value);
+                },
+              ),
             ],
           ),
         ),

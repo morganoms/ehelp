@@ -74,15 +74,15 @@ class _BankingProfessionalViewState extends State<BankingProfessionalView> {
                   key: _formKey,
                   child: Column(
                     children: [
-                      const Input(hintText: 'Banco'),
+                      const Input(label: Text('Banco')),
                       const SizedBox(
                         height: 16,
                       ),
-                      const Input(hintText: 'Agência'),
+                      const Input(label: Text('Agência')),
                       const SizedBox(
                         height: 16,
                       ),
-                      const Input(hintText: 'Conta'),
+                      const Input(label: Text('Conta')),
                       const SizedBox(
                         height: 16,
                       ),
