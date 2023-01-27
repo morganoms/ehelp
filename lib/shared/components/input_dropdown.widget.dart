@@ -1,56 +1,37 @@
 import 'package:flutter/material.dart';
 
-class Input extends StatefulWidget {
-  const Input({
-    required this.label,
-    this.hintText,
+// ignore: must_be_immutable
+class InputDropdown extends StatefulWidget {
+  InputDropdown({
+    required this.items,
+    required this.hintText,
+    required this.onChanged,
     this.icon,
-    this.onChanged,
-    this.controller,
-    final Key? key,
+    Key? key,
   }) : super(key: key);
-  final String? hintText;
+  final List<String> items;
+  final String hintText;
   final Widget? icon;
-  final Function? onChanged;
-  final Widget? label;
-  final TextEditingController? controller;
+  void Function(String?)? onChanged;
 
   @override
-  State<Input> createState() => _InputState();
+  State<InputDropdown> createState() => _InputDropdownState();
 }
 
-class _InputState extends State<Input> {
-  FocusNode? _inputFocusNode;
-
-  @override
-  void initState() {
-    _inputFocusNode = FocusNode();
-    _inputFocusNode!.addListener(_onFocusNodeEvent);
-    super.initState();
-  }
-
-  void _onFocusNodeEvent() {
-    setState(() => {});
-  }
-
-  @override
-  void dispose() {
-    _inputFocusNode!.dispose();
-    super.dispose();
-  }
-
+class _InputDropdownState extends State<InputDropdown> {
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: widget.controller,
-      onChanged: (final dynamic val) {
-        if (widget.onChanged != null) {
-          widget.onChanged!(double.parse(val));
-        }
-      },
+    return DropdownButtonFormField(
+      isExpanded: true,
+      items: widget.items.map((String item) {
+        return DropdownMenuItem(
+          value: item,
+          child: Text(item),
+        );
+      }).toList(),
+      onChanged: widget.onChanged,
       decoration: InputDecoration(
         prefixIcon: widget.icon,
-        label: widget.label,
         contentPadding: const EdgeInsets.symmetric(horizontal: 24),
         hintText: widget.hintText,
         border: OutlineInputBorder(

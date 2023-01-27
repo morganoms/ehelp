@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 
-class Input extends StatefulWidget {
-  const Input({
+class MenyInput extends StatefulWidget {
+  const MenyInput({
     required this.label,
     this.hintText,
     this.icon,
@@ -13,13 +14,13 @@ class Input extends StatefulWidget {
   final Widget? icon;
   final Function? onChanged;
   final Widget? label;
-  final TextEditingController? controller;
+  final MoneyMaskedTextController? controller;
 
   @override
-  State<Input> createState() => _InputState();
+  State<MenyInput> createState() => _MenyInputState();
 }
 
-class _InputState extends State<Input> {
+class _MenyInputState extends State<MenyInput> {
   FocusNode? _inputFocusNode;
 
   @override
@@ -45,9 +46,10 @@ class _InputState extends State<Input> {
       controller: widget.controller,
       onChanged: (final dynamic val) {
         if (widget.onChanged != null) {
-          widget.onChanged!(double.parse(val));
+          widget.onChanged!(widget.controller!.numberValue);
         }
       },
+      keyboardType: TextInputType.number,
       decoration: InputDecoration(
         prefixIcon: widget.icon,
         label: widget.label,

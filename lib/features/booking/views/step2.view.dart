@@ -62,7 +62,7 @@ class Step2View extends StatelessWidget {
               const SizedBox(
                 height: 36,
               ),
-              Flexible(child: TimeSelector())
+              // Flexible(child: TimeSelector())
             ],
           ),
         ),
