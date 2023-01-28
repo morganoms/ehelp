@@ -4,6 +4,16 @@ import 'package:flutter/material.dart';
 class FontStyles {
   FontStyles._();
 
+  static TextStyle? size40Weight700 = const TextStyle(
+    fontSize: 40,
+    fontWeight: FontWeight.w700,
+  );
+
+  static TextStyle? size24Weight700 = const TextStyle(
+    fontSize: 24,
+    fontWeight: FontWeight.w700,
+  );
+
   static TextStyle? size20Weight700green = const TextStyle(
     fontSize: 20,
     color: ColorConstants.greenAvailable,
