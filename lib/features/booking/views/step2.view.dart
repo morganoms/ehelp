@@ -1,16 +1,17 @@
+import 'package:ehelp/locator.dart';
 import 'package:ehelp/routes/ehelp_routes.dart';
 import 'package:ehelp/shared/components/time_selector.widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 
 import '../../../shared/components/generic_button.widget.dart';
 import '../../../shared/components/stepper.widget.dart';
 import '../../../shared/fonts/styles.dart';
+import '../view_model/booking.view_model.dart';
 
 class Step2View extends StatelessWidget {
-  const Step2View({Key? key}) : super(key: key);
+  Step2View({Key? key}) : super(key: key);
+  final BookingViewModel _controller = locator.get<BookingViewModel>();
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +63,18 @@ class Step2View extends StatelessWidget {
               const SizedBox(
                 height: 36,
               ),
-              // Flexible(child: TimeSelector())
+              Observer(
+                builder: (_) {
+                  return Flexible(
+                    child: TimeSelector(
+                      workHours: _controller.workHoursList,
+                      // ignore: unnecessary_lambdas
+                      onPressed: (final int index, final bool value) =>
+                          _controller.setSelectionWorkHour(index, value),
+                    ),
+                  );
+                },
+              )
             ],
           ),
         ),

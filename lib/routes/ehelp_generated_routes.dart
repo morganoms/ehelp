@@ -1,3 +1,4 @@
+import 'package:ehelp/features/call_now/views/call_now.view.dart';
 import 'package:ehelp/features/home/views/home_client.view.dart';
 import 'package:ehelp/features/home/views/user_profile.view.dart';
 import 'package:ehelp/features/login/views/landing.view.dart';
@@ -12,9 +13,8 @@ import 'package:flutter/material.dart';
 
 import '../features/booking/views/confirmation.view.dart';
 import '../features/booking/views/step1.view.dart';
+import '../features/booking/views/step2.view.dart';
 import '../features/booking/views/step3.view.dart';
-import '../features/call_now/views/calling.view.dart';
-import '../features/call_now/views/confirmation_call.view.dart';
 import '../features/call_now/views/payment.view.dart';
 import '../features/professional/areas/views/certification_attach.view.dart';
 import '../features/professional/areas/views/value_charged.view.dart';
@@ -33,16 +33,14 @@ extension EhelpGeneratedRoutes on EhelpRoutes {
             ),
         EhelpRoutes.homeClient: (context, args) => const HomeClientView(),
         EhelpRoutes.clientBookingStep1: (context, args) => const Step1View(),
-        EhelpRoutes.clientBookingStep2: (context, args) => const Step1View(),
+        EhelpRoutes.clientBookingStep2: (context, args) => Step2View(),
         EhelpRoutes.clientBookingStep3: (context, args) => const Step3View(),
         EhelpRoutes.clientBookingConfirmation: (context, args) =>
             const ConfirmationView(),
         EhelpRoutes.clientCallNowPayment: (context, args) =>
             const PaymentView(),
         EhelpRoutes.clientCallNowCalling: (context, args) =>
-            const CallingView(),
-        EhelpRoutes.clientCallNowConfirmation: (context, args) =>
-            const ConfirmationCallView(),
+            const CallNowView(),
         EhelpRoutes.personalData: (context, args) =>
             const ProfessionalPersonalDataView(),
         EhelpRoutes.addressProfessional: (context, args) =>
