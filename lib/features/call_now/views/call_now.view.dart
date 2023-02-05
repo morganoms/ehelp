@@ -61,10 +61,9 @@ class _CallNowViewViewState extends State<CallNowView>
             height: 16,
           ),
           GenericButton(
-            label: 'Cancelar Solicitação',
+            label: 'Não chegou',
             color: Colors.red.shade400,
-            onPressed: () => Navigator.of(context)
-                .popUntil(ModalRoute.withName('/home_client')),
+            onPressed: () => _controller.setScreenState(CallNowState.waiting),
           ),
         ],
       );
@@ -88,10 +87,12 @@ class _CallNowViewViewState extends State<CallNowView>
             height: 32,
           ),
           GenericButton(
-            label: 'Cancelar Solicitação',
+            label: 'Finalizar Serviço',
             color: Colors.red.shade400,
-            onPressed: () => Navigator.of(context)
-                .popUntil(ModalRoute.withName('/home_client')),
+            onPressed: () {
+              _timeController.pause();
+              _controller.setScreenState(CallNowState.finished);
+            },
           ),
         ],
       );
@@ -118,17 +119,12 @@ class _CallNowViewViewState extends State<CallNowView>
   Widget _buildBody() {
     switch (_controller.screenState) {
       case CallNowState.waiting:
-        unawaited(Future<void>.delayed(const Duration(seconds: 3))
+        unawaited(Future<void>.delayed(const Duration(seconds: 5))
             .then((value) => _controller.setScreenState(CallNowState.arrived)));
         return const WaitingArriveWidget();
       case CallNowState.arrived:
         return const ArrivedProfessionalWidget();
       case CallNowState.started:
-        unawaited(
-            Future<void>.delayed(const Duration(seconds: 5)).then((value) {
-          _timeController.pause();
-          _controller.setScreenState(CallNowState.finished);
-        }));
         _timeController.start();
         return StartedServiceWidget(timeController: _timeController);
       case CallNowState.finished:
@@ -140,7 +136,7 @@ class _CallNowViewViewState extends State<CallNowView>
       case CallNowState.feedback:
         return const FeedbackServiceWidget();
       default:
-        unawaited(Future<void>.delayed(const Duration(seconds: 3))
+        unawaited(Future<void>.delayed(const Duration(seconds: 5))
             .then((value) => _controller.setScreenState(CallNowState.waiting)));
         return const CallingProfessionalWidget();
     }
