@@ -1,4 +1,5 @@
 import 'package:ehelp/features/call_now/views/call_now.view.dart';
+import 'package:ehelp/features/call_now/views/service_drecription.view.dart';
 import 'package:ehelp/features/home/views/home_client.view.dart';
 import 'package:ehelp/features/home/views/user_profile.view.dart';
 import 'package:ehelp/features/login/views/landing.view.dart';
@@ -55,6 +56,8 @@ extension EhelpGeneratedRoutes on EhelpRoutes {
         EhelpRoutes.workDays: (context, args) => const WorkDaysView(),
         EhelpRoutes.workHours: (context, args) => const WorkHoursView(),
         EhelpRoutes.valueCharged: (context, args) => ValueChargedView(),
+        EhelpRoutes.clientCallNowDescription: (context, args) =>
+            const ServiceDescriptionView()
       };
 
   static Route<dynamic>? generateRoute(RouteSettings settings) {

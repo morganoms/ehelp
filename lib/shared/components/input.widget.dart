@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_bool_literals_in_conditional_expressions
+
 import 'package:flutter/material.dart';
 
 class Input extends StatefulWidget {
@@ -6,13 +8,17 @@ class Input extends StatefulWidget {
     this.hintText,
     this.icon,
     this.onChanged,
+    this.maxLines = 1,
     this.controller,
+    this.borderRadius,
     final Key? key,
   }) : super(key: key);
   final String? hintText;
   final Widget? icon;
   final Function? onChanged;
   final Widget? label;
+  final BorderRadius? borderRadius;
+  final int maxLines;
   final TextEditingController? controller;
 
   @override
@@ -48,30 +54,33 @@ class _InputState extends State<Input> {
           widget.onChanged!(double.parse(val));
         }
       },
+      maxLines: widget.maxLines,
       decoration: InputDecoration(
         prefixIcon: widget.icon,
+        alignLabelWithHint: widget.maxLines > 1 ? true : false,
         label: widget.label,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 24),
+        contentPadding: EdgeInsets.symmetric(
+            horizontal: 24, vertical: widget.maxLines > 1 ? 24 : 0),
         hintText: widget.hintText,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(50),
+          borderRadius: widget.borderRadius ?? BorderRadius.circular(50),
           borderSide: BorderSide(
             color: Theme.of(context).primaryColor.withOpacity(0.5),
             width: 0.5,
           ),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(50),
+          borderRadius: widget.borderRadius ?? BorderRadius.circular(50),
           borderSide: BorderSide(
             color: Theme.of(context).primaryColor.withOpacity(0.5),
             width: 0.5,
           ),
         ),
         focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(50),
+            borderRadius: widget.borderRadius ?? BorderRadius.circular(50),
             borderSide: const BorderSide(color: Color(0xFF707070), width: 0.5)),
         errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(50),
+          borderRadius: widget.borderRadius ?? BorderRadius.circular(50),
           borderSide: const BorderSide(color: Colors.red, width: .5),
         ),
       ),

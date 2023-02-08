@@ -258,7 +258,7 @@ class UserProfileView extends StatelessWidget {
                                   label: 'Chamar Agora',
                                   onPressed: () => Navigator.of(context)
                                       .pushNamed(
-                                          EhelpRoutes.clientCallNowPayment),
+                                          EhelpRoutes.clientCallNowDescription),
                                   height: 25,
                                   color: const Color(0xFF575757),
                                   width: MediaQuery.of(context).size.width / 3,

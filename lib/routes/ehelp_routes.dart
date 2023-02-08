@@ -14,6 +14,7 @@ class EhelpRoutes {
   static const clientCallNowPayment = '/call_now/payment';
   static const clientCallNowCalling = '/call_now/calling';
   static const clientCallNowConfirmation = '/call_now/confirmation';
+  static const clientCallNowDescription = '/call_now/service_description';
 
   //Professional
   static const personalData = '/professional/sign_in/personal_data';
