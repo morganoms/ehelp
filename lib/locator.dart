@@ -2,6 +2,8 @@ import 'package:ehelp/features/booking/view_model/booking.view_model.dart';
 import 'package:ehelp/features/call_now/view_model/call_now.view_model.dart';
 import 'package:ehelp/features/professional/areas/view_model/home_area.view_model.dart';
 import 'package:ehelp/features/professional/areas/view_model/home_edit_area.view_model.dart';
+import 'package:ehelp/features/professional/home/view_model/home_professional.view_model.dart';
+import 'package:ehelp/features/professional/home/views/home_professional.view.dart';
 import 'package:get_it/get_it.dart';
 
 import 'features/call_now/view_model/service_description.view_Model.dart';
@@ -26,6 +28,9 @@ class EHelpDependencies {
       )
       ..registerLazySingleton<ServiceDescriptionViewModel>(
         ServiceDescriptionViewModel.new,
+      )
+      ..registerLazySingleton<HomeProfessionalViewModel>(
+        HomeProfessionalViewModel.new,
       )
       ..registerLazySingleton<CallNowViewModel>(
         CallNowViewModel.new,

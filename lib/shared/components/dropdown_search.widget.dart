@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:ehelp/shared/Colors/constants.dart';
 import 'package:ehelp/shared/fonts/styles.dart';
 import 'package:flutter/material.dart';
 
@@ -41,14 +42,12 @@ class DropdownSearch2Widget extends StatelessWidget {
           borderRadius: BorderRadius.circular(15),
         ),
         buttonDecoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(50),
-          border: Border.all(
-            color: Theme.of(context).primaryColor.withOpacity(0.5),
-            width: 0.5,
-          ),
+          borderRadius: BorderRadius.circular(20),
+          color: Color.fromARGB(255, 238, 238, 239),
         ),
-        icon: const Icon(Icons.keyboard_arrow_down),
+        icon: const Icon(Icons.search_rounded),
         itemHeight: 40,
+        buttonHeight: 60,
         dropdownMaxHeight: 200,
         searchController: textEditingController,
         searchInnerWidget: Padding(

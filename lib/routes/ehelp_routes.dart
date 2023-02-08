@@ -26,4 +26,5 @@ class EhelpRoutes {
   static const workDays = '/professional/home/area/edit/work_days';
   static const workHours = '/professional/home/area/edit/work_hours';
   static const valueCharged = '/professional/home/area/edit/value_carged';
+  static const homeProfessional = '/professional/home';
 }

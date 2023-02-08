@@ -43,6 +43,19 @@ mixin _$ServiceDescriptionViewModel on _ServiceDescriptionViewModelBase, Store {
   }
 
   @override
+  void addImageAllToList(List<XFile?> newValue) {
+    final _$actionInfo =
+        _$_ServiceDescriptionViewModelBaseActionController.startAction(
+            name: '_ServiceDescriptionViewModelBase.addImageAllToList');
+    try {
+      return super.addImageAllToList(newValue);
+    } finally {
+      _$_ServiceDescriptionViewModelBaseActionController
+          .endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void removeImageToList(XFile? value) {
     final _$actionInfo =
         _$_ServiceDescriptionViewModelBaseActionController.startAction(

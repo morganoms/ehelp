@@ -169,8 +169,10 @@ class LoginView extends StatelessWidget {
                   height: 36,
                 ),
                 ElevatedButton(
-                  onPressed: () =>
-                      Navigator.of(context).pushNamed(EhelpRoutes.homeClient),
+                  onPressed: () => Navigator.of(context).pushNamed(
+                      userType == UserType.client
+                          ? EhelpRoutes.homeClient
+                          : EhelpRoutes.homeProfessional),
                   style: ElevatedButton.styleFrom(
                     elevation: 5,
                     backgroundColor: const Color(0xFF575757),

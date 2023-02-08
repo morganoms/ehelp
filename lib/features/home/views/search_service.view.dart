@@ -9,6 +9,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 
 import '../../../locator.dart';
 import '../../../shared/components/default_dialog.widget.dart';
+import '../../../shared/components/person_picture.widget.dart';
 import '../view_model/home_client.view_model.dart';
 import 'components/adress_dialog.widget.dart';
 
@@ -55,15 +56,34 @@ class _SearchServiceViewState extends State<SearchServiceView> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Container(
-            alignment: Alignment.centerLeft,
-            height: 36,
-            child: Image.asset(
-              'assets/images/ehelp.png',
-            ),
+          const SizedBox(
+            height: 24,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  const PersonPicture(),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Olá, Morgan!',
+                          style: FontStyles.size16Weight700,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
           const SizedBox(
-            height: 16,
+            height: 48,
           ),
           Observer(builder: (_) {
             return Row(
