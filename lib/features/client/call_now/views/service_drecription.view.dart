@@ -3,14 +3,13 @@ import 'dart:io';
 import 'package:ehelp/locator.dart';
 import 'package:ehelp/shared/components/input.widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:image_picker/image_picker.dart';
-import '../../../routes/ehelp_routes.dart';
-import '../../../shared/Colors/constants.dart';
-import '../../../shared/components/generic_button.widget.dart';
-import '../../../shared/fonts/styles.dart';
-import '../../../shared/utils/picker.dart';
+import '../../../../routes/ehelp_routes.dart';
+import '../../../../shared/Colors/constants.dart';
+import '../../../../shared/components/generic_button.widget.dart';
+import '../../../../shared/fonts/styles.dart';
+import '../../../../shared/utils/picker.dart';
 import '../view_model/service_description.view_Model.dart';
 
 class ServiceDescriptionView extends StatefulWidget {

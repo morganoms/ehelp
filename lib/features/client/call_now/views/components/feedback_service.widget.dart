@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-import '../../../../shared/fonts/styles.dart';
+import '../../../../../shared/fonts/styles.dart';
 
 class FeedbackServiceWidget extends StatelessWidget {
   const FeedbackServiceWidget({Key? key}) : super(key: key);

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-import '../../../../shared/fonts/styles.dart';
+import '../../../../../shared/fonts/styles.dart';
 
 class CallingProfessionalWidget extends StatelessWidget {
   const CallingProfessionalWidget({Key? key}) : super(key: key);

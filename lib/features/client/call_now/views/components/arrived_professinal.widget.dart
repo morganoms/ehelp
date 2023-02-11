@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../shared/fonts/styles.dart';
+import '../../../../../shared/fonts/styles.dart';
 
 class ArrivedProfessionalWidget extends StatelessWidget {
   const ArrivedProfessionalWidget({Key? key}) : super(key: key);

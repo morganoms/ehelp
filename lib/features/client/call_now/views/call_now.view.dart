@@ -1,19 +1,20 @@
 import 'dart:async';
 
 import 'package:custom_timer/custom_timer.dart';
-import 'package:ehelp/features/call_now/views/components/arrived_professinal.widget.dart';
-import 'package:ehelp/features/call_now/views/components/calling_professional.widget.dart';
-import 'package:ehelp/features/call_now/views/components/feedback_service.widget.dart';
-import 'package:ehelp/features/call_now/views/components/finished_service.widget.dart';
-import 'package:ehelp/features/home/views/components/service_item.widget.dart';
 import 'package:ehelp/locator.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
-import '../../../shared/components/generic_button.widget.dart';
-import '../../../shared/fonts/styles.dart';
+import '../../../../shared/components/generic_button.widget.dart';
+
+import '../../../../shared/fonts/styles.dart';
+import '../../home/views/components/service_item.widget.dart';
 import '../view_model/call_now.view_model.dart';
+import 'components/arrived_professinal.widget.dart';
+import 'components/calling_professional.widget.dart';
+import 'components/feedback_service.widget.dart';
+import 'components/finished_service.widget.dart';
 import 'components/started_service.widget.dart';
 import 'components/waiting_arrive.widget.dart';
 

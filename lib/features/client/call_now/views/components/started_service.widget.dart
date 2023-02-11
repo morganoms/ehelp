@@ -1,7 +1,7 @@
 import 'package:custom_timer/custom_timer.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../shared/fonts/styles.dart';
+import '../../../../../shared/fonts/styles.dart';
 
 class StartedServiceWidget extends StatelessWidget {
   const StartedServiceWidget({

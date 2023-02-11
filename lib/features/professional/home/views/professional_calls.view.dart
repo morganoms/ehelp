@@ -1,14 +1,11 @@
-import 'package:ehelp/features/home/views/components/service_item.widget.dart';
 import 'package:ehelp/shared/components/person_picture.widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 import '../../../../locator.dart';
 import '../../../../shared/colors/constants.dart';
 import '../../../../shared/fonts/styles.dart';
+import '../../../client/home/views/components/service_item.widget.dart';
 import '../view_model/home_professional.view_model.dart';
 import 'components/service_item_pro.widget.dart';
 

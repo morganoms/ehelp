@@ -1,12 +1,11 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:ehelp/features/home/views/components/adress_dialog.widget.dart';
 import 'package:ehelp/locator.dart';
 import 'package:ehelp/shared/components/default_dialog.widget.dart';
-import 'package:ehelp/shared/fonts/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 import '../../view_model/home_client.view_model.dart';
+import 'adress_dialog.widget.dart';
 
 // ignore: must_be_immutable
 class DropdownSearchWidget extends StatelessWidget {

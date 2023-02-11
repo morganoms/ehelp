@@ -2,9 +2,9 @@ import 'package:ehelp/routes/ehelp_routes.dart';
 import 'package:ehelp/shared/components/credit_card.widget.dart';
 import 'package:flutter/material.dart';
 
-import '../../../shared/components/generic_button.widget.dart';
-import '../../../shared/components/stepper.widget.dart';
-import '../../../shared/fonts/styles.dart';
+import '../../../../shared/components/generic_button.widget.dart';
+import '../../../../shared/components/stepper.widget.dart';
+import '../../../../shared/fonts/styles.dart';
 
 class Step3View extends StatelessWidget {
   const Step3View({Key? key}) : super(key: key);

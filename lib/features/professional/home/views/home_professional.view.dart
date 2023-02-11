@@ -7,8 +7,6 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 import '../../../../locator.dart';
-import '../../../home/views/account_client.view.dart';
-import '../../../home/views/activities_client.view.dart';
 import '../view_model/home_professional.view_model.dart';
 
 class HomeProfessionalView extends StatefulWidget {
