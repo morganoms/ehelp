@@ -4,9 +4,9 @@ import 'package:ehelp/shared/components/time_selector.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
-import '../../../shared/components/generic_button.widget.dart';
-import '../../../shared/components/stepper.widget.dart';
-import '../../../shared/fonts/styles.dart';
+import '../../../../shared/components/generic_button.widget.dart';
+import '../../../../shared/components/stepper.widget.dart';
+import '../../../../shared/fonts/styles.dart';
 import '../view_model/booking.view_model.dart';
 
 class Step2View extends StatelessWidget {

@@ -1,18 +1,16 @@
-import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:ehelp/features/home/views/components/dropdown_search.widget.dart';
-import 'package:ehelp/features/home/views/components/service_item.widget.dart';
 import 'package:ehelp/shared/components/dropdown_search.widget.dart';
 import 'package:ehelp/shared/components/generic_button.widget.dart';
 import 'package:ehelp/shared/fonts/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
-import '../../../locator.dart';
-import '../../../shared/Colors/constants.dart';
-import '../../../shared/components/default_dialog.widget.dart';
-import '../../../shared/components/person_picture.widget.dart';
+import '../../../../locator.dart';
+import '../../../../shared/colors/constants.dart';
+import '../../../../shared/components/default_dialog.widget.dart';
+import '../../../../shared/components/person_picture.widget.dart';
 import '../view_model/home_client.view_model.dart';
 import 'components/adress_dialog.widget.dart';
+import 'components/service_item.widget.dart';
 
 class SearchServiceView extends StatefulWidget {
   const SearchServiceView({Key? key}) : super(key: key);

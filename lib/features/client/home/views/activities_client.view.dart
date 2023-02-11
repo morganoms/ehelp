@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
-import '../../../locator.dart';
+import '../../../../locator.dart';
 import '../view_model/home_client.view_model.dart';
 import 'components/tabs/booked_services.widget.dart';
 import 'components/tabs/history_services.widget.dart';

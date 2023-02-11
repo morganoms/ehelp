@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../shared/colors/constants.dart';
 import '../../../../shared/fonts/styles.dart';
-import '../../../home/views/components/service_item.widget.dart';
+import '../../../client/home/views/components/service_item.widget.dart';
 
 class HistoryProfessionalView extends StatelessWidget {
   const HistoryProfessionalView({Key? key}) : super(key: key);

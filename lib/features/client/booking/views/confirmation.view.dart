@@ -2,7 +2,7 @@ import 'package:ehelp/shared/fonts/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-import '../../../shared/components/generic_button.widget.dart';
+import '../../../../shared/components/generic_button.widget.dart';
 
 class ConfirmationView extends StatelessWidget {
   const ConfirmationView({Key? key}) : super(key: key);

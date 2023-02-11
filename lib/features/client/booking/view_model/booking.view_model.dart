@@ -1,7 +1,7 @@
 import 'package:mobx/mobx.dart';
 
-import '../../../shared/constants/default_area.dart';
-import '../../professional/areas/models/working_hours.entity.dart';
+import '../../../../shared/constants/default_area.dart';
+import '../../../professional/areas/models/working_hours.entity.dart';
 part 'booking.view_model.g.dart';
 
 class BookingViewModel = _BookingViewModelBase with _$BookingViewModel;

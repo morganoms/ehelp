@@ -1,8 +1,8 @@
 import 'package:ehelp/routes/ehelp_routes.dart';
 import 'package:flutter/material.dart';
 
-import '../../../shared/components/generic_button.widget.dart';
-import '../../../shared/fonts/styles.dart';
+import '../../../../shared/components/generic_button.widget.dart';
+import '../../../../shared/fonts/styles.dart';
 
 class UserProfileView extends StatelessWidget {
   UserProfileView({Key? key}) : super(key: key);

@@ -1,5 +1,3 @@
-import 'package:ehelp/features/booking/views/confirmation.view.dart';
-import 'package:ehelp/features/booking/views/step1.view.dart';
 import 'package:ehelp/routes/ehelp_generated_routes.dart';
 import 'package:ehelp/routes/ehelp_routes.dart';
 import 'package:flutter/material.dart';

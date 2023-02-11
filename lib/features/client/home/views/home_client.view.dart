@@ -1,13 +1,14 @@
-import 'package:ehelp/features/home/views/account_client.view.dart';
-import 'package:ehelp/features/home/views/activities_client.view.dart';
-import 'package:ehelp/features/home/views/search_service.view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
-import '../../../locator.dart';
-import '../../../shared/colors/constants.dart';
+import '../../../../locator.dart';
+import '../../../../shared/colors/constants.dart';
+
 import '../view_model/home_client.view_model.dart';
+import 'account_client.view.dart';
+import 'activities_client.view.dart';
+import 'search_service.view.dart';
 
 class HomeClientView extends StatefulWidget {
   const HomeClientView({Key? key}) : super(key: key);

@@ -2,7 +2,7 @@ import 'package:ehelp/shared/components/generic_button.widget.dart';
 import 'package:ehelp/shared/components/input.widget.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../shared/fonts/styles.dart';
+import '../../../../../shared/fonts/styles.dart';
 
 class AdressDialogWidget extends StatefulWidget {
   const AdressDialogWidget({Key? key}) : super(key: key);

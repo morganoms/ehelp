@@ -1,7 +1,3 @@
-import 'package:ehelp/features/call_now/views/call_now.view.dart';
-import 'package:ehelp/features/call_now/views/service_drecription.view.dart';
-import 'package:ehelp/features/home/views/home_client.view.dart';
-import 'package:ehelp/features/home/views/user_profile.view.dart';
 import 'package:ehelp/features/login/views/landing.view.dart';
 import 'package:ehelp/features/login/views/login.view.dart';
 import 'package:ehelp/features/professional/areas/views/home_areas.view.dart';
@@ -12,11 +8,15 @@ import 'package:ehelp/routes/ehelp_routes.dart';
 import 'package:ehelp/shared/models/user_type.dart';
 import 'package:flutter/material.dart';
 
-import '../features/booking/views/confirmation.view.dart';
-import '../features/booking/views/step1.view.dart';
-import '../features/booking/views/step2.view.dart';
-import '../features/booking/views/step3.view.dart';
-import '../features/call_now/views/payment.view.dart';
+import '../features/client/booking/views/confirmation.view.dart';
+import '../features/client/booking/views/step1.view.dart';
+import '../features/client/booking/views/step2.view.dart';
+import '../features/client/booking/views/step3.view.dart';
+import '../features/client/call_now/views/call_now.view.dart';
+import '../features/client/call_now/views/payment.view.dart';
+import '../features/client/call_now/views/service_drecription.view.dart';
+import '../features/client/home/views/home_client.view.dart';
+import '../features/client/home/views/user_profile.view.dart';
 import '../features/professional/areas/views/certification_attach.view.dart';
 import '../features/professional/areas/views/value_charged.view.dart';
 import '../features/professional/areas/views/work_days.view.dart';
