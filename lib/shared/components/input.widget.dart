@@ -63,24 +63,24 @@ class _InputState extends State<Input> {
             horizontal: 24, vertical: widget.maxLines > 1 ? 24 : 0),
         hintText: widget.hintText,
         border: OutlineInputBorder(
-          borderRadius: widget.borderRadius ?? BorderRadius.circular(50),
+          borderRadius: widget.borderRadius ?? BorderRadius.circular(18),
           borderSide: BorderSide(
-            color: Theme.of(context).primaryColor.withOpacity(0.5),
+            color: Theme.of(context).primaryColor.withOpacity(0.3),
             width: 0.5,
           ),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: widget.borderRadius ?? BorderRadius.circular(50),
+          borderRadius: widget.borderRadius ?? BorderRadius.circular(18),
           borderSide: BorderSide(
-            color: Theme.of(context).primaryColor.withOpacity(0.5),
+            color: Theme.of(context).primaryColor.withOpacity(0.3),
             width: 0.5,
           ),
         ),
         focusedBorder: OutlineInputBorder(
-            borderRadius: widget.borderRadius ?? BorderRadius.circular(50),
+            borderRadius: widget.borderRadius ?? BorderRadius.circular(18),
             borderSide: const BorderSide(color: Color(0xFF707070), width: 0.5)),
         errorBorder: OutlineInputBorder(
-          borderRadius: widget.borderRadius ?? BorderRadius.circular(50),
+          borderRadius: widget.borderRadius ?? BorderRadius.circular(18),
           borderSide: const BorderSide(color: Colors.red, width: .5),
         ),
       ),

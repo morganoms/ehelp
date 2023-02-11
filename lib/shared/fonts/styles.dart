@@ -20,9 +20,30 @@ class FontStyles {
     fontWeight: FontWeight.w700,
   );
 
+  static TextStyle? size20Weight700 = const TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.w700,
+  );
+
+  static TextStyle? size20Weight400 = const TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.w400,
+  );
+
   static TextStyle? size18Weight400 = const TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.w400,
+  );
+
+  static TextStyle? size18Weight700 = const TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.w700,
+  );
+
+  static TextStyle? size18Weight700Dark = const TextStyle(
+    fontSize: 18,
+    color: ColorConstants.primaryColor,
+    fontWeight: FontWeight.w700,
   );
 
   static TextStyle? size16Weight700 = const TextStyle(
