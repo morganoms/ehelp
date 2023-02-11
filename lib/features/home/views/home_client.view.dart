@@ -6,6 +6,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 import '../../../locator.dart';
+import '../../../shared/colors/constants.dart';
 import '../view_model/home_client.view_model.dart';
 
 class HomeClientView extends StatefulWidget {
@@ -33,45 +34,39 @@ class _HomeClientViewState extends State<HomeClientView> {
             currentIndex: _viewModel.bottomBarIndex,
             itemPadding:
                 const EdgeInsets.symmetric(vertical: 10, horizontal: 24),
-            selectedItemColor: Colors.grey.shade600,
+            selectedItemColor: ColorConstants.blueSelected,
+            unselectedItemColor: ColorConstants.primaryLight,
             onTap: (i) => _viewModel.onClickBottomBar(i),
             items: [
               SalomonBottomBarItem(
-                icon: Icon(
-                  Icons.receipt,
-                  color: Theme.of(context).primaryColor,
-                ),
+                icon: const Icon(Icons.receipt),
                 title: const Text('Atividades'),
               ),
               SalomonBottomBarItem(
-                icon: Icon(
-                  Icons.home,
-                  color: Theme.of(context).primaryColor,
-                ),
+                icon: const Icon(Icons.home),
                 title: const Text('Página Inicial'),
               ),
               SalomonBottomBarItem(
-                icon: Icon(
-                  Icons.person,
-                  color: Theme.of(context).primaryColor,
-                ),
+                icon: const Icon(Icons.person),
                 title: const Text('Conta'),
               ),
             ],
           );
         },
       ),
-      body: Observer(builder: (_) {
-        return PageView(
-          onPageChanged: (pageIndex) => _viewModel.onPageSlide(pageIndex),
-          controller: _viewModel.pageController,
-          children: const <Widget>[
-            ActivitiesClientView(),
-            SearchServiceView(),
-            AccaountView(),
-          ],
-        );
-      }),
+      body: Observer(
+        builder: (_) {
+          return PageView(
+            onPageChanged: (pageIndex) => _viewModel.onPageSlide(pageIndex),
+            controller: _viewModel.pageController,
+            children: const <Widget>[
+              ActivitiesClientView(),
+              SearchServiceView(),
+              AccaountView(),
+            ],
+          );
+        },
+      ),
     );
   }
 }

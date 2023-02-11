@@ -1,4 +1,7 @@
+import 'package:ehelp/features/professional/home/views/history_professional.view.dart';
 import 'package:ehelp/features/professional/home/views/professional_calls.view.dart';
+import 'package:ehelp/features/professional/home/views/settings_professional.view.dart';
+import 'package:ehelp/shared/colors/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
@@ -33,29 +36,21 @@ class _HomeProfessionalViewState extends State<HomeProfessionalView> {
             currentIndex: _viewModel.bottomBarIndex,
             itemPadding:
                 const EdgeInsets.symmetric(vertical: 10, horizontal: 24),
-            selectedItemColor: Colors.grey.shade600,
+            selectedItemColor: ColorConstants.blueSelected,
+            unselectedItemColor: ColorConstants.primaryLight,
             onTap: (i) => _viewModel.onClickBottomBar(i),
             items: [
               SalomonBottomBarItem(
-                icon: Icon(
-                  Icons.receipt,
-                  color: Theme.of(context).primaryColor,
-                ),
+                icon: const Icon(Icons.receipt),
                 title: const Text('Atividades'),
               ),
               SalomonBottomBarItem(
-                icon: Icon(
-                  Icons.home,
-                  color: Theme.of(context).primaryColor,
-                ),
+                icon: const Icon(Icons.home),
                 title: const Text('Página Inicial'),
               ),
               SalomonBottomBarItem(
-                icon: Icon(
-                  Icons.person,
-                  color: Theme.of(context).primaryColor,
-                ),
-                title: const Text('Conta'),
+                icon: const Icon(Icons.settings),
+                title: const Text('Configurações'),
               ),
             ],
           );
@@ -66,9 +61,9 @@ class _HomeProfessionalViewState extends State<HomeProfessionalView> {
           onPageChanged: (pageIndex) => _viewModel.onPageSlide(pageIndex),
           controller: _viewModel.pageController,
           children: const <Widget>[
-            ActivitiesClientView(),
+            HistoryProfessionalView(),
             ProfessionalCallsView(),
-            AccaountView(),
+            SettingsProfesssionalView(),
           ],
         );
       }),

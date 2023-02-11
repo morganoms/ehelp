@@ -30,21 +30,22 @@ class _ProfessionalCallsViewState extends State<ProfessionalCallsView> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.center,
-              colors: [ColorConstants.primaryLight, Colors.white],
+    return SingleChildScrollView(
+      child: Stack(
+        children: [
+          Container(
+            height: MediaQuery.of(context).size.height,
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.center,
+                colors: [ColorConstants.primaryV2, Colors.white],
+              ),
             ),
           ),
-        ),
-        SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: SingleChildScrollView(
+          SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Column(
                 children: [
                   const SizedBox(
@@ -135,8 +136,8 @@ class _ProfessionalCallsViewState extends State<ProfessionalCallsView> {
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

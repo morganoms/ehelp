@@ -31,7 +31,7 @@ class GenericButton extends StatelessWidget {
           side: BorderSide(
             color: borderColor ?? Colors.transparent,
           ),
-          borderRadius: BorderRadius.circular(50),
+          borderRadius: BorderRadius.circular(18),
         ),
       ),
       child: Container(

@@ -1,4 +1,5 @@
 import 'package:ehelp/routes/ehelp_routes.dart';
+import 'package:ehelp/shared/Colors/constants.dart';
 import 'package:ehelp/shared/fonts/styles.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
@@ -39,49 +40,45 @@ class _ServiceItemProWidgetState extends State<ServiceItemProWidget>
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Flexible(
-                  child: Text(
-                    'Maria Almeida',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700,
-                      color: Theme.of(context).primaryColor,
+          Flexible(
+            child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Flexible(
+                    child: Text(
+                      'Maria Almeida',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(
-                  height: 8,
-                ),
-                Flexible(
-                  child: Text(
-                    'Eletricista',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      color: Theme.of(context).primaryColor,
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  const Flexible(
+                    child: Text(
+                      'Problema de fio desencapado devido a acidente',
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(
-                  height: 8,
-                ),
-                Flexible(
-                  child: Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: Colors.orange.shade300,
-                    ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  Flexible(
                     child: Text('Pendente', style: FontStyles.size14Weight500),
                   ),
-                ),
-              ]),
+                ]),
+          ),
           const Icon(Icons.keyboard_arrow_right_rounded),
         ],
       ),
@@ -240,7 +237,7 @@ class _ServiceItemProWidgetState extends State<ServiceItemProWidget>
                 flex: 8,
                 child: Material(
                   borderRadius: BorderRadius.circular(15),
-                  color: const Color(0xFFE0E0E0),
+                  color: ColorConstants.primaryV2Dark,
                   child: InkWell(
                     customBorder: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
@@ -269,18 +266,13 @@ class _ServiceItemProWidgetState extends State<ServiceItemProWidget>
           width: MediaQuery.of(context).size.width / 5,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
-            color: const Color(0xFF575757),
-          ),
-          child: const Padding(
-            padding: EdgeInsets.all(8),
-            child: SizedBox.expand(
-              child: FittedBox(
-                child: Icon(
-                  Icons.person_rounded,
-                  color: Colors.white,
-                ),
+            image: const DecorationImage(
+              fit: BoxFit.cover,
+              image: AssetImage(
+                'assets/images/person1.jpg',
               ),
             ),
+            color: const Color(0xFF575757),
           ),
         ),
       ],
