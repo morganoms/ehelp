@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import '../../../../shared/colors/constants.dart';
@@ -18,6 +20,7 @@ class HistoryProfessionalView extends StatelessWidget {
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.center,
+                stops: [0, 0.5],
                 colors: [ColorConstants.primaryV2, Colors.white],
               ),
             ),
@@ -39,6 +42,7 @@ class HistoryProfessionalView extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(vertical: 8),
                       child: ServiceItemWidget(
                         expansive: true,
+                        indexImage: index % 5,
                       ),
                     ),
                   ),

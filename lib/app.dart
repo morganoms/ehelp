@@ -13,7 +13,7 @@ class EHelpApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: const Color(0xFF575757),
-        fontFamily: 'Montserrat',
+        fontFamily: 'Lexend',
         dialogBackgroundColor: Colors.white,
         scaffoldBackgroundColor: Colors.white,
       ),

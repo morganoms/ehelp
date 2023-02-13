@@ -2,6 +2,7 @@ import 'package:ehelp/features/login/views/landing.view.dart';
 import 'package:ehelp/features/login/views/login.view.dart';
 import 'package:ehelp/features/professional/areas/views/home_areas.view.dart';
 import 'package:ehelp/features/professional/areas/views/home_edit_area.view.dart';
+import 'package:ehelp/features/professional/home/views/bank_professional.view.dart';
 import 'package:ehelp/features/professional/sign_in/views/adress_professional.view.dart';
 import 'package:ehelp/features/professional/sign_in/views/banking_professional.view.dart';
 import 'package:ehelp/routes/ehelp_routes.dart';
@@ -16,12 +17,14 @@ import '../features/client/call_now/views/call_now.view.dart';
 import '../features/client/call_now/views/payment.view.dart';
 import '../features/client/call_now/views/service_drecription.view.dart';
 import '../features/client/home/views/home_client.view.dart';
-import '../features/client/home/views/user_profile.view.dart';
+import '../features/client/home/views/user_professional_profile.view.dart';
 import '../features/professional/areas/views/certification_attach.view.dart';
 import '../features/professional/areas/views/value_charged.view.dart';
 import '../features/professional/areas/views/work_days.view.dart';
 import '../features/professional/areas/views/work_hours.view.dart';
+import '../features/professional/call_now/views/call_detail_professional.view.dart';
 import '../features/professional/home/views/home_professional.view.dart';
+import '../features/professional/home/views/profile_professional.view.dart';
 import '../features/professional/sign_in/views/personal_data.view.dart';
 
 typedef WidgetBuilderArgs = Widget Function(BuildContext context, Object args);
@@ -44,13 +47,15 @@ extension EhelpGeneratedRoutes on EhelpRoutes {
         EhelpRoutes.clientCallNowCalling: (context, args) =>
             const CallNowView(),
         EhelpRoutes.personalData: (context, args) =>
-            const ProfessionalPersonalDataView(),
+            ProfessionalPersonalDataView(isEditing: args as bool),
         EhelpRoutes.addressProfessional: (context, args) =>
             const AdressProfessionalView(),
         EhelpRoutes.bankingProfessional: (context, args) =>
-            const BankingProfessionalView(),
-        EhelpRoutes.homeArea: (context, args) => const HomeAreaView(),
-        EhelpRoutes.clientUserProfile: (context, args) => UserProfileView(),
+            BankingProfessionalView(isEditing: args as bool),
+        EhelpRoutes.homeArea: (context, args) =>
+            HomeAreaView(isEditing: args as bool),
+        EhelpRoutes.clientUserProfessionalProfile: (context, args) =>
+            UserProfessionalProfileView(),
         EhelpRoutes.certificationArea: (context, args) =>
             const CertificationAttachView(),
         EhelpRoutes.homeEditArea: (context, args) => const HomeEditAreaView(),
@@ -60,7 +65,12 @@ extension EhelpGeneratedRoutes on EhelpRoutes {
         EhelpRoutes.clientCallNowDescription: (context, args) =>
             const ServiceDescriptionView(),
         EhelpRoutes.homeProfessional: (context, args) =>
-            const HomeProfessionalView()
+            const HomeProfessionalView(),
+        EhelpRoutes.callDetail: (context, args) => CallDetailProfessionalView(),
+        EhelpRoutes.professionalProfile: (context, args) =>
+            const ProfileProfessionalView(),
+        EhelpRoutes.professionalBanckAccount: (context, args) =>
+            const BankProfessionalView()
       };
 
   static Route<dynamic>? generateRoute(RouteSettings settings) {

@@ -122,8 +122,10 @@ class LoginView extends StatelessWidget {
                       height: 24,
                     ),
                     GestureDetector(
-                      onTap: () => Navigator.of(context)
-                          .pushNamed(EhelpRoutes.personalData),
+                      onTap: () => Navigator.of(context).pushNamed(
+                        EhelpRoutes.personalData,
+                        arguments: false,
+                      ),
                       child: Center(
                         child: RichText(
                           text: TextSpan(

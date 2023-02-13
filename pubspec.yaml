@@ -57,5 +57,16 @@ flutter:
           weight: 700
         - asset: assets/fonts/montserrat/Montserrat-Black.ttf
           weight: 900
+    - family: Lexend
+      fonts:
+        - asset: assets/fonts/lexend/Lexend-Light.ttf
+          weight: 300
+        - asset: assets/fonts/lexend/Lexend-Regular.ttf
+        - asset: assets/fonts/lexend/Lexend-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/lexend/Lexend-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/lexend/Lexend-Black.ttf
+          weight: 900
          
 

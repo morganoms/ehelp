@@ -23,9 +23,9 @@ class StepperWidget extends StatelessWidget {
             child: Column(
               children: [
                 Container(
-                  height: 8,
+                  height: 5,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(18),
+                    // borderRadius: BorderRadius.circular(18),
                     color: (index < totalActiveSteps)
                         ? ColorConstants.primaryColor
                         : ColorConstants.primaryLight,
@@ -35,9 +35,7 @@ class StepperWidget extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 8),
                   child: Text(
-                    (index + 1 == totalActiveSteps)
-                        ? 'Etapa $totalActiveSteps/$totalSteps'
-                        : '',
+                    (index + 1 == totalActiveSteps) ? '$totalActiveSteps' : '',
                     style: FontStyles.size14Weight400,
                   ),
                 )

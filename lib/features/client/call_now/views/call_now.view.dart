@@ -179,7 +179,9 @@ class _CallNowViewViewState extends State<CallNowView>
               const SizedBox(
                 height: 48,
               ),
-              ServiceItemWidget(),
+              ServiceItemWidget(
+                indexImage: 0,
+              ),
               const SizedBox(
                 height: 32,
               ),

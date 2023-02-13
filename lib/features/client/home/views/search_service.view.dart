@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:ehelp/shared/components/dropdown_search.widget.dart';
 import 'package:ehelp/shared/components/generic_button.widget.dart';
+import 'package:ehelp/shared/components/header_background.widget.dart';
 import 'package:ehelp/shared/fonts/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -49,20 +52,11 @@ class _SearchServiceViewState extends State<SearchServiceView> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          height: MediaQuery.of(context).size.height,
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.center,
-              colors: [ColorConstants.primaryV2, Colors.white],
-            ),
-          ),
-        ),
-        SingleChildScrollView(
-          child: SafeArea(
+    return SingleChildScrollView(
+      child: Stack(
+        children: [
+          const HeaderBackground(),
+          SafeArea(
               child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24),
             child: Column(
@@ -127,42 +121,18 @@ class _SearchServiceViewState extends State<SearchServiceView> {
                     ],
                   );
                 }),
-                Observer(builder: (_) {
-                  return Visibility(
-                    visible: _controller.serviceSelected.isNotEmpty,
-                    child: Align(
-                      heightFactor: 1,
-                      alignment: Alignment.topLeft,
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          GenericButton(
-                            label: 'Agendar',
-                            onPressed: () {},
-                            height: 25,
-                            width: MediaQuery.of(context).size.width / 5,
-                            labelStyle: FontStyles.size14Weight500,
-                          ),
-                          const SizedBox(
-                            width: 8,
-                          ),
-                          GenericButton(
-                            label: 'Chamar Agora',
-                            onPressed: () {},
-                            height: 25,
-                            color: Colors.white,
-                            borderColor: const Color(0xFF575757),
-                            width: MediaQuery.of(context).size.width / 3,
-                            labelStyle: FontStyles.size14Weight500colorPrimary,
-                          )
-                        ],
-                      ),
-                    ),
-                  );
-                }),
+                const SizedBox(
+                  height: 16,
+                ),
                 Observer(builder: (_) {
                   return Visibility(
                     visible: _controller.serviceSelected.isEmpty,
+                    replacement: Container(
+                      margin: const EdgeInsets.only(top: 32),
+                      alignment: Alignment.centerLeft,
+                      child: Text('Resultados encontrados: 10',
+                          style: FontStyles.size16Weight700),
+                    ),
                     child: Container(
                       margin: const EdgeInsets.only(top: 32),
                       alignment: Alignment.centerLeft,
@@ -187,7 +157,9 @@ class _SearchServiceViewState extends State<SearchServiceView> {
                         10,
                         (index) => Padding(
                           padding: const EdgeInsets.symmetric(vertical: 8),
-                          child: ServiceItemWidget(),
+                          child: ServiceItemWidget(
+                            indexImage: index % 5,
+                          ),
                         ),
                       ),
                     ],
@@ -196,8 +168,8 @@ class _SearchServiceViewState extends State<SearchServiceView> {
               ],
             ),
           )),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

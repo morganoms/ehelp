@@ -245,7 +245,7 @@ class _ServiceItemProWidgetState extends State<ServiceItemProWidget>
                     onTap: widget.expansive
                         ? onToggleClick
                         : () => Navigator.of(context)
-                            .pushNamed(EhelpRoutes.clientUserProfile),
+                            .pushNamed(EhelpRoutes.callDetail),
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(

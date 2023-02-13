@@ -1,10 +1,16 @@
+import 'dart:math';
+
+import 'package:ehelp/features/professional/home/views/components/call_dialog.widget.dart';
 import 'package:ehelp/shared/components/person_picture.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 import '../../../../locator.dart';
 import '../../../../shared/colors/constants.dart';
+import '../../../../shared/components/default_dialog.widget.dart';
+import '../../../../shared/components/header_background.widget.dart';
 import '../../../../shared/fonts/styles.dart';
+import '../../../client/home/views/components/adress_dialog.widget.dart';
 import '../../../client/home/views/components/service_item.widget.dart';
 import '../view_model/home_professional.view_model.dart';
 import 'components/service_item_pro.widget.dart';
@@ -30,16 +36,7 @@ class _ProfessionalCallsViewState extends State<ProfessionalCallsView> {
     return SingleChildScrollView(
       child: Stack(
         children: [
-          Container(
-            height: MediaQuery.of(context).size.height,
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.center,
-                colors: [ColorConstants.primaryV2, Colors.white],
-              ),
-            ),
-          ),
+          const HeaderBackground(),
           SafeArea(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -78,17 +75,32 @@ class _ProfessionalCallsViewState extends State<ProfessionalCallsView> {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
                               color: _viewModel.isAvaliableNow
-                                  ? Color.fromARGB(255, 182, 253, 184)
+                                  ? ColorConstants.blueSelected
                                   : Colors.white),
                           child: IconButton(
-                            icon: Icon(
-                              _viewModel.isAvaliableNow
-                                  ? Icons.link_rounded
-                                  : Icons.link_off_rounded,
-                            ),
-                            onPressed: () => _viewModel
-                                .setAvaliableNow(!_viewModel.isAvaliableNow),
-                          ),
+                              icon: Icon(
+                                _viewModel.isAvaliableNow
+                                    ? Icons.link_rounded
+                                    : Icons.link_off_rounded,
+                                color: _viewModel.isAvaliableNow
+                                    ? Colors.white
+                                    : Colors.black,
+                              ),
+                              onPressed: () {
+                                _viewModel.setAvaliableNow(
+                                    !_viewModel.isAvaliableNow);
+                                Future.delayed(const Duration(seconds: 2))
+                                    .then((value) {
+                                  if (_viewModel.showCallNow) {
+                                    showDialog(
+                                      context: context,
+                                      builder: (builder) => const DefaultDialog(
+                                        child: CallDialogWidget(),
+                                      ),
+                                    );
+                                  }
+                                });
+                              }),
                         );
                       }),
                     ],
@@ -96,19 +108,29 @@ class _ProfessionalCallsViewState extends State<ProfessionalCallsView> {
                   const SizedBox(
                     height: 48,
                   ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Chamados Agora',
-                      style: FontStyles.size16Weight400,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 24,
-                  ),
-                  ServiceItemProWidget(),
-                  const SizedBox(
-                    height: 48,
+                  Observer(
+                    builder: (_) {
+                      return _viewModel.showCallNow
+                          ? Column(
+                              children: [
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    'Chamados Agora',
+                                    style: FontStyles.size16Weight400,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 24,
+                                ),
+                                ServiceItemProWidget(),
+                                const SizedBox(
+                                  height: 48,
+                                ),
+                              ],
+                            )
+                          : Container();
+                    },
                   ),
                   Align(
                     alignment: Alignment.centerLeft,
@@ -126,6 +148,7 @@ class _ProfessionalCallsViewState extends State<ProfessionalCallsView> {
                       padding: const EdgeInsets.symmetric(vertical: 8),
                       child: ServiceItemWidget(
                         expansive: true,
+                        indexImage: index % 5,
                       ),
                     ),
                   ),

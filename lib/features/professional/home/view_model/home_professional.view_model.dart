@@ -14,9 +14,16 @@ abstract class _HomeProfessionalViewModelBase with Store {
   String serviceSelected = '';
   @observable
   bool isAvaliableNow = false;
+  @observable
+  bool showCallNow = false;
 
   @action
-  bool setAvaliableNow(final bool newValue) => isAvaliableNow = newValue;
+  bool setAvaliableNow(final bool newValue) {
+    isAvaliableNow = newValue;
+    Future.delayed(const Duration(seconds: 2))
+        .then((value) => showCallNow = newValue);
+    return isAvaliableNow;
+  }
 
   @action
   int setbottomBarIndex(final int newValue) => bottomBarIndex = newValue;

@@ -11,6 +11,7 @@ class Input extends StatefulWidget {
     this.maxLines = 1,
     this.controller,
     this.borderRadius,
+    this.initialValue,
     final Key? key,
   }) : super(key: key);
   final String? hintText;
@@ -19,6 +20,7 @@ class Input extends StatefulWidget {
   final Widget? label;
   final BorderRadius? borderRadius;
   final int maxLines;
+  final String? initialValue;
   final TextEditingController? controller;
 
   @override
@@ -49,6 +51,7 @@ class _InputState extends State<Input> {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: widget.controller,
+      initialValue: widget.initialValue,
       onChanged: (final dynamic val) {
         if (widget.onChanged != null) {
           widget.onChanged!(double.parse(val));

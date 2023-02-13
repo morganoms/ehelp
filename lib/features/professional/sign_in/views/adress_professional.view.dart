@@ -1,3 +1,5 @@
+import 'package:ehelp/shared/components/back_button.widget.dart';
+import 'package:ehelp/shared/components/header_background.widget.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../routes/ehelp_routes.dart';
@@ -22,92 +24,88 @@ class _AdressProfessionalViewState extends State<AdressProfessionalView> {
         padding: const EdgeInsets.all(24),
         child: GenericButton(
           label: 'Continuar',
-          onPressed: () =>
-              Navigator.of(context).pushNamed(EhelpRoutes.bankingProfessional),
+          onPressed: () => Navigator.of(context)
+              .pushNamed(EhelpRoutes.bankingProfessional, arguments: false),
         ),
       ),
-      body: SafeArea(
-        bottom: false,
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: IconButton(
-                        onPressed: () => Navigator.of(context).pop(),
-                        icon: const Icon(
-                          Icons.arrow_back_ios_rounded,
-                          size: 18,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      'Cadastro de Profissional',
-                      style: FontStyles.size16Weight700,
-                    )
-                  ],
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                const StepperWidget(totalSteps: 4, totalActiveSteps: 2),
-                const SizedBox(
-                  height: 48,
-                ),
-                Text(
-                  'Forneça o endereço da sua oficina ou residência:',
-                  style: FontStyles.size14Weight400,
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                const SizedBox(
-                  height: 24,
-                ),
-                Form(
-                  key: _formKey,
+      body: SingleChildScrollView(
+        child: Stack(
+          children: [
+            const HeaderBackground(),
+            SafeArea(
+              bottom: false,
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: Column(
-                    children: const [
-                      Input(label: Text('CEP')),
-                      SizedBox(
+                    children: [
+                      Row(
+                        children: [
+                          const BackButtonWidget(),
+                          const SizedBox(width: 16),
+                          Text(
+                            'Cadastro de Profissional',
+                            style: FontStyles.size18Weight500,
+                          )
+                        ],
+                      ),
+                      const SizedBox(
                         height: 16,
                       ),
-                      Input(label: Text('Endereço')),
-                      SizedBox(
+                      const StepperWidget(totalSteps: 4, totalActiveSteps: 2),
+                      const SizedBox(height: 24),
+                      Text(
+                        'Forneça o endereço da sua oficina ou residência:',
+                        style: FontStyles.size14Weight400,
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(
                         height: 16,
                       ),
-                      Input(label: Text('Número')),
-                      SizedBox(
-                        height: 16,
+                      const SizedBox(
+                        height: 24,
                       ),
-                      Input(label: Text('Complemento')),
-                      SizedBox(
-                        height: 16,
-                      ),
-                      Input(label: Text('Bairro')),
-                      SizedBox(
-                        height: 16,
-                      ),
-                      Input(label: Text('Estado')),
-                      SizedBox(
-                        height: 16,
-                      ),
-                      Input(label: Text('Estado')),
-                      SizedBox(
-                        height: 36,
+                      Form(
+                        key: _formKey,
+                        child: Column(
+                          children: const [
+                            Input(label: Text('CEP')),
+                            SizedBox(
+                              height: 16,
+                            ),
+                            Input(label: Text('Endereço')),
+                            SizedBox(
+                              height: 16,
+                            ),
+                            Input(label: Text('Número')),
+                            SizedBox(
+                              height: 16,
+                            ),
+                            Input(label: Text('Complemento')),
+                            SizedBox(
+                              height: 16,
+                            ),
+                            Input(label: Text('Bairro')),
+                            SizedBox(
+                              height: 16,
+                            ),
+                            Input(label: Text('Estado')),
+                            SizedBox(
+                              height: 16,
+                            ),
+                            Input(label: Text('Estado')),
+                            SizedBox(
+                              height: 36,
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
                 ),
-              ],
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );

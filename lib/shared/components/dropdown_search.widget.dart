@@ -26,16 +26,17 @@ class DropdownSearch2Widget extends StatelessWidget {
     return DropdownButtonHideUnderline(
       child: DropdownButton2(
         isExpanded: true,
-        hint: Text(hintText, style: FontStyles.size18Weight400),
+        hint: Text(hintText, style: FontStyles.size16Weight700),
         items: items
             .map(
               (item) => DropdownMenuItem<String>(
                 value: item,
-                child: Text(item, style: FontStyles.size14Weight400),
+                child: Text(item, style: FontStyles.size16Weight400),
               ),
             )
             .toList(),
         value: initValue.isEmpty ? null : initValue,
+        style: FontStyles.size16Weight700black,
         onChanged: onChanged,
         buttonPadding: const EdgeInsets.only(right: 16),
         dropdownDecoration: BoxDecoration(

@@ -1,16 +1,20 @@
+import 'package:ehelp/shared/colors/constants.dart';
+import 'package:ehelp/shared/components/back_button.widget.dart';
+import 'package:ehelp/shared/components/header_background.widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 import '../../../../routes/ehelp_routes.dart';
 import '../../../../shared/components/generic_button.widget.dart';
+import '../../../../shared/components/random_person_image.widget.dart';
 import '../../../../shared/components/stepper.widget.dart';
 import '../../../../shared/fonts/styles.dart';
 import 'components/form_personal_data.widget.dart';
 
 class ProfessionalPersonalDataView extends StatefulWidget {
-  const ProfessionalPersonalDataView({Key? key}) : super(key: key);
+  const ProfessionalPersonalDataView({this.isEditing = false, final Key? key})
+      : super(key: key);
+
+  final bool isEditing;
 
   @override
   State<ProfessionalPersonalDataView> createState() =>
@@ -25,80 +29,90 @@ class _ProfessionalPersonalDataViewState
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(24),
         child: GenericButton(
-          label: 'Continuar',
-          onPressed: () =>
-              Navigator.of(context).pushNamed(EhelpRoutes.addressProfessional),
+          color: ColorConstants.blueSelected,
+          label: widget.isEditing ? 'Salvar' : 'Continuar',
+          onPressed: () => widget.isEditing
+              ? Navigator.of(context).pop()
+              : Navigator.of(context)
+                  .pushNamed(EhelpRoutes.addressProfessional),
         ),
       ),
-      body: SafeArea(
-        bottom: false,
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: SingleChildScrollView(
+        child: Stack(
+          children: [
+            const HeaderBackground(),
+            SafeArea(
+              bottom: false,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: Column(
                   children: [
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: IconButton(
-                        onPressed: () => Navigator.of(context).pop(),
-                        icon: const Icon(
-                          Icons.arrow_back_ios_rounded,
-                          size: 18,
+                    Row(
+                      children: [
+                        const BackButtonWidget(),
+                        const SizedBox(width: 16),
+                        Text(
+                          widget.isEditing
+                              ? 'Dados pessoais'
+                              : 'Cadastro de Profissional',
+                          style: FontStyles.size18Weight500,
+                        )
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    if (!widget.isEditing)
+                      const StepperWidget(totalSteps: 4, totalActiveSteps: 1),
+                    const SizedBox(height: 24),
+                    if (!widget.isEditing)
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          'Forneça alguns dados pessoais:',
+                          style: FontStyles.size16Weight700,
                         ),
                       ),
+                    const SizedBox(
+                      height: 16,
                     ),
-                    Text(
-                      'Cadastro de Profissional',
-                      style: FontStyles.size16Weight700,
-                    )
+                    if (widget.isEditing)
+                      const RandomPersonImage(
+                        heightImage: 150,
+                        widthtImage: 150,
+                        marginRight: false,
+                      )
+                    else
+                      Container(
+                        height: MediaQuery.of(context).size.height / 5,
+                        margin: const EdgeInsets.only(top: 24),
+                        alignment: Alignment.center,
+                        width: MediaQuery.of(context).size.width / 2,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: const Color(0xFF575757),
+                        ),
+                        child: const Padding(
+                          padding: EdgeInsets.all(8),
+                          child: SizedBox.expand(
+                            child: FittedBox(
+                              child: Icon(
+                                Icons.person_rounded,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    const SizedBox(
+                      height: 32,
+                    ),
+                    FormPersonalDataWidget(isEditing: widget.isEditing),
                   ],
                 ),
-                const SizedBox(
-                  height: 16,
-                ),
-                const StepperWidget(totalSteps: 4, totalActiveSteps: 1),
-                const SizedBox(
-                  height: 48,
-                ),
-                Text(
-                  'Forneça uma foto sua, e alguns dados pessoais:',
-                  style: FontStyles.size14Weight400,
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                Container(
-                  height: MediaQuery.of(context).size.height / 5,
-                  margin: const EdgeInsets.only(top: 24),
-                  alignment: Alignment.center,
-                  width: MediaQuery.of(context).size.width / 2,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: const Color(0xFF575757),
-                  ),
-                  child: const Padding(
-                    padding: EdgeInsets.all(8),
-                    child: SizedBox.expand(
-                      child: FittedBox(
-                        child: Icon(
-                          Icons.person_rounded,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 32,
-                ),
-                FormPersonalDataWidget(),
-              ],
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );
