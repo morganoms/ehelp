@@ -16,6 +16,7 @@ import '../features/client/booking/views/step3.view.dart';
 import '../features/client/call_now/views/call_now.view.dart';
 import '../features/client/call_now/views/payment.view.dart';
 import '../features/client/call_now/views/service_drecription.view.dart';
+import '../features/client/home/views/adresses_client.view.dart';
 import '../features/client/home/views/home_client.view.dart';
 import '../features/client/home/views/user_professional_profile.view.dart';
 import '../features/professional/areas/views/certification_attach.view.dart';
@@ -70,7 +71,9 @@ extension EhelpGeneratedRoutes on EhelpRoutes {
         EhelpRoutes.professionalProfile: (context, args) =>
             const ProfileProfessionalView(),
         EhelpRoutes.professionalBanckAccount: (context, args) =>
-            const BankProfessionalView()
+            const BankProfessionalView(),
+        EhelpRoutes.clientAdresses: (context, args) =>
+            const AdressesClientView()
       };
 
   static Route<dynamic>? generateRoute(RouteSettings settings) {

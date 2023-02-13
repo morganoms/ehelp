@@ -144,7 +144,7 @@ class CallDetailProfessionalView extends StatelessWidget {
                   const SizedBox(height: 16),
                   GestureDetector(
                     onTap: () => Navigator.of(context)
-                        .pushNamed(EhelpRoutes.clientUserProfessionalProfile),
+                        .pushNamed(EhelpRoutes.professionalProfile),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [

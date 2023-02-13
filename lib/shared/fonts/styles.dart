@@ -99,6 +99,23 @@ class FontStyles {
     fontWeight: FontWeight.w500,
   );
 
+  static TextStyle? size14Weight500orange = const TextStyle(
+    fontSize: 14,
+    color: Colors.orange,
+    fontWeight: FontWeight.w500,
+  );
+
+  static TextStyle? size14Weight300 = const TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w300,
+  );
+
+  static TextStyle? size14Weight300grey = const TextStyle(
+    fontSize: 14,
+    color: Colors.grey,
+    fontWeight: FontWeight.w300,
+  );
+
   static TextStyle? size14Weight500grey = const TextStyle(
     fontSize: 14,
     color: Colors.grey,

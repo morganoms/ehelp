@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../../../../shared/colors/constants.dart';
 import '../../../../shared/fonts/styles.dart';
 import '../../../client/home/views/components/service_item.widget.dart';
+import 'components/service_item_client.widget.dart';
 
 class HistoryProfessionalView extends StatelessWidget {
   const HistoryProfessionalView({Key? key}) : super(key: key);
@@ -40,8 +41,7 @@ class HistoryProfessionalView extends StatelessWidget {
                     10,
                     (index) => Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8),
-                      child: ServiceItemWidget(
-                        expansive: true,
+                      child: ServiceItemClientWidget(
                         indexImage: index % 5,
                       ),
                     ),

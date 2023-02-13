@@ -5,8 +5,8 @@ import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
-class ServiceItemProWidget extends StatefulWidget {
-  ServiceItemProWidget({
+class ServiceItemCallWidget extends StatefulWidget {
+  ServiceItemCallWidget({
     this.expansive = false,
     Key? key,
   }) : super(key: key);
@@ -14,10 +14,10 @@ class ServiceItemProWidget extends StatefulWidget {
   bool expansive;
 
   @override
-  State<ServiceItemProWidget> createState() => _ServiceItemProWidgetState();
+  State<ServiceItemCallWidget> createState() => _ServiceItemCallWidgetState();
 }
 
-class _ServiceItemProWidgetState extends State<ServiceItemProWidget>
+class _ServiceItemCallWidgetState extends State<ServiceItemCallWidget>
     with SingleTickerProviderStateMixin {
   final ExpandableController expandController = ExpandableController();
 

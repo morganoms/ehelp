@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:ehelp/features/professional/home/views/components/call_dialog.widget.dart';
+import 'package:ehelp/features/professional/home/views/components/service_item_client.widget.dart';
 import 'package:ehelp/shared/components/person_picture.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -13,7 +14,7 @@ import '../../../../shared/fonts/styles.dart';
 import '../../../client/home/views/components/adress_dialog.widget.dart';
 import '../../../client/home/views/components/service_item.widget.dart';
 import '../view_model/home_professional.view_model.dart';
-import 'components/service_item_pro.widget.dart';
+import 'components/service_item_call.widget.dart';
 
 class ProfessionalCallsView extends StatefulWidget {
   const ProfessionalCallsView({Key? key}) : super(key: key);
@@ -123,7 +124,7 @@ class _ProfessionalCallsViewState extends State<ProfessionalCallsView> {
                                 const SizedBox(
                                   height: 24,
                                 ),
-                                ServiceItemProWidget(),
+                                ServiceItemCallWidget(),
                                 const SizedBox(
                                   height: 48,
                                 ),
@@ -145,9 +146,8 @@ class _ProfessionalCallsViewState extends State<ProfessionalCallsView> {
                   ...List.generate(
                     10,
                     (index) => Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8),
-                      child: ServiceItemWidget(
-                        expansive: true,
+                      padding: const EdgeInsets.only(bottom: 18),
+                      child: ServiceItemClientWidget(
                         indexImage: index % 5,
                       ),
                     ),
