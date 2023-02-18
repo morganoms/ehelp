@@ -1,5 +1,5 @@
 import 'package:ehelp/features/professional/areas/models/working_hours.entity.dart';
-import 'package:ehelp/shared/Colors/constants.dart';
+import 'package:ehelp/shared/colors/constants.dart';
 import 'package:flutter/material.dart';
 
 class TimeSelector extends StatelessWidget {
@@ -58,7 +58,7 @@ class TimeSelector extends StatelessWidget {
   }) {
     if (isAvaliable) {
       if (isSelected) {
-        return ColorConstants.blueSelected;
+        return ColorConstants.greenDark;
       } else {
         return ColorConstants.greenAvailable;
       }
@@ -121,7 +121,7 @@ class TimeSelector extends StatelessWidget {
             Container(
               height: 25,
               width: 25,
-              color: ColorConstants.blueSelected,
+              color: ColorConstants.greenDark,
             ),
             const SizedBox(
               width: 8,

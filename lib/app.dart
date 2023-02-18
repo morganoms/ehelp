@@ -1,6 +1,8 @@
 import 'package:ehelp/routes/ehelp_generated_routes.dart';
 import 'package:ehelp/routes/ehelp_routes.dart';
+import 'package:ehelp/shared/colors/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 class EHelpApp extends StatelessWidget {
@@ -12,11 +14,10 @@ class EHelpApp extends StatelessWidget {
       title: 'eHelp',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primaryColor: const Color(0xFF575757),
-        fontFamily: 'Lexend',
-        dialogBackgroundColor: Colors.white,
-        scaffoldBackgroundColor: Colors.white,
-      ),
+          primaryColor: const Color(0xFF575757),
+          fontFamily: 'Lexend',
+          dialogBackgroundColor: Colors.white,
+          scaffoldBackgroundColor: ColorConstants.whiteBackground),
       initialRoute: EhelpRoutes.landing,
       onGenerateRoute: EhelpGeneratedRoutes.generateRoute,
       supportedLocales: const <Locale>[Locale('pt', 'BR')],

@@ -13,7 +13,7 @@ class StarScore extends StatelessWidget {
         borderRadius: BorderRadius.circular(100),
         color: Colors.white,
       ),
-      child: Row(children: [
+      child: Row(mainAxisSize: MainAxisSize.min, children: [
         Icon(
           Icons.star_border_outlined,
           color: Colors.yellow.shade700,

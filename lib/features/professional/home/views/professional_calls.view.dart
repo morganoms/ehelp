@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:ehelp/features/professional/home/views/components/call_dialog.widget.dart';
 import 'package:ehelp/features/professional/home/views/components/service_item_client.widget.dart';
 import 'package:ehelp/shared/components/person_picture.widget.dart';
@@ -35,18 +33,22 @@ class _ProfessionalCallsViewState extends State<ProfessionalCallsView> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Stack(
+      child: Column(
         children: [
-          const HeaderBackground(),
-          SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 24,
+          Column(children: [
+            Container(
+              color: ColorConstants.blackSoft,
+              width: double.infinity,
+              child: SafeArea(
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 24,
                   ),
-                  Row(
+                  margin: const EdgeInsets.only(
+                    bottom: 24,
+                  ),
+                  height: MediaQuery.of(context).size.height / 12,
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Row(
@@ -60,11 +62,11 @@ class _ProfessionalCallsViewState extends State<ProfessionalCallsView> {
                               children: [
                                 Text(
                                   'Olá, Morgan!',
-                                  style: FontStyles.size16Weight700,
+                                  style: FontStyles.size16Weight700White,
                                 ),
                                 Text(
                                   'Profissional',
-                                  style: FontStyles.size14Weight400,
+                                  style: FontStyles.size14Weight400white,
                                 )
                               ],
                             ),
@@ -76,7 +78,7 @@ class _ProfessionalCallsViewState extends State<ProfessionalCallsView> {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
                               color: _viewModel.isAvaliableNow
-                                  ? ColorConstants.blueSelected
+                                  ? ColorConstants.greenDark
                                   : Colors.white),
                           child: IconButton(
                               icon: Icon(
@@ -106,54 +108,71 @@ class _ProfessionalCallsViewState extends State<ProfessionalCallsView> {
                       }),
                     ],
                   ),
-                  const SizedBox(
-                    height: 48,
-                  ),
-                  Observer(
-                    builder: (_) {
-                      return _viewModel.showCallNow
-                          ? Column(
-                              children: [
-                                Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text(
-                                    'Chamados Agora',
-                                    style: FontStyles.size16Weight400,
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 24,
-                                ),
-                                ServiceItemCallWidget(),
-                                const SizedBox(
-                                  height: 48,
-                                ),
-                              ],
-                            )
-                          : Container();
-                    },
-                  ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Agendamentos',
-                      style: FontStyles.size16Weight400,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  ...List.generate(
-                    10,
-                    (index) => Padding(
-                      padding: const EdgeInsets.only(bottom: 18),
-                      child: ServiceItemClientWidget(
-                        indexImage: index % 5,
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
+            ),
+            Container(
+              color: ColorConstants.blackSoft,
+              child: Container(
+                width: double.infinity,
+                height: 48,
+                decoration: const BoxDecoration(
+                  color: ColorConstants.whiteBackground,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(30),
+                      topRight: Radius.circular(30)),
+                ),
+              ),
+            ),
+          ]),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: Column(
+              children: [
+                Observer(
+                  builder: (_) {
+                    return _viewModel.showCallNow
+                        ? Column(
+                            children: [
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  'Chamados Agora',
+                                  style: FontStyles.size16Weight400,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 24,
+                              ),
+                              ServiceItemCallWidget(),
+                              const SizedBox(
+                                height: 48,
+                              ),
+                            ],
+                          )
+                        : Container();
+                  },
+                ),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Agendamentos',
+                    style: FontStyles.size16Weight400,
+                  ),
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                ...List.generate(
+                  10,
+                  (index) => Padding(
+                    padding: const EdgeInsets.only(bottom: 18),
+                    child: ServiceItemClientWidget(
+                      indexImage: index % 5,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ],

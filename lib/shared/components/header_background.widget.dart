@@ -14,7 +14,7 @@ class HeaderBackground extends StatelessWidget {
           begin: Alignment.topCenter,
           end: Alignment.center,
           stops: [0, 0.5],
-          colors: [ColorConstants.primaryV2, Colors.white],
+          colors: [Color.fromARGB(255, 250, 206, 206), Colors.white],
         ),
       ),
     );

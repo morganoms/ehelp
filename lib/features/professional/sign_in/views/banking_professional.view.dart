@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import '../../../../routes/ehelp_routes.dart';
 import '../../../../shared/colors/constants.dart';
 import '../../../../shared/components/generic_button.widget.dart';
+import '../../../../shared/components/header_black.widget.dart';
 import '../../../../shared/components/input.widget.dart';
 import '../../../../shared/components/stepper.widget.dart';
 import '../../../../shared/fonts/styles.dart';
@@ -28,7 +29,7 @@ class _BankingProfessionalViewState extends State<BankingProfessionalView> {
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(24),
         child: GenericButton(
-          color: ColorConstants.blueSelected,
+          color: ColorConstants.greenDark,
           label: widget.isEditing ? 'Salvar' : 'Continuar',
           onPressed: () => widget.isEditing
               ? Navigator.of(context).pop()
@@ -37,82 +38,68 @@ class _BankingProfessionalViewState extends State<BankingProfessionalView> {
         ),
       ),
       body: SingleChildScrollView(
-        child: Stack(
+        child: Column(
           children: [
-            const HeaderBackground(),
-            SafeArea(
-              bottom: false,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: Column(
-                  children: [
-                    Row(
+            HeaderBlack(
+              titleLable: widget.isEditing
+                  ? 'Dados bancários'
+                  : 'Cadastro de Profissional',
+              iconBack: const BackButtonWidget(),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Column(
+                children: [
+                  if (!widget.isEditing)
+                    Container(
+                        margin: const EdgeInsets.only(bottom: 24),
+                        child: const StepperWidget(
+                            totalSteps: 4, totalActiveSteps: 3)),
+                  if (!widget.isEditing)
+                    Container(
+                      margin: const EdgeInsets.only(bottom: 16),
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Informe seus dados bancários:',
+                        style: FontStyles.size16Weight700,
+                      ),
+                    ),
+                  Form(
+                    key: _formKey,
+                    child: Column(
                       children: [
-                        const BackButtonWidget(),
-                        const SizedBox(width: 16),
-                        Text(
-                          widget.isEditing
-                              ? 'Dados bancários'
-                              : 'Cadastro de Profissional',
-                          style: FontStyles.size16Weight700,
-                        )
+                        Input(
+                            label: const Text('Banco'),
+                            initialValue:
+                                widget.isEditing ? 'Banco do Brasil' : null),
+                        const SizedBox(
+                          height: 16,
+                        ),
+                        Input(
+                            label: const Text('Agência'),
+                            initialValue: widget.isEditing ? '7878-X' : null),
+                        const SizedBox(
+                          height: 16,
+                        ),
+                        Input(
+                            label: const Text('Conta'),
+                            initialValue: widget.isEditing ? '10.101-2' : null),
+                        const SizedBox(
+                          height: 16,
+                        ),
+                        InputDropdown(
+                            value: widget.isEditing ? 'Conta Corrente' : null,
+                            items: const [
+                              'Conta Corrente',
+                              'Conta Salário',
+                              'Conta Poupança'
+                            ],
+                            hintText: 'Tipo de Conta',
+                            onChanged: (final _) {})
                       ],
                     ),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    if (!widget.isEditing)
-                      const StepperWidget(totalSteps: 4, totalActiveSteps: 3),
-                    const SizedBox(height: 24),
-                    if (!widget.isEditing)
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          'Informe seus dados bancários:',
-                          style: FontStyles.size16Weight700,
-                        ),
-                      ),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    Form(
-                      key: _formKey,
-                      child: Column(
-                        children: [
-                          Input(
-                              label: const Text('Banco'),
-                              initialValue:
-                                  widget.isEditing ? 'Banco do Brasil' : null),
-                          const SizedBox(
-                            height: 16,
-                          ),
-                          Input(
-                              label: const Text('Agência'),
-                              initialValue: widget.isEditing ? '7878-X' : null),
-                          const SizedBox(
-                            height: 16,
-                          ),
-                          Input(
-                              label: const Text('Conta'),
-                              initialValue:
-                                  widget.isEditing ? '10.101-2' : null),
-                          const SizedBox(
-                            height: 16,
-                          ),
-                          InputDropdown(
-                              value: widget.isEditing ? 'Conta Corrente' : null,
-                              items: const [
-                                'Conta Corrente',
-                                'Conta Salário',
-                                'Conta Poupança'
-                              ],
-                              hintText: 'Tipo de Conta',
-                              onChanged: (final _) {})
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ],

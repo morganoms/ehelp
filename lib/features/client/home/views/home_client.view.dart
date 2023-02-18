@@ -36,7 +36,7 @@ class _HomeClientViewState extends State<HomeClientView> {
             currentIndex: _viewModel.bottomBarIndex,
             itemPadding:
                 const EdgeInsets.symmetric(vertical: 10, horizontal: 24),
-            selectedItemColor: ColorConstants.blueSelected,
+            selectedItemColor: ColorConstants.blackSoft,
             unselectedItemColor: ColorConstants.primaryLight,
             onTap: (i) => _viewModel.onClickBottomBar(i),
             items: [

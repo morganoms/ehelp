@@ -89,7 +89,7 @@ class _ServiceItemWidgetState extends State<ServiceItemWidget>
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w500,
-                            color: ColorConstants.blueSelected,
+                            color: ColorConstants.greenDark,
                           ),
                         ),
                       ],
@@ -262,7 +262,15 @@ class _ServiceItemWidgetState extends State<ServiceItemWidget>
                 child: Container(
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.5),
+                        spreadRadius: -5,
+                        blurRadius: 10,
+                      ),
+                    ],
                   ),
                   child: widget.expansive
                       ? _buildExpandablePannel(context)

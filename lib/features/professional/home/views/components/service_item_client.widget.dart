@@ -13,7 +13,6 @@ class ServiceItemClientWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      shadowColor: Colors.red,
       color: Colors.white,
       borderRadius: BorderRadius.circular(20),
       child: InkWell(
@@ -77,7 +76,7 @@ class ServiceItemClientWidget extends StatelessWidget {
                   const Flexible(
                     child: Icon(
                       Icons.arrow_forward_ios_outlined,
-                      color: ColorConstants.blueSelected,
+                      color: ColorConstants.greenDark,
                       size: 16,
                     ),
                   )
@@ -97,7 +96,7 @@ class ServiceItemClientWidget extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Pendente', style: FontStyles.size14Weight500orange),
+                  Text('Pendente', style: FontStyles.size14Weight500red),
                   Text('21 de março, as 09 : 30',
                       style: FontStyles.size14Weight500),
                 ],

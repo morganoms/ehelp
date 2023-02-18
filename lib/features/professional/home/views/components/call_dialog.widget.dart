@@ -53,7 +53,7 @@ class CallDialogWidget extends StatelessWidget {
           ),
           GenericButton(
             label: 'Ver Detalhes',
-            color: ColorConstants.blueSelected,
+            color: ColorConstants.greenDark,
             onPressed: () => Navigator.of(context)
                 .pushNamed(EhelpRoutes.callDetail)
                 .then((value) => Navigator.of(context).pop()),

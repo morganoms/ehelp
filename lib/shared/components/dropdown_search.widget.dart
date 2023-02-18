@@ -44,7 +44,7 @@ class DropdownSearch2Widget extends StatelessWidget {
         ),
         buttonDecoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: ColorConstants.primaryV2medium,
+          color: ColorConstants.whiteBackground,
         ),
         icon: const Icon(Icons.keyboard_arrow_down_rounded),
         itemHeight: 40,

@@ -53,19 +53,21 @@ class _SearchServiceViewState extends State<SearchServiceView> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Stack(
+      child: Column(
         children: [
-          const HeaderBackground(),
-          SafeArea(
-              child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const SizedBox(
-                  height: 24,
+          Container(
+            color: ColorConstants.blackSoft,
+            width: double.infinity,
+            child: SafeArea(
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24,
                 ),
-                Row(
+                margin: const EdgeInsets.only(
+                  bottom: 24,
+                ),
+                height: MediaQuery.of(context).size.height / 12,
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Row(
@@ -79,62 +81,95 @@ class _SearchServiceViewState extends State<SearchServiceView> {
                             children: [
                               Text(
                                 'Olá, Morgan!',
-                                style: FontStyles.size16Weight700,
+                                style: FontStyles.size16Weight700White,
                               ),
+                              Text(
+                                'Cliente',
+                                style: FontStyles.size14Weight400white,
+                              )
                             ],
                           ),
                         ),
                       ],
                     ),
+                    Observer(builder: (_) {
+                      return Visibility(
+                        visible: _controller.serviceSelected.isNotEmpty,
+                        child: Flexible(
+                          child: Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                color: ColorConstants.greenStrong),
+                            child: IconButton(
+                              onPressed: () {},
+                              icon: const Icon(
+                                Icons.filter_list,
+                                color: ColorConstants.blackSoft,
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    })
                   ],
                 ),
-                const SizedBox(
-                  height: 48,
-                ),
-                Observer(builder: (_) {
-                  return Row(
-                    children: [
-                      Flexible(
-                        flex: 8,
-                        child: DropdownSearch2Widget(
-                          items: items,
-                          textEditingController: textEditingController,
-                          initValue: _controller.serviceSelected,
-                          hintText: 'Procurar Serviços',
-                          onChanged: (final newValue) {
-                            _controller.setServiceSelected(newValue as String);
+              ),
+            ),
+          ),
+          Observer(builder: (_) {
+            return Container(
+              color: ColorConstants.blackSoft,
+              padding: const EdgeInsets.only(left: 24, bottom: 16, right: 24),
+              child: Row(
+                children: [
+                  Flexible(
+                    flex: 8,
+                    child: DropdownSearch2Widget(
+                      items: items,
+                      textEditingController: textEditingController,
+                      initValue: _controller.serviceSelected,
+                      hintText: 'Procurar Serviços',
+                      onChanged: (final newValue) {
+                        _controller.setServiceSelected(newValue as String);
 
-                            showDialog(
-                                context: context,
-                                builder: (builder) => const DefaultDialog(
-                                    child: AdressDialogWidget()));
-                          },
-                        ),
-                      ),
-                      if (_controller.serviceSelected.isNotEmpty)
-                        Flexible(
-                          child: IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.filter_list),
-                          ),
-                        )
-                    ],
-                  );
-                }),
-                const SizedBox(
-                  height: 16,
-                ),
+                        showDialog(
+                            context: context,
+                            builder: (builder) => const DefaultDialog(
+                                child: AdressDialogWidget()));
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            );
+          }),
+          Container(
+            color: ColorConstants.blackSoft,
+            child: Container(
+              width: double.infinity,
+              height: 48,
+              decoration: const BoxDecoration(
+                color: ColorConstants.whiteBackground,
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30)),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
                 Observer(builder: (_) {
                   return Visibility(
                     visible: _controller.serviceSelected.isEmpty,
                     replacement: Container(
-                      margin: const EdgeInsets.only(top: 32),
                       alignment: Alignment.centerLeft,
                       child: Text('Resultados encontrados: 10',
                           style: FontStyles.size16Weight700),
                     ),
                     child: Container(
-                      margin: const EdgeInsets.only(top: 32),
                       alignment: Alignment.centerLeft,
                       child: Text(
                         'Pesquisas Recentes',
@@ -167,7 +202,7 @@ class _SearchServiceViewState extends State<SearchServiceView> {
                 )
               ],
             ),
-          )),
+          ),
         ],
       ),
     );

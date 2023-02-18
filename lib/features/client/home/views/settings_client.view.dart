@@ -28,7 +28,7 @@ class SettingsClientView extends StatelessWidget {
                 Icon(
                   icon,
                   size: 32,
-                  color: ColorConstants.blueSelected,
+                  color: ColorConstants.greenDark,
                 ),
                 const SizedBox(width: 18),
                 Text(

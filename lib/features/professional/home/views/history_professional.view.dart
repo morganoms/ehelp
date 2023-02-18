@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:ehelp/shared/components/header_black.widget.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../shared/colors/constants.dart';
@@ -13,41 +14,25 @@ class HistoryProfessionalView extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return SingleChildScrollView(
-      child: Stack(
+      child: Column(
         children: [
-          Container(
-            height: MediaQuery.of(context).size.height,
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.center,
-                stops: [0, 0.5],
-                colors: [ColorConstants.primaryV2, Colors.white],
-              ),
-            ),
+          const HeaderBlack(
+            titleLable: 'Histórico',
           ),
-          SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Column(
-                children: [
-                  const SizedBox(height: 24),
-                  Text(
-                    'Histórico',
-                    style: FontStyles.size20Weight400,
-                  ),
-                  const SizedBox(height: 48),
-                  ...List.generate(
-                    10,
-                    (index) => Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8),
-                      child: ServiceItemClientWidget(
-                        indexImage: index % 5,
-                      ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: Column(
+              children: [
+                ...List.generate(
+                  10,
+                  (index) => Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: ServiceItemClientWidget(
+                      indexImage: index % 5,
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ],

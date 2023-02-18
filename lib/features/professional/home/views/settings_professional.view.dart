@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../shared/colors/constants.dart';
 import '../../../../shared/components/header_background.widget.dart';
+import '../../../../shared/components/header_black.widget.dart';
 
 class SettingsProfesssionalView extends StatelessWidget {
   const SettingsProfesssionalView({Key? key}) : super(key: key);
@@ -29,7 +30,7 @@ class SettingsProfesssionalView extends StatelessWidget {
                 Icon(
                   icon,
                   size: 32,
-                  color: ColorConstants.blueSelected,
+                  color: ColorConstants.greenDark,
                 ),
                 const SizedBox(width: 18),
                 Text(
@@ -50,23 +51,19 @@ class SettingsProfesssionalView extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return Stack(
+    return Column(
       children: [
-        const HeaderBackground(),
-        CustomScrollView(
-          slivers: [
-            SliverFillRemaining(
-              child: SafeArea(
+        const HeaderBlack(
+          titleLable: 'Configurações',
+        ),
+        Expanded(
+          child: CustomScrollView(
+            slivers: [
+              SliverFillRemaining(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: Column(
                     children: [
-                      const SizedBox(height: 24),
-                      Text(
-                        'Configurações',
-                        style: FontStyles.size20Weight400,
-                      ),
-                      const SizedBox(height: 48),
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text('Conta', style: FontStyles.size18Weight400),
@@ -113,9 +110,9 @@ class SettingsProfesssionalView extends StatelessWidget {
                     ],
                   ),
                 ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         )
       ],
     );

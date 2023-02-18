@@ -103,7 +103,7 @@ class LoginView extends StatelessWidget {
                         'Esqueceu sua senha?',
                         style: TextStyle(
                           fontSize: 12,
-                          color: ColorConstants.blueSelected,
+                          color: ColorConstants.greenDark,
                         ),
                       ),
                     ),
@@ -112,7 +112,7 @@ class LoginView extends StatelessWidget {
                     ),
                     GenericButton(
                       label: 'Continuar',
-                      color: ColorConstants.blueSelected,
+                      color: ColorConstants.greenDark,
                       onPressed: () => Navigator.of(context).pushNamed(
                           userType == UserType.client
                               ? EhelpRoutes.homeClient
@@ -140,7 +140,7 @@ class LoginView extends StatelessWidget {
                               TextSpan(
                                 text: ' Registre-se!',
                                 style: TextStyle(
-                                  color: ColorConstants.blueSelected,
+                                  color: ColorConstants.greenDark,
                                   fontSize: 14,
                                   fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.w700,

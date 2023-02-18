@@ -75,7 +75,14 @@ class _ServiceItemCallWidgetState extends State<ServiceItemCallWidget>
                     height: 8,
                   ),
                   Flexible(
-                    child: Text('Pendente', style: FontStyles.size14Weight500),
+                    child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 4),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(100),
+                            color: Colors.orange),
+                        child: Text('Pendente',
+                            style: FontStyles.size14Weight500)),
                   ),
                 ]),
           ),
@@ -237,7 +244,7 @@ class _ServiceItemCallWidgetState extends State<ServiceItemCallWidget>
                 flex: 8,
                 child: Material(
                   borderRadius: BorderRadius.circular(15),
-                  color: ColorConstants.primaryV2Dark,
+                  color: ColorConstants.greenDark,
                   child: InkWell(
                     customBorder: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
