@@ -4,8 +4,9 @@ import '../../../../../shared/colors/constants.dart';
 import '../../../../../shared/components/random_person_image.widget.dart';
 
 class CardDetailServiceWidget extends StatelessWidget {
-  CardDetailServiceWidget({this.onTap, Key? key}) : super(key: key);
-
+  CardDetailServiceWidget({this.onTap, this.isClient = false, Key? key})
+      : super(key: key);
+  final bool isClient;
   void Function()? onTap;
 
   @override
@@ -41,7 +42,7 @@ class CardDetailServiceWidget extends StatelessWidget {
                       children: [
                         Flexible(
                           child: Text(
-                            'Profissional',
+                            isClient ? 'Client' : 'Profissional',
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w400,

@@ -23,7 +23,7 @@ class CallDetailProfessionalView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomSheet: Container(
-        color: Colors.white,
+        color: ColorConstants.whiteBackground,
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
         child: Row(
           mainAxisSize: MainAxisSize.min,
@@ -35,8 +35,10 @@ class CallDetailProfessionalView extends StatelessWidget {
                 margin: const EdgeInsets.only(right: 8),
                 child: GenericButton(
                   label: 'Cancelar',
-                  onPressed: () {},
-                  color: Colors.red,
+                  onPressed: () => Navigator.of(context).pop(),
+                  borderColor: ColorConstants.greenDark,
+                  labelStyle: FontStyles.size16Weight700black,
+                  color: Colors.transparent,
                 ),
               ),
             ),
@@ -46,7 +48,8 @@ class CallDetailProfessionalView extends StatelessWidget {
                 margin: const EdgeInsets.only(left: 8),
                 child: GenericButton(
                   label: 'Confirmar',
-                  onPressed: () {},
+                  onPressed: () => Navigator.of(context)
+                      .pushNamed(EhelpRoutes.callNowProfessional),
                   color: ColorConstants.greenDark,
                 ),
               ),

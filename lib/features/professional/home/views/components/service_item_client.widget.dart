@@ -96,7 +96,16 @@ class ServiceItemClientWidget extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Pendente', style: FontStyles.size14Weight500red),
+                  Flexible(
+                    child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 4),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(100),
+                            color: ColorConstants.blackSoft),
+                        child: Text('Pendente',
+                            style: FontStyles.size14Weight400white)),
+                  ),
                   Text('21 de março, as 09 : 30',
                       style: FontStyles.size14Weight500),
                 ],

@@ -80,9 +80,9 @@ class _ServiceItemCallWidgetState extends State<ServiceItemCallWidget>
                             horizontal: 16, vertical: 4),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(100),
-                            color: Colors.orange),
+                            color: Colors.black),
                         child: Text('Pendente',
-                            style: FontStyles.size14Weight500)),
+                            style: FontStyles.size14Weight400white)),
                   ),
                 ]),
           ),

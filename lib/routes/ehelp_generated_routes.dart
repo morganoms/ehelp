@@ -2,6 +2,7 @@ import 'package:ehelp/features/login/views/landing.view.dart';
 import 'package:ehelp/features/login/views/login.view.dart';
 import 'package:ehelp/features/professional/areas/views/home_areas.view.dart';
 import 'package:ehelp/features/professional/areas/views/home_edit_area.view.dart';
+import 'package:ehelp/features/professional/call_now/views/call_now_professional.view.dart';
 import 'package:ehelp/features/professional/home/views/bank_professional.view.dart';
 import 'package:ehelp/features/professional/sign_in/views/adress_professional.view.dart';
 import 'package:ehelp/features/professional/sign_in/views/banking_professional.view.dart';
@@ -77,7 +78,9 @@ extension EhelpGeneratedRoutes on EhelpRoutes {
         EhelpRoutes.clientAdresses: (context, args) =>
             const AdressesClientView(),
         EhelpRoutes.clientCreditCard: (context, args) =>
-            const CreditCardClientView()
+            const CreditCardClientView(),
+        EhelpRoutes.callNowProfessional: (context, args) =>
+            const CallNowProfessionalView()
       };
 
   static Route<dynamic>? generateRoute(RouteSettings settings) {

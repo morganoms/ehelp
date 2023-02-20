@@ -32,4 +32,5 @@ class EhelpRoutes {
   static const callDetail = '/professional/call_now/detail';
   static const professionalProfile = '/professional/profile';
   static const professionalBanckAccount = '/professional/bank_account';
+  static const callNowProfessional = '/professional/call_now/service';
 }
