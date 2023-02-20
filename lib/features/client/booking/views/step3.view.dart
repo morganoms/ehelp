@@ -2,7 +2,10 @@ import 'package:ehelp/routes/ehelp_routes.dart';
 import 'package:ehelp/shared/components/credit_card.widget.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../shared/colors/constants.dart';
+import '../../../../shared/components/back_button.widget.dart';
 import '../../../../shared/components/generic_button.widget.dart';
+import '../../../../shared/components/header_black.widget.dart';
 import '../../../../shared/components/stepper.widget.dart';
 import '../../../../shared/fonts/styles.dart';
 
@@ -16,45 +19,32 @@ class Step3View extends StatelessWidget {
         padding: const EdgeInsets.all(24),
         child: GenericButton(
           label: 'Agendar',
+          color: ColorConstants.greenDark,
           onPressed: () => Navigator.of(context)
               .pushNamed(EhelpRoutes.clientBookingConfirmation),
         ),
       ),
-      body: SafeArea(
-        bottom: false,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            HeaderBlack(
+              titleLable: 'Agendamento',
+              iconBack: const BackButtonWidget(),
+              child: Container(
+                color: ColorConstants.blackSoft,
+                padding: const EdgeInsets.only(bottom: 16, left: 24, right: 14),
+                child: const StepperWidget(totalSteps: 3, totalActiveSteps: 3),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Column(
                 children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: IconButton(
-                      onPressed: () => Navigator.of(context).pop(),
-                      icon: const Icon(
-                        Icons.arrow_back_ios_rounded,
-                        size: 18,
-                      ),
-                    ),
-                  ),
-                  Text(
-                    'Agendamento',
-                    style: FontStyles.size16Weight700,
-                  )
+                  CreditCard(),
                 ],
               ),
-              const SizedBox(
-                height: 16,
-              ),
-              const StepperWidget(totalSteps: 3, totalActiveSteps: 3),
-              const SizedBox(
-                height: 48,
-              ),
-              CreditCard(),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

@@ -25,8 +25,35 @@ mixin _$CallNowViewModel on _CallNowViewModelBase, Store {
     });
   }
 
+  late final _$statusTitleAtom =
+      Atom(name: '_CallNowViewModelBase.statusTitle', context: context);
+
+  @override
+  String get statusTitle {
+    _$statusTitleAtom.reportRead();
+    return super.statusTitle;
+  }
+
+  @override
+  set statusTitle(String value) {
+    _$statusTitleAtom.reportWrite(value, super.statusTitle, () {
+      super.statusTitle = value;
+    });
+  }
+
   late final _$_CallNowViewModelBaseActionController =
       ActionController(name: '_CallNowViewModelBase', context: context);
+
+  @override
+  String setStatusTitle(String newState) {
+    final _$actionInfo = _$_CallNowViewModelBaseActionController.startAction(
+        name: '_CallNowViewModelBase.setStatusTitle');
+    try {
+      return super.setStatusTitle(newState);
+    } finally {
+      _$_CallNowViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   CallNowState setScreenState(CallNowState newState) {
@@ -42,7 +69,8 @@ mixin _$CallNowViewModel on _CallNowViewModelBase, Store {
   @override
   String toString() {
     return '''
-screenState: ${screenState}
+screenState: ${screenState},
+statusTitle: ${statusTitle}
     ''';
   }
 }

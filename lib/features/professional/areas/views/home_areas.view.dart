@@ -96,77 +96,70 @@ class _HomeAreaViewState extends State<HomeAreaView> {
                 );
               }),
             ),
-            SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: Column(
-                  children: [
-                    if (!widget.isEditing)
-                      const Padding(
-                          padding: EdgeInsets.only(bottom: 24),
-                          child: StepperWidget(
-                              totalSteps: 4, totalActiveSteps: 4)),
-                    if (!widget.isEditing)
-                      Container(
-                        margin: const EdgeInsets.only(bottom: 32),
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          'Selecione os segmentos de serviços em que você atua:',
-                          style: FontStyles.size16Weight700,
-                        ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Column(
+                children: [
+                  if (!widget.isEditing)
+                    Container(
+                      margin: const EdgeInsets.only(bottom: 32),
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Selecione os segmentos de serviços em que você atua:',
+                        style: FontStyles.size16Weight700,
                       ),
-                    Observer(builder: (_) {
-                      return Column(
-                        children: _controller.areasList
-                            .map(
-                              (element) => Container(
-                                margin: const EdgeInsets.only(bottom: 16),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: Colors.white,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black.withOpacity(0.5),
-                                      spreadRadius: -5,
-                                      blurRadius: 10,
-                                    ),
-                                  ],
-                                ),
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 16, horizontal: 24),
-                                width: MediaQuery.of(context).size.width,
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      element.nameArea,
-                                      style: FontStyles.size16Weight700,
-                                    ),
-                                    Row(
-                                      children: [
-                                        IconButton(
-                                          onPressed: () => Navigator.of(context)
-                                              .pushNamed(
-                                                  EhelpRoutes.homeEditArea),
-                                          icon: const Icon(Icons.edit),
-                                        ),
-                                        IconButton(
-                                          onPressed: () => _controller
-                                              .removeAreaToList(element),
-                                          icon: const Icon(Icons.delete),
-                                        ),
-                                      ],
-                                    )
-                                  ],
-                                ),
+                    ),
+                  Observer(builder: (_) {
+                    return Column(
+                      children: _controller.areasList
+                          .map(
+                            (element) => Container(
+                              margin: const EdgeInsets.only(bottom: 16),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withOpacity(0.5),
+                                    spreadRadius: -5,
+                                    blurRadius: 10,
+                                  ),
+                                ],
                               ),
-                            )
-                            .toList(),
-                      );
-                    })
-                  ],
-                ),
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 16, horizontal: 24),
+                              width: MediaQuery.of(context).size.width,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    element.nameArea,
+                                    style: FontStyles.size16Weight700,
+                                  ),
+                                  Row(
+                                    children: [
+                                      IconButton(
+                                        onPressed: () => Navigator.of(context)
+                                            .pushNamed(
+                                                EhelpRoutes.homeEditArea),
+                                        icon: const Icon(Icons.edit),
+                                      ),
+                                      IconButton(
+                                        onPressed: () => _controller
+                                            .removeAreaToList(element),
+                                        icon: const Icon(Icons.delete),
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ),
+                          )
+                          .toList(),
+                    );
+                  })
+                ],
               ),
             ),
           ],

@@ -4,7 +4,10 @@ import 'package:ehelp/shared/components/time_selector.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
+import '../../../../shared/colors/constants.dart';
+import '../../../../shared/components/back_button.widget.dart';
 import '../../../../shared/components/generic_button.widget.dart';
+import '../../../../shared/components/header_black.widget.dart';
 import '../../../../shared/components/stepper.widget.dart';
 import '../../../../shared/fonts/styles.dart';
 import '../view_model/booking.view_model.dart';
@@ -19,64 +22,52 @@ class Step2View extends StatelessWidget {
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(24),
         child: GenericButton(
+          color: ColorConstants.greenDark,
           label: 'Continuar',
           onPressed: () =>
               Navigator.of(context).pushNamed(EhelpRoutes.clientBookingStep3),
         ),
       ),
-      body: SafeArea(
-        bottom: false,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: IconButton(
-                      onPressed: () => Navigator.of(context).pop(),
-                      icon: const Icon(
-                        Icons.arrow_back_ios_rounded,
-                        size: 18,
-                      ),
-                    ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            HeaderBlack(
+              titleLable: 'Agendamento',
+              iconBack: const BackButtonWidget(),
+              child: Container(
+                color: ColorConstants.blackSoft,
+                padding: const EdgeInsets.only(bottom: 16, left: 24, right: 14),
+                child: const StepperWidget(totalSteps: 3, totalActiveSteps: 2),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  const Text(
+                    'Selecione a Hora em que deseja realizar o serviço',
+                    textAlign: TextAlign.center,
                   ),
-                  Text(
-                    'Agendamento',
-                    style: FontStyles.size16Weight700,
+                  const SizedBox(
+                    height: 36,
+                  ),
+                  Observer(
+                    builder: (_) {
+                      return Flexible(
+                        child: TimeSelector(
+                          workHours: _controller.workHoursList,
+                          // ignore: unnecessary_lambdas
+                          onPressed: (final int index, final bool value) =>
+                              _controller.setSelectionWorkHour(index, value),
+                        ),
+                      );
+                    },
                   )
                 ],
               ),
-              const SizedBox(
-                height: 16,
-              ),
-              const StepperWidget(totalSteps: 3, totalActiveSteps: 2),
-              const SizedBox(
-                height: 48,
-              ),
-              const Text(
-                'Selecione a Hora em que deseja realizar o serviço',
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(
-                height: 36,
-              ),
-              Observer(
-                builder: (_) {
-                  return Flexible(
-                    child: TimeSelector(
-                      workHours: _controller.workHoursList,
-                      // ignore: unnecessary_lambdas
-                      onPressed: (final int index, final bool value) =>
-                          _controller.setSelectionWorkHour(index, value),
-                    ),
-                  );
-                },
-              )
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

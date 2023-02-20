@@ -9,6 +9,12 @@ abstract class _CallNowViewModelBase with Store {
   @observable
   CallNowState screenState = CallNowState.calling;
 
+  @observable
+  String statusTitle = 'Chamando Profissional';
+
+  @action
+  String setStatusTitle(final String newState) => statusTitle = newState;
+
   @action
   CallNowState setScreenState(final CallNowState newState) =>
       screenState = newState;

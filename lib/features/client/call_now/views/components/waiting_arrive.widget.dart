@@ -10,13 +10,6 @@ class WaitingArriveWidget extends StatelessWidget {
     return Column(
       children: [
         Text(
-          'Sua solicitação foi confirmada!',
-          style: FontStyles.size20Weight700green,
-        ),
-        const SizedBox(
-          height: 32,
-        ),
-        Text(
           'Tempo estimado para chgada',
           style: FontStyles.size16Weight400,
         ),

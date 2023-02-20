@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-import '../../../../../shared/fonts/styles.dart';
+import '../../../../../shared/components/input.widget.dart';
 
 class FeedbackServiceWidget extends StatelessWidget {
   const FeedbackServiceWidget({Key? key}) : super(key: key);
@@ -13,14 +13,6 @@ class FeedbackServiceWidget extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(
-          'Avalie o profissional',
-          style: FontStyles.size20Weight700green,
-          textAlign: TextAlign.center,
-        ),
-        const SizedBox(
-          height: 32,
-        ),
         RatingBar.builder(
           minRating: 0.5,
           allowHalfRating: true,
@@ -35,7 +27,14 @@ class FeedbackServiceWidget extends StatelessWidget {
               print(rating);
             }
           },
-        )
+        ),
+        const SizedBox(
+          height: 24,
+        ),
+        Input(
+            label: const Text('Deixe um feedback'),
+            maxLines: 5,
+            borderRadius: BorderRadius.circular(20))
       ],
     );
   }

@@ -11,14 +11,6 @@ class ArrivedProfessionalWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          'Profissional Chegou ao endereço',
-          style: FontStyles.size20Weight700green,
-          textAlign: TextAlign.center,
-        ),
-        const SizedBox(
-          height: 32,
-        ),
-        Text(
           'Por favor, confirme a presença do profissional  em seu endereço.',
           style: FontStyles.size16Weight400,
           textAlign: TextAlign.center,

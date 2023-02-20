@@ -35,7 +35,7 @@ class _ProfessionalPersonalDataViewState
           onPressed: () => widget.isEditing
               ? Navigator.of(context).pop()
               : Navigator.of(context)
-                  .pushNamed(EhelpRoutes.addressProfessional),
+                  .pushNamed(EhelpRoutes.addressProfessional, arguments: false),
         ),
       ),
       body: SingleChildScrollView(
@@ -46,16 +46,20 @@ class _ProfessionalPersonalDataViewState
                   ? 'Dados pessoais'
                   : 'Cadastro de Profissional',
               iconBack: const BackButtonWidget(),
+              child: widget.isEditing
+                  ? null
+                  : Container(
+                      color: ColorConstants.blackSoft,
+                      padding: const EdgeInsets.only(
+                          bottom: 16, left: 24, right: 14),
+                      child: const StepperWidget(
+                          totalSteps: 4, totalActiveSteps: 1),
+                    ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Column(
                 children: [
-                  if (!widget.isEditing)
-                    Container(
-                        margin: const EdgeInsets.only(bottom: 24),
-                        child: const StepperWidget(
-                            totalSteps: 4, totalActiveSteps: 1)),
                   if (!widget.isEditing)
                     Container(
                       margin: const EdgeInsets.only(bottom: 16),

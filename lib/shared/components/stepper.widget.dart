@@ -15,32 +15,42 @@ class StepperWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(
         totalSteps,
         (index) => Flexible(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4),
-            child: Column(
-              children: [
-                Container(
-                  height: 5,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4),
+                child: Container(
+                  height: MediaQuery.of(context).size.width / 10,
+                  width: MediaQuery.of(context).size.width / 10,
                   decoration: BoxDecoration(
-                    // borderRadius: BorderRadius.circular(18),
+                    borderRadius: BorderRadius.circular(100),
                     color: (index < totalActiveSteps)
-                        ? ColorConstants.primaryColor
+                        ? ColorConstants.greenStrong
                         : ColorConstants.primaryLight,
                   ),
-                  width: MediaQuery.of(context).size.width / totalSteps,
+                  child: Center(
+                    child: Text(
+                      (index + 1 == totalActiveSteps)
+                          ? '$totalActiveSteps'
+                          : '',
+                      style: FontStyles.size14Weight700,
+                    ),
+                  ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 8),
-                  child: Text(
-                    (index + 1 == totalActiveSteps) ? '$totalActiveSteps' : '',
-                    style: FontStyles.size14Weight400,
+              ),
+              if (index != totalSteps - 1)
+                Flexible(
+                  child: Container(
+                    height: 1,
+                    color: ColorConstants.primaryLight,
                   ),
                 )
-              ],
-            ),
+            ],
           ),
         ),
       ).toList(),

@@ -1,8 +1,9 @@
 import 'package:ehelp/routes/ehelp_generated_routes.dart';
 import 'package:ehelp/routes/ehelp_routes.dart';
 import 'package:ehelp/shared/colors/constants.dart';
+import 'package:ehelp/shared/config/custom_scroll_behavior.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 class EHelpApp extends StatelessWidget {
@@ -26,6 +27,10 @@ class EHelpApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
+      builder: (context, widget) {
+        return ScrollConfiguration(
+            behavior: const CustomScrollBehavior(), child: widget as Widget);
+      },
     );
   }
 }

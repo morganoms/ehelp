@@ -51,69 +51,70 @@ class SettingsProfesssionalView extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return Column(
-      children: [
-        const HeaderBlack(
-          titleLable: 'Configurações',
-        ),
-        Expanded(
-          child: CustomScrollView(
-            slivers: [
-              SliverFillRemaining(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  child: Column(
-                    children: [
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text('Conta', style: FontStyles.size18Weight400),
-                      ),
-                      const SizedBox(height: 32),
-                      _buildItemSetting(
-                        icon: Icons.person_2_outlined,
-                        name: 'Meu perfil',
-                        context: context,
-                        route: EhelpRoutes.professionalProfile,
-                      ),
-                      const SizedBox(height: 32),
-                      _buildItemSetting(
-                        icon: Icons.attach_money_outlined,
-                        name: 'Conta bancaria',
-                        context: context,
-                        route: EhelpRoutes.professionalBanckAccount,
-                      ),
-                      const SizedBox(height: 48),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text('Especialidades',
-                            style: FontStyles.size18Weight400),
-                      ),
-                      const SizedBox(height: 32),
-                      _buildItemSetting(
-                        icon: Icons.handyman,
-                        name: 'Editar Especialidade',
-                        context: context,
-                        route: EhelpRoutes.homeArea,
-                        arg: true,
-                      ),
-                      const Spacer(flex: 2),
-                      GenericButton(
-                        label: 'Sair da conta',
-                        color: Colors.transparent,
-                        labelStyle: FontStyles.size16Weight500blue,
-                        borderColor: ColorConstants.primaryLight,
-                        onPressed: () => Navigator.of(context).popUntil(
-                          ModalRoute.withName(EhelpRoutes.landing),
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                    ],
-                  ),
-                ),
-              )
-            ],
+    return CustomScrollView(
+      slivers: [
+        const SliverToBoxAdapter(
+          child: HeaderBlack(
+            titleLable: 'Configurações',
           ),
-        )
+        ),
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: Column(
+              children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text('Conta', style: FontStyles.size18Weight400),
+                ),
+                const SizedBox(height: 32),
+                _buildItemSetting(
+                  icon: Icons.person_2_outlined,
+                  name: 'Meu perfil',
+                  context: context,
+                  route: EhelpRoutes.professionalProfile,
+                ),
+                const SizedBox(height: 32),
+                _buildItemSetting(
+                  icon: Icons.attach_money_outlined,
+                  name: 'Conta bancaria',
+                  context: context,
+                  route: EhelpRoutes.professionalBanckAccount,
+                ),
+                const SizedBox(height: 48),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child:
+                      Text('Especialidades', style: FontStyles.size18Weight400),
+                ),
+                const SizedBox(height: 32),
+                _buildItemSetting(
+                  icon: Icons.handyman,
+                  name: 'Editar Especialidade',
+                  context: context,
+                  route: EhelpRoutes.homeArea,
+                  arg: true,
+                ),
+              ],
+            ),
+          ),
+        ),
+        SliverFillRemaining(
+          hasScrollBody: false,
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            alignment: Alignment.bottomCenter,
+            child: GenericButton(
+              label: 'Sair da conta',
+              color: Colors.transparent,
+              labelStyle: FontStyles.size16Weight500blue,
+              borderColor: ColorConstants.primaryLight,
+              onPressed: () => Navigator.of(context).popUntil(
+                ModalRoute.withName(EhelpRoutes.landing),
+              ),
+            ),
+          ),
+        ),
       ],
     );
   }

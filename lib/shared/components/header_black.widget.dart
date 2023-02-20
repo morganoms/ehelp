@@ -10,6 +10,12 @@ class HeaderBlack extends StatelessWidget {
   final Widget? iconBack;
   final String titleLable;
   final Widget? child;
+
+  Widget get iconMask => const Icon(
+        Icons.arrow_back_rounded,
+        color: ColorConstants.blackSoft,
+      );
+
   @override
   Widget build(BuildContext context) {
     return Column(children: [
@@ -22,22 +28,23 @@ class HeaderBlack extends StatelessWidget {
             padding: const EdgeInsets.symmetric(
               horizontal: 24,
             ),
-            margin: const EdgeInsets.only(
-              bottom: 24,
+            margin: EdgeInsets.only(
+              bottom: child != null ? 0 : 24,
             ),
             height: MediaQuery.of(context).size.height / 12,
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                if (iconBack != null) Flexible(flex: 2, child: iconBack!),
-                Flexible(
-                  flex: 10,
-                  child: Align(
-                    child: Text(
-                      titleLable,
-                      style: FontStyles.size20Weight400white,
-                    ),
+                // ignore: prefer_if_elements_to_conditional_expressions
+                iconBack != null ? iconBack! : iconMask,
+                Center(
+                  child: Text(
+                    titleLable,
+                    style: FontStyles.size20Weight400white,
+                    textAlign: TextAlign.center,
                   ),
                 ),
+                iconMask
               ],
             ),
           ),

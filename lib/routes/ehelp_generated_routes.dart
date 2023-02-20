@@ -6,6 +6,7 @@ import 'package:ehelp/features/professional/home/views/bank_professional.view.da
 import 'package:ehelp/features/professional/sign_in/views/adress_professional.view.dart';
 import 'package:ehelp/features/professional/sign_in/views/banking_professional.view.dart';
 import 'package:ehelp/routes/ehelp_routes.dart';
+import 'package:ehelp/shared/components/credit_card.widget.dart';
 import 'package:ehelp/shared/models/user_type.dart';
 import 'package:flutter/material.dart';
 
@@ -17,6 +18,7 @@ import '../features/client/call_now/views/call_now.view.dart';
 import '../features/client/call_now/views/payment.view.dart';
 import '../features/client/call_now/views/service_drecription.view.dart';
 import '../features/client/home/views/adresses_client.view.dart';
+import '../features/client/home/views/credit_card_client.view.dart';
 import '../features/client/home/views/home_client.view.dart';
 import '../features/client/home/views/user_professional_profile.view.dart';
 import '../features/professional/areas/views/certification_attach.view.dart';
@@ -50,7 +52,7 @@ extension EhelpGeneratedRoutes on EhelpRoutes {
         EhelpRoutes.personalData: (context, args) =>
             ProfessionalPersonalDataView(isEditing: args as bool),
         EhelpRoutes.addressProfessional: (context, args) =>
-            const AdressProfessionalView(),
+            AdressProfessionalView(isEditing: args as bool),
         EhelpRoutes.bankingProfessional: (context, args) =>
             BankingProfessionalView(isEditing: args as bool),
         EhelpRoutes.homeArea: (context, args) =>
@@ -73,7 +75,9 @@ extension EhelpGeneratedRoutes on EhelpRoutes {
         EhelpRoutes.professionalBanckAccount: (context, args) =>
             const BankProfessionalView(),
         EhelpRoutes.clientAdresses: (context, args) =>
-            const AdressesClientView()
+            const AdressesClientView(),
+        EhelpRoutes.clientCreditCard: (context, args) =>
+            const CreditCardClientView()
       };
 
   static Route<dynamic>? generateRoute(RouteSettings settings) {
