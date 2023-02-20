@@ -16,7 +16,8 @@ class ServiceItemClientWidget extends StatelessWidget {
       color: Colors.white,
       borderRadius: BorderRadius.circular(20),
       child: InkWell(
-        onTap: () => Navigator.of(context).pushNamed(EhelpRoutes.callDetail),
+        onTap: () => Navigator.of(context)
+            .pushNamed(EhelpRoutes.callDetail, arguments: true),
         borderRadius: BorderRadius.circular(20),
         child: Container(
           padding: const EdgeInsets.all(24),

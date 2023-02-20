@@ -55,7 +55,7 @@ class CallDialogWidget extends StatelessWidget {
             label: 'Ver Detalhes',
             color: ColorConstants.greenDark,
             onPressed: () => Navigator.of(context)
-                .pushNamed(EhelpRoutes.callDetail)
+                .pushNamed(EhelpRoutes.callDetail, arguments: true)
                 .then((value) => Navigator.of(context).pop()),
           )
         ],

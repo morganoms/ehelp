@@ -216,8 +216,9 @@ class _CallNowProfessionalViewViewState extends State<CallNowProfessionalView>
               child: Column(
                 children: [
                   CardDetailServiceWidget(
-                    onTap: () =>
-                        Navigator.of(context).pushNamed(EhelpRoutes.callDetail),
+                    isClient: true,
+                    onTap: () => Navigator.of(context)
+                        .pushNamed(EhelpRoutes.callDetail, arguments: true),
                   ),
                   const SizedBox(
                     height: 24,

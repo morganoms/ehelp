@@ -14,7 +14,10 @@ import '../../../../shared/fonts/styles.dart';
 import '../../home/view_model/home_professional.view_model.dart';
 
 class CallDetailProfessionalView extends StatelessWidget {
-  CallDetailProfessionalView({Key? key}) : super(key: key);
+  CallDetailProfessionalView({this.isClient = true, Key? key})
+      : super(key: key);
+
+  final bool isClient;
 
   final HomeProfessionalViewModel _viewModel =
       locator.get<HomeProfessionalViewModel>();
@@ -134,7 +137,7 @@ class CallDetailProfessionalView extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    'Cliente',
+                    isClient ? 'Cliente' : 'Profissional',
                     style: FontStyles.size16Weight400,
                   ),
                 ),

@@ -7,7 +7,7 @@ import 'package:transparent_image/transparent_image.dart';
 class RandomPersonImage extends StatelessWidget {
   const RandomPersonImage({
     this.heightImage = 75,
-    this.indexImage = 0,
+    this.indexImage = 3,
     required this.widthtImage,
     this.marginRight = true,
     Key? key,

@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:ehelp/shared/components/dropdown_search.widget.dart';
 import 'package:ehelp/shared/components/generic_button.widget.dart';
 import 'package:ehelp/shared/components/header_background.widget.dart';
+import 'package:ehelp/shared/components/header_black.widget.dart';
 import 'package:ehelp/shared/fonts/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -160,99 +161,83 @@ class _SearchServiceViewState extends State<SearchServiceView> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          Container(
-            color: ColorConstants.blackSoft,
-            width: double.infinity,
-            child: SafeArea(
-              child: Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 24,
-                ),
-                margin: const EdgeInsets.only(
-                  bottom: 24,
-                ),
-                height: MediaQuery.of(context).size.height / 12,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        const PersonPicture(),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 16),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Olá, Morgan!',
-                                style: FontStyles.size16Weight700White,
-                              ),
-                              Text(
-                                'Cliente',
-                                style: FontStyles.size14Weight400white,
-                              )
-                            ],
+          HeaderBlack(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          const PersonPicture(),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 16),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Olá, Morgan!',
+                                  style: FontStyles.size16Weight700White,
+                                ),
+                                Text(
+                                  'Cliente',
+                                  style: FontStyles.size14Weight400white,
+                                )
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                    Observer(builder: (_) {
-                      return Visibility(
-                        visible: _controller.serviceSelected.isNotEmpty,
-                        child: Flexible(
-                          child: Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
-                                color: ColorConstants.greenStrong),
-                            child: IconButton(
-                              onPressed: _showFilter,
-                              icon: const Icon(
-                                Icons.filter_list,
-                                color: ColorConstants.blackSoft,
+                        ],
+                      ),
+                      Observer(builder: (_) {
+                        return Visibility(
+                          visible: _controller.serviceSelected.isNotEmpty,
+                          child: Flexible(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  color: ColorConstants.greenStrong),
+                              child: IconButton(
+                                onPressed: _showFilter,
+                                icon: const Icon(
+                                  Icons.filter_list,
+                                  color: ColorConstants.blackSoft,
+                                ),
                               ),
                             ),
                           ),
+                        );
+                      })
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  Observer(builder: (_) {
+                    return Row(
+                      children: [
+                        Flexible(
+                          flex: 8,
+                          child: DropdownSearch2Widget(
+                            items: items,
+                            textEditingController: textEditingController,
+                            initValue: _controller.serviceSelected,
+                            hintText: 'Procurar Serviços',
+                            onChanged: (final newValue) {
+                              _controller
+                                  .setServiceSelected(newValue as String);
+                            },
+                          ),
                         ),
-                      );
-                    })
-                  ],
-                ),
-              ),
-            ),
-          ),
-          Observer(builder: (_) {
-            return Container(
-              color: ColorConstants.blackSoft,
-              padding: const EdgeInsets.only(left: 24, bottom: 16, right: 24),
-              child: Row(
-                children: [
-                  Flexible(
-                    flex: 8,
-                    child: DropdownSearch2Widget(
-                      items: items,
-                      textEditingController: textEditingController,
-                      initValue: _controller.serviceSelected,
-                      hintText: 'Procurar Serviços',
-                      onChanged: (final newValue) {
-                        _controller.setServiceSelected(newValue as String);
-                      },
-                    ),
+                      ],
+                    );
+                  }),
+                  const SizedBox(
+                    height: 16,
                   ),
                 ],
-              ),
-            );
-          }),
-          Container(
-            color: ColorConstants.blackSoft,
-            child: Container(
-              width: double.infinity,
-              height: 48,
-              decoration: const BoxDecoration(
-                color: ColorConstants.whiteBackground,
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30),
-                    topRight: Radius.circular(30)),
               ),
             ),
           ),

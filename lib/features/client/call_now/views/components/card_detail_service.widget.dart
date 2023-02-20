@@ -42,7 +42,7 @@ class CardDetailServiceWidget extends StatelessWidget {
                       children: [
                         Flexible(
                           child: Text(
-                            isClient ? 'Client' : 'Profissional',
+                            isClient ? 'Cliente' : 'Profissional',
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w400,

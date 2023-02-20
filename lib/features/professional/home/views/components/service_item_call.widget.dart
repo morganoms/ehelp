@@ -252,7 +252,7 @@ class _ServiceItemCallWidgetState extends State<ServiceItemCallWidget>
                     onTap: widget.expansive
                         ? onToggleClick
                         : () => Navigator.of(context)
-                            .pushNamed(EhelpRoutes.callDetail),
+                            .pushNamed(EhelpRoutes.callDetail, arguments: true),
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(

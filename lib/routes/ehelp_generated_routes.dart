@@ -70,7 +70,8 @@ extension EhelpGeneratedRoutes on EhelpRoutes {
             const ServiceDescriptionView(),
         EhelpRoutes.homeProfessional: (context, args) =>
             const HomeProfessionalView(),
-        EhelpRoutes.callDetail: (context, args) => CallDetailProfessionalView(),
+        EhelpRoutes.callDetail: (context, args) =>
+            CallDetailProfessionalView(isClient: args as bool),
         EhelpRoutes.professionalProfile: (context, args) =>
             const ProfileProfessionalView(),
         EhelpRoutes.professionalBanckAccount: (context, args) =>

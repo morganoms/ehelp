@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:image_picker/image_picker.dart';
 import 'package:mobx/mobx.dart';
 part 'service_description.view_Model.g.dart';
