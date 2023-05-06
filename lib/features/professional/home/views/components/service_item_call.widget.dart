@@ -5,8 +5,8 @@ import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
-class ServiceItemProWidget extends StatefulWidget {
-  ServiceItemProWidget({
+class ServiceItemCallWidget extends StatefulWidget {
+  ServiceItemCallWidget({
     this.expansive = false,
     Key? key,
   }) : super(key: key);
@@ -14,10 +14,10 @@ class ServiceItemProWidget extends StatefulWidget {
   bool expansive;
 
   @override
-  State<ServiceItemProWidget> createState() => _ServiceItemProWidgetState();
+  State<ServiceItemCallWidget> createState() => _ServiceItemCallWidgetState();
 }
 
-class _ServiceItemProWidgetState extends State<ServiceItemProWidget>
+class _ServiceItemCallWidgetState extends State<ServiceItemCallWidget>
     with SingleTickerProviderStateMixin {
   final ExpandableController expandController = ExpandableController();
 
@@ -75,7 +75,14 @@ class _ServiceItemProWidgetState extends State<ServiceItemProWidget>
                     height: 8,
                   ),
                   Flexible(
-                    child: Text('Pendente', style: FontStyles.size14Weight500),
+                    child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 4),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(100),
+                            color: Colors.black),
+                        child: Text('Pendente',
+                            style: FontStyles.size14Weight400white)),
                   ),
                 ]),
           ),
@@ -237,7 +244,7 @@ class _ServiceItemProWidgetState extends State<ServiceItemProWidget>
                 flex: 8,
                 child: Material(
                   borderRadius: BorderRadius.circular(15),
-                  color: ColorConstants.primaryV2Dark,
+                  color: ColorConstants.greenDark,
                   child: InkWell(
                     customBorder: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
@@ -245,7 +252,7 @@ class _ServiceItemProWidgetState extends State<ServiceItemProWidget>
                     onTap: widget.expansive
                         ? onToggleClick
                         : () => Navigator.of(context)
-                            .pushNamed(EhelpRoutes.clientUserProfile),
+                            .pushNamed(EhelpRoutes.callDetail, arguments: true),
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(

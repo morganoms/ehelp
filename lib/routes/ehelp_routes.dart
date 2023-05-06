@@ -6,7 +6,7 @@ class EhelpRoutes {
 
   //Client
   static const homeClient = '/home_client';
-  static const clientUserProfile = '/user_profile';
+  static const clientUserProfessionalProfile = '/user_profile';
   static const clientBookingStep1 = '/booking/step1';
   static const clientBookingStep2 = '/booking/step2';
   static const clientBookingStep3 = '/booking/step3';
@@ -15,6 +15,8 @@ class EhelpRoutes {
   static const clientCallNowCalling = '/call_now/calling';
   static const clientCallNowConfirmation = '/call_now/confirmation';
   static const clientCallNowDescription = '/call_now/service_description';
+  static const clientAdresses = '/adresses';
+  static const clientCreditCard = '/credit_card';
 
   //Professional
   static const personalData = '/professional/sign_in/personal_data';
@@ -27,4 +29,8 @@ class EhelpRoutes {
   static const workHours = '/professional/home/area/edit/work_hours';
   static const valueCharged = '/professional/home/area/edit/value_carged';
   static const homeProfessional = '/professional/home';
+  static const callDetail = '/professional/call_now/detail';
+  static const professionalProfile = '/professional/profile';
+  static const professionalBanckAccount = '/professional/bank_account';
+  static const callNowProfessional = '/professional/call_now/service';
 }

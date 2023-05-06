@@ -7,11 +7,13 @@ class InputDropdown extends StatefulWidget {
     required this.hintText,
     required this.onChanged,
     this.icon,
+    this.value,
     Key? key,
   }) : super(key: key);
   final List<String> items;
   final String hintText;
   final Widget? icon;
+  final String? value;
   void Function(String?)? onChanged;
 
   @override
@@ -30,6 +32,7 @@ class _InputDropdownState extends State<InputDropdown> {
         );
       }).toList(),
       onChanged: widget.onChanged,
+      value: widget.value,
       decoration: InputDecoration(
         prefixIcon: widget.icon,
         contentPadding: const EdgeInsets.symmetric(horizontal: 24),

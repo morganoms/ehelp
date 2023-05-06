@@ -74,6 +74,22 @@ mixin _$HomeProfessionalViewModel on _HomeProfessionalViewModelBase, Store {
     });
   }
 
+  late final _$showCallNowAtom = Atom(
+      name: '_HomeProfessionalViewModelBase.showCallNow', context: context);
+
+  @override
+  bool get showCallNow {
+    _$showCallNowAtom.reportRead();
+    return super.showCallNow;
+  }
+
+  @override
+  set showCallNow(bool value) {
+    _$showCallNowAtom.reportWrite(value, super.showCallNow, () {
+      super.showCallNow = value;
+    });
+  }
+
   late final _$onClickBottomBarAsyncAction = AsyncAction(
       '_HomeProfessionalViewModelBase.onClickBottomBar',
       context: context);
@@ -150,7 +166,8 @@ mixin _$HomeProfessionalViewModel on _HomeProfessionalViewModelBase, Store {
 bottomBarIndex: ${bottomBarIndex},
 tabActivityIndex: ${tabActivityIndex},
 serviceSelected: ${serviceSelected},
-isAvaliableNow: ${isAvaliableNow}
+isAvaliableNow: ${isAvaliableNow},
+showCallNow: ${showCallNow}
     ''';
   }
 }

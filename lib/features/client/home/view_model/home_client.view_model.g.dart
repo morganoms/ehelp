@@ -57,6 +57,22 @@ mixin _$HomeClientViewModel on _HomeClientViewModelBase, Store {
     });
   }
 
+  late final _$valuesRangeAtom =
+      Atom(name: '_HomeClientViewModelBase.valuesRange', context: context);
+
+  @override
+  SfRangeValues get valuesRange {
+    _$valuesRangeAtom.reportRead();
+    return super.valuesRange;
+  }
+
+  @override
+  set valuesRange(SfRangeValues value) {
+    _$valuesRangeAtom.reportWrite(value, super.valuesRange, () {
+      super.valuesRange = value;
+    });
+  }
+
   late final _$onClickBottomBarAsyncAction = AsyncAction(
       '_HomeClientViewModelBase.onClickBottomBar',
       context: context);
@@ -76,6 +92,17 @@ mixin _$HomeClientViewModel on _HomeClientViewModelBase, Store {
         name: '_HomeClientViewModelBase.setbottomBarIndex');
     try {
       return super.setbottomBarIndex(newValue);
+    } finally {
+      _$_HomeClientViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  SfRangeValues setValuesRange(SfRangeValues newValue) {
+    final _$actionInfo = _$_HomeClientViewModelBaseActionController.startAction(
+        name: '_HomeClientViewModelBase.setValuesRange');
+    try {
+      return super.setValuesRange(newValue);
     } finally {
       _$_HomeClientViewModelBaseActionController.endAction(_$actionInfo);
     }
@@ -119,7 +146,8 @@ mixin _$HomeClientViewModel on _HomeClientViewModelBase, Store {
     return '''
 bottomBarIndex: ${bottomBarIndex},
 tabActivityIndex: ${tabActivityIndex},
-serviceSelected: ${serviceSelected}
+serviceSelected: ${serviceSelected},
+valuesRange: ${valuesRange}
     ''';
   }
 }

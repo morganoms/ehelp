@@ -19,13 +19,6 @@ class FinishedServiceWidget extends StatelessWidget {
     return Column(
       children: [
         Text(
-          'Serviço Finalizado',
-          style: FontStyles.size20Weight700green,
-        ),
-        const SizedBox(
-          height: 32,
-        ),
-        Text(
           'Tempo total de serviço',
           style: FontStyles.size16Weight400,
         ),

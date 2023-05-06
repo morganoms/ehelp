@@ -14,13 +14,6 @@ class StartedServiceWidget extends StatelessWidget {
     return Column(
       children: [
         Text(
-          'Serviço Iniciado',
-          style: FontStyles.size20Weight700green,
-        ),
-        const SizedBox(
-          height: 32,
-        ),
-        Text(
           'Tempo decorrido após o inicio do serviço',
           style: FontStyles.size16Weight400,
         ),
@@ -36,14 +29,6 @@ class StartedServiceWidget extends StatelessWidget {
         ),
         const SizedBox(
           height: 48,
-        ),
-        Text(
-          'A forma de pagamento do serviço será calculada de acordo com o tempo gasto.',
-          style: FontStyles.size16Weight400,
-          textAlign: TextAlign.center,
-        ),
-        const SizedBox(
-          height: 16,
         ),
         Text(
           'Por favor acompanhe o profissional durante  a execução do serviço',

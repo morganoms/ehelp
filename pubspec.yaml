@@ -29,6 +29,8 @@ dependencies:
   mobx_codegen: ^2.1.1
   shifting_tabbar: ^1.0.2
   salomon_bottom_bar: ^3.3.1
+  syncfusion_flutter_sliders: ^20.4.50
+  carousel_slider: ^4.2.1
   transparent_image: ^2.0.0
 
 dev_dependencies:
@@ -56,6 +58,17 @@ flutter:
         - asset: assets/fonts/montserrat/Montserrat-Bold.ttf
           weight: 700
         - asset: assets/fonts/montserrat/Montserrat-Black.ttf
+          weight: 900
+    - family: Lexend
+      fonts:
+        - asset: assets/fonts/lexend/Lexend-Light.ttf
+          weight: 300
+        - asset: assets/fonts/lexend/Lexend-Regular.ttf
+        - asset: assets/fonts/lexend/Lexend-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/lexend/Lexend-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/lexend/Lexend-Black.ttf
           weight: 900
          
 

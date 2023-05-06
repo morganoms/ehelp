@@ -1,3 +1,4 @@
+import 'package:ehelp/features/client/home/views/settings_client.view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
@@ -35,7 +36,7 @@ class _HomeClientViewState extends State<HomeClientView> {
             currentIndex: _viewModel.bottomBarIndex,
             itemPadding:
                 const EdgeInsets.symmetric(vertical: 10, horizontal: 24),
-            selectedItemColor: ColorConstants.blueSelected,
+            selectedItemColor: ColorConstants.blackSoft,
             unselectedItemColor: ColorConstants.primaryLight,
             onTap: (i) => _viewModel.onClickBottomBar(i),
             items: [
@@ -48,8 +49,8 @@ class _HomeClientViewState extends State<HomeClientView> {
                 title: const Text('Página Inicial'),
               ),
               SalomonBottomBarItem(
-                icon: const Icon(Icons.person),
-                title: const Text('Conta'),
+                icon: const Icon(Icons.settings),
+                title: const Text('Configurações'),
               ),
             ],
           );
@@ -63,7 +64,7 @@ class _HomeClientViewState extends State<HomeClientView> {
             children: const <Widget>[
               ActivitiesClientView(),
               SearchServiceView(),
-              AccaountView(),
+              SettingsClientView(),
             ],
           );
         },

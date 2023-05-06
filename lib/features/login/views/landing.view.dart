@@ -13,13 +13,7 @@ class LandingView extends StatelessWidget {
   Widget build(final BuildContext context) {
     return Scaffold(
       bottomSheet: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [ColorConstants.primaryV2, Colors.white],
-          ),
-        ),
+        color: ColorConstants.blackSoft,
         padding: const EdgeInsets.all(24),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -31,20 +25,20 @@ class LandingView extends StatelessWidget {
                 style: TextStyle(
                   fontWeight: FontWeight.w700,
                   fontSize: 36,
-                  color: Colors.black,
+                  color: Colors.white,
                 ),
               ),
             ),
             const SizedBox(
               height: 24,
             ),
-            Align(
+            const Align(
               alignment: Alignment.topLeft,
               child: Text(
                 'Selecione abaixo o perfil em que deseja entrar no aplicativo.',
                 style: TextStyle(
                   fontSize: 16,
-                  color: Theme.of(context).primaryColor,
+                  color: Colors.white,
                 ),
               ),
             ),
@@ -56,6 +50,7 @@ class LandingView extends StatelessWidget {
                   EdgeInsets.only(right: MediaQuery.of(context).size.width / 2),
               child: const Divider(
                 thickness: 1,
+                color: Colors.white,
               ),
             ),
             const SizedBox(
@@ -63,7 +58,7 @@ class LandingView extends StatelessWidget {
             ),
             GenericButton(
               label: 'Cliente',
-              color: ColorConstants.blueSelected,
+              color: ColorConstants.greenDark,
               onPressed: () => Navigator.of(context).pushNamed(
                 EhelpRoutes.login,
                 arguments: UserType.client,
@@ -74,7 +69,7 @@ class LandingView extends StatelessWidget {
             ),
             GenericButton(
               label: 'Profissional',
-              color: ColorConstants.blueSelected,
+              color: ColorConstants.greenDark,
               onPressed: () => Navigator.of(context).pushNamed(
                 EhelpRoutes.login,
                 arguments: UserType.professional,

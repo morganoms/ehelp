@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import '../service_item.widget.dart';
@@ -18,6 +20,7 @@ class BookedServicesWidegt extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 8),
                 child: ServiceItemWidget(
                   expansive: true,
+                  indexImage: index % 5,
                 ),
               ),
             ),

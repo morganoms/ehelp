@@ -1,3 +1,4 @@
+import 'package:ehelp/features/professional/call_now/view_model/call_now_professional.view_model.dart';
 import 'package:get_it/get_it.dart';
 
 import 'features/client/booking/view_model/booking.view_model.dart';
@@ -30,6 +31,9 @@ class EHelpDependencies {
       )
       ..registerLazySingleton<HomeProfessionalViewModel>(
         HomeProfessionalViewModel.new,
+      )
+      ..registerLazySingleton<CallNowProfessionalViewModel>(
+        CallNowProfessionalViewModel.new,
       )
       ..registerLazySingleton<CallNowViewModel>(
         CallNowViewModel.new,

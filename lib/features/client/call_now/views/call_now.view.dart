@@ -1,13 +1,19 @@
 import 'dart:async';
 
 import 'package:custom_timer/custom_timer.dart';
+import 'package:ehelp/features/client/call_now/views/components/card_detail_service.widget.dart';
 import 'package:ehelp/locator.dart';
+import 'package:ehelp/shared/colors/constants.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
+import '../../../../routes/ehelp_routes.dart';
+import '../../../../shared/components/back_button.widget.dart';
+import '../../../../shared/components/default_dialog.widget.dart';
 import '../../../../shared/components/generic_button.widget.dart';
 
+import '../../../../shared/components/header_black.widget.dart';
 import '../../../../shared/fonts/styles.dart';
 import '../../home/views/components/service_item.widget.dart';
 import '../view_model/call_now.view_model.dart';
@@ -56,6 +62,7 @@ class _CallNowViewViewState extends State<CallNowView>
         children: [
           GenericButton(
             label: 'Confirmar',
+            color: ColorConstants.greenDark,
             onPressed: () => _controller.setScreenState(CallNowState.started),
           ),
           const SizedBox(
@@ -80,9 +87,28 @@ class _CallNowViewViewState extends State<CallNowView>
           const SizedBox(
             height: 16,
           ),
-          Text(
-            r'R$ 50,00',
-            style: FontStyles.size24Weight700,
+          Row(
+            children: [
+              Text(
+                r'R$ 50,00',
+                style: FontStyles.size24Weight700,
+              ),
+              IconButton(
+                  onPressed: () => showDialog(
+                        context: context,
+                        builder: (builder) => DefaultDialog(
+                          child: Container(
+                            padding: const EdgeInsets.all(24),
+                            child: Text(
+                              'Atenção! \n\nA forma de pagamento do serviço será calculada de acordo com o tempo gasto.',
+                              style: FontStyles.size16Weight400,
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ),
+                      ),
+                  icon: const Icon(Icons.help_outline_rounded))
+            ],
           ),
           const SizedBox(
             height: 32,
@@ -100,12 +126,15 @@ class _CallNowViewViewState extends State<CallNowView>
     } else if (_controller.screenState == CallNowState.finished) {
       return GenericButton(
         label: 'Confirmar',
+        color: ColorConstants.greenDark,
         onPressed: () => _controller.setScreenState(CallNowState.feedback),
       );
     } else if (_controller.screenState == CallNowState.feedback) {
       return GenericButton(
         label: 'Avaliar',
-        onPressed: () {},
+        color: ColorConstants.greenDark,
+        onPressed: () =>
+            Navigator.of(context).popUntil(ModalRoute.withName('/home_client')),
       );
     } else {
       return GenericButton(
@@ -122,23 +151,29 @@ class _CallNowViewViewState extends State<CallNowView>
       case CallNowState.waiting:
         unawaited(Future<void>.delayed(const Duration(seconds: 5))
             .then((value) => _controller.setScreenState(CallNowState.arrived)));
+        _controller.setStatusTitle('Solicitação Confirmada');
         return const WaitingArriveWidget();
       case CallNowState.arrived:
+        _controller.setStatusTitle('Profissional Chegou');
         return const ArrivedProfessionalWidget();
       case CallNowState.started:
+        _controller.setStatusTitle('Serviço Iniciado');
         _timeController.start();
         return StartedServiceWidget(timeController: _timeController);
       case CallNowState.finished:
+        _controller.setStatusTitle('Serviço Finalizado');
         return FinishedServiceWidget(
           hours: _timeController.remaining.value.hours,
           minutes: _timeController.remaining.value.minutes,
           seconds: _timeController.remaining.value.seconds,
         );
       case CallNowState.feedback:
+        _controller.setStatusTitle('Avalie o Profissional');
         return const FeedbackServiceWidget();
       default:
         unawaited(Future<void>.delayed(const Duration(seconds: 5))
             .then((value) => _controller.setScreenState(CallNowState.waiting)));
+        _controller.setStatusTitle('Chamando Agora');
         return const CallingProfessionalWidget();
     }
   }
@@ -147,47 +182,65 @@ class _CallNowViewViewState extends State<CallNowView>
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(24),
-        child: Observer(
-          builder: (final _) => _buildBottomButtom(),
-        ),
-      ),
-      body: SafeArea(
-        bottom: false,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
+          padding: const EdgeInsets.all(24),
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: IconButton(
-                      onPressed: () => Navigator.of(context).pop(),
-                      icon: const Icon(
-                        Icons.close_rounded,
-                      ),
-                    ),
+              Observer(
+                builder: (final _) => _buildBottomButtom(),
+              ),
+            ],
+          )),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            HeaderBlack(
+              titleLable: 'Chamar Agora',
+              iconBack: const BackButtonWidget(isCancelButton: true),
+              child: Container(
+                width: double.maxFinite,
+                color: ColorConstants.blackSoft,
+                padding: const EdgeInsets.only(left: 24, right: 24, bottom: 16),
+                child: Container(
+                  padding: const EdgeInsets.all(24),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    color: ColorConstants.greenStrong,
                   ),
-                  Text(
-                    'Chamar Agora',
-                    style: FontStyles.size16Weight700,
+                  child: Column(children: [
+                    Text(
+                      'Status',
+                      style: FontStyles.size16Weight400,
+                      textAlign: TextAlign.center,
+                    ),
+                    Observer(builder: (_) {
+                      return Text(
+                        _controller.statusTitle,
+                        style: FontStyles.size20Weight700,
+                      );
+                    }),
+                  ]),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Column(
+                children: [
+                  CardDetailServiceWidget(
+                    onTap: () => Navigator.of(context)
+                        .pushNamed(EhelpRoutes.callDetail, arguments: false),
+                  ),
+                  const SizedBox(
+                    height: 24,
+                  ),
+                  Observer(
+                    builder: (final _) => _buildBody(),
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 48,
-              ),
-              ServiceItemWidget(),
-              const SizedBox(
-                height: 32,
-              ),
-              Observer(
-                builder: (final _) => _buildBody(),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

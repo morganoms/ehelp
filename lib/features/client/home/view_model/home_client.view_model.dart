@@ -1,6 +1,7 @@
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+import 'package:syncfusion_flutter_sliders/sliders.dart';
 part 'home_client.view_model.g.dart';
 
 class HomeClientViewModel = _HomeClientViewModelBase with _$HomeClientViewModel;
@@ -13,8 +14,15 @@ abstract class _HomeClientViewModelBase with Store {
   @observable
   String serviceSelected = '';
 
+  @observable
+  SfRangeValues valuesRange = const SfRangeValues(40.0, 80.0);
+
   @action
   int setbottomBarIndex(final int newValue) => bottomBarIndex = newValue;
+
+  @action
+  SfRangeValues setValuesRange(final SfRangeValues newValue) =>
+      valuesRange = newValue;
 
   @action
   String setServiceSelected(final String newValue) =>

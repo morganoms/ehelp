@@ -61,7 +61,7 @@ class _WorkHoursViewState extends State<WorkHoursView> {
                   onChanged: (final bool newvalue) =>
                       _controller.setComercialHours(newvalue),
                   activeTrackColor: Colors.grey,
-                  activeColor: ColorConstants.blueSelected,
+                  activeColor: ColorConstants.greenDark,
                   title: Text(
                     'Horário Comercial',
                     style: FontStyles.size16Weight700,

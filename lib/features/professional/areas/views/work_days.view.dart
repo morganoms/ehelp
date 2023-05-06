@@ -34,9 +34,8 @@ class _WorkDaysViewState extends State<WorkDaysView> {
         margin: const EdgeInsets.only(bottom: 16),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(18),
-          color: isSelected
-              ? ColorConstants.blueSelected
-              : const Color(0xFFD9D9D9),
+          color:
+              isSelected ? ColorConstants.greenDark : const Color(0xFFD9D9D9),
         ),
         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 24),
         width: MediaQuery.of(context).size.width,
@@ -91,7 +90,7 @@ class _WorkDaysViewState extends State<WorkDaysView> {
                   onChanged: (final bool newvalue) =>
                       _controller.setUtilDays(newvalue),
                   activeTrackColor: Colors.grey,
-                  activeColor: ColorConstants.blueSelected,
+                  activeColor: ColorConstants.greenDark,
                   title: Text(
                     'Somente dias úteis',
                     style: FontStyles.size16Weight700,

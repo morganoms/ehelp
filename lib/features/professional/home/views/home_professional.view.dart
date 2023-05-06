@@ -2,7 +2,9 @@ import 'package:ehelp/features/professional/home/views/history_professional.view
 import 'package:ehelp/features/professional/home/views/professional_calls.view.dart';
 import 'package:ehelp/features/professional/home/views/settings_professional.view.dart';
 import 'package:ehelp/shared/colors/constants.dart';
+import 'package:ehelp/shared/fonts/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
@@ -28,27 +30,37 @@ class _HomeProfessionalViewState extends State<HomeProfessionalView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorConstants.whiteBackground,
       bottomNavigationBar: Observer(
         builder: (_) {
           return SalomonBottomBar(
             currentIndex: _viewModel.bottomBarIndex,
             itemPadding:
                 const EdgeInsets.symmetric(vertical: 10, horizontal: 24),
-            selectedItemColor: ColorConstants.blueSelected,
+            selectedItemColor: ColorConstants.blackSoft,
             unselectedItemColor: ColorConstants.primaryLight,
             onTap: (i) => _viewModel.onClickBottomBar(i),
             items: [
               SalomonBottomBarItem(
-                icon: const Icon(Icons.receipt),
-                title: const Text('Atividades'),
+                icon: const Icon(
+                  Icons.receipt,
+                ),
+                title: Text(
+                  'Atividades',
+                  style: FontStyles.size14Weight700,
+                ),
               ),
               SalomonBottomBarItem(
                 icon: const Icon(Icons.home),
-                title: const Text('Página Inicial'),
+                title:
+                    Text('Página Inicial', style: FontStyles.size14Weight700),
               ),
               SalomonBottomBarItem(
                 icon: const Icon(Icons.settings),
-                title: const Text('Configurações'),
+                title: Text(
+                  'Configurações',
+                  style: FontStyles.size14Weight700,
+                ),
               ),
             ],
           );

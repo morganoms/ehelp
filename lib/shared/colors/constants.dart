@@ -13,4 +13,10 @@ class ColorConstants {
   //others
   static const greenAvailable = Color(0xFF18AC00);
   static const blueSelected = Color(0xFF5E6EFF);
+
+  //newColors
+  static const greenStrong = Color(0xFF6bef1d);
+  static const greenDark = Color(0xFF4ac402);
+  static const blackSoft = Color(0xFF0d0d0d);
+  static const whiteBackground = Color(0xFFfafafa);
 }
