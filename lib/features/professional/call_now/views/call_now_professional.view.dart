@@ -4,6 +4,7 @@ import 'package:custom_timer/custom_timer.dart';
 import 'package:ehelp/features/client/call_now/views/components/card_detail_service.widget.dart';
 import 'package:ehelp/features/professional/call_now/views/components/finished_service_professional.widget.dart';
 import 'package:ehelp/features/professional/call_now/views/components/go_to_client.widget.dart';
+import 'package:ehelp/features/professional/call_now/views/components/service_prove_professional.widget.dart';
 import 'package:ehelp/features/professional/call_now/views/components/started_service_professional.widget.dart';
 import 'package:ehelp/features/professional/call_now/views/components/waiting_client.widget.dart';
 import 'package:ehelp/locator.dart';
@@ -127,6 +128,13 @@ class _CallNowProfessionalViewViewState extends State<CallNowProfessionalView>
       return GenericButton(
         label: 'Confirmar',
         color: ColorConstants.greenDark,
+        onPressed: () =>
+            _controller.setScreenState(CallNowProfessionalState.prove),
+      );
+    } else if (_controller.screenState == CallNowProfessionalState.prove) {
+      return GenericButton(
+        label: 'Enviar Relatório',
+        color: ColorConstants.greenDark,
         onPressed: () => Navigator.of(context)
             .popUntil(ModalRoute.withName('/professional/home')),
       );
@@ -152,6 +160,9 @@ class _CallNowProfessionalViewViewState extends State<CallNowProfessionalView>
         _controller.setStatusTitle('Serviço Iniciado');
         _timeController.start();
         return StartedServiceProfissional(timeController: _timeController);
+      case CallNowProfessionalState.prove:
+        _controller.setStatusTitle('Prova do Serviço');
+        return ServiceProveProfessionalWidget();
       case CallNowProfessionalState.finished:
         _controller.setStatusTitle('Serviço Finalizado');
         return FinishedServiceProfessinalWidget(
@@ -181,6 +192,7 @@ class _CallNowProfessionalViewViewState extends State<CallNowProfessionalView>
           )),
       body: SingleChildScrollView(
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             HeaderBlack(
               titleLable: 'Chamar Agora',

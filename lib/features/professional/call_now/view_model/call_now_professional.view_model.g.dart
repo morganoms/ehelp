@@ -42,9 +42,64 @@ mixin _$CallNowProfessionalViewModel
     });
   }
 
+  late final _$selectedImagesAtom = Atom(
+      name: '_CallNowProfessionalViewModelBase.selectedImages',
+      context: context);
+
+  @override
+  List<XFile?> get selectedImages {
+    _$selectedImagesAtom.reportRead();
+    return super.selectedImages;
+  }
+
+  @override
+  set selectedImages(List<XFile?> value) {
+    _$selectedImagesAtom.reportWrite(value, super.selectedImages, () {
+      super.selectedImages = value;
+    });
+  }
+
   late final _$_CallNowProfessionalViewModelBaseActionController =
       ActionController(
           name: '_CallNowProfessionalViewModelBase', context: context);
+
+  @override
+  void addImageToList(XFile? newValue) {
+    final _$actionInfo = _$_CallNowProfessionalViewModelBaseActionController
+        .startAction(name: '_CallNowProfessionalViewModelBase.addImageToList');
+    try {
+      return super.addImageToList(newValue);
+    } finally {
+      _$_CallNowProfessionalViewModelBaseActionController
+          .endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void addImageAllToList(List<XFile?> newValue) {
+    final _$actionInfo =
+        _$_CallNowProfessionalViewModelBaseActionController.startAction(
+            name: '_CallNowProfessionalViewModelBase.addImageAllToList');
+    try {
+      return super.addImageAllToList(newValue);
+    } finally {
+      _$_CallNowProfessionalViewModelBaseActionController
+          .endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void removeImageToList(XFile? value) {
+    final _$actionInfo =
+        _$_CallNowProfessionalViewModelBaseActionController.startAction(
+            name: '_CallNowProfessionalViewModelBase.removeImageToList');
+    try {
+      return super.removeImageToList(value);
+    } finally {
+      _$_CallNowProfessionalViewModelBaseActionController
+          .endAction(_$actionInfo);
+    }
+  }
 
   @override
   String setStatusTitle(String newState) {
@@ -74,7 +129,8 @@ mixin _$CallNowProfessionalViewModel
   String toString() {
     return '''
 screenState: ${screenState},
-statusTitle: ${statusTitle}
+statusTitle: ${statusTitle},
+selectedImages: ${selectedImages}
     ''';
   }
 }
