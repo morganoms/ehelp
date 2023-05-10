@@ -2,7 +2,7 @@ import 'package:ehelp/app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'locator.dart';
+import 'core/locator.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

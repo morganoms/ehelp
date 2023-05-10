@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../../../../locator.dart';
+import '../../../../../core/locator.dart';
 import '../../../../../routes/ehelp_routes.dart';
 import '../../../../../shared/colors/constants.dart';
 import '../../../../../shared/components/generic_button.widget.dart';

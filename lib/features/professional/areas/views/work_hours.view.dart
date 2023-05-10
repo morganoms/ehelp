@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
-import '../../../../locator.dart';
+import '../../../../core/locator.dart';
 import '../../../../shared/Colors/constants.dart';
 import '../../../../shared/components/time_selector.widget.dart';
 import '../../../../shared/fonts/styles.dart';

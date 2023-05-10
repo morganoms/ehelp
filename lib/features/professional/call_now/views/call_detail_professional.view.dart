@@ -1,4 +1,4 @@
-import 'package:ehelp/locator.dart';
+import 'package:ehelp/core/locator.dart';
 import 'package:ehelp/routes/ehelp_routes.dart';
 import 'package:ehelp/shared/colors/constants.dart';
 import 'package:ehelp/shared/components/back_button.widget.dart';

@@ -4,7 +4,7 @@ import 'package:ehelp/shared/components/header_black.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
-import '../../../../locator.dart';
+import '../../../../core/locator.dart';
 import '../../../../shared/fonts/styles.dart';
 import '../view_model/home_client.view_model.dart';
 import 'components/tabs/booked_services.widget.dart';

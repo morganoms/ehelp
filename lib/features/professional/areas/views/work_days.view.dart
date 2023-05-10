@@ -2,7 +2,7 @@ import 'package:ehelp/shared/colors/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
-import '../../../../locator.dart';
+import '../../../../core/locator.dart';
 import '../../../../routes/ehelp_routes.dart';
 import '../../../../shared/components/generic_button.widget.dart';
 import '../../../../shared/fonts/styles.dart';

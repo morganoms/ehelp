@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
-import '../../../../locator.dart';
+import '../../../../core/locator.dart';
 import '../../../../shared/colors/constants.dart';
 import '../../../../shared/components/default_dialog.widget.dart';
 import '../../../../shared/components/person_picture.widget.dart';

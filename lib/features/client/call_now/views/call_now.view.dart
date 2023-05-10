@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:custom_timer/custom_timer.dart';
 import 'package:ehelp/features/client/call_now/views/components/card_detail_service.widget.dart';
-import 'package:ehelp/locator.dart';
+import 'package:ehelp/core/locator.dart';
 import 'package:ehelp/shared/colors/constants.dart';
 
 import 'package:flutter/material.dart';
