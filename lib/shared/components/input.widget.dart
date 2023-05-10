@@ -12,6 +12,9 @@ class Input extends StatefulWidget {
     this.controller,
     this.borderRadius,
     this.initialValue,
+    this.keyboardType,
+    this.validator,
+    this.isPasswordType = false,
     final Key? key,
   }) : super(key: key);
   final String? hintText;
@@ -22,6 +25,9 @@ class Input extends StatefulWidget {
   final int maxLines;
   final String? initialValue;
   final TextEditingController? controller;
+  final TextInputType? keyboardType;
+  final String? Function(String?)? validator;
+  final bool isPasswordType;
 
   @override
   State<Input> createState() => _InputState();
@@ -58,6 +64,12 @@ class _InputState extends State<Input> {
         }
       },
       maxLines: widget.maxLines,
+      keyboardType: widget.keyboardType,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      validator: widget.validator,
+      obscureText: widget.isPasswordType,
+      enableSuggestions: !widget.isPasswordType,
+      autocorrect: !widget.isPasswordType,
       decoration: InputDecoration(
         prefixIcon: widget.icon,
         alignLabelWithHint: widget.maxLines > 1 ? true : false,

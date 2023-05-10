@@ -1,4 +1,4 @@
-import 'package:ehelp/locator.dart';
+import 'package:ehelp/core/locator.dart';
 import 'package:ehelp/routes/ehelp_routes.dart';
 import 'package:ehelp/shared/components/time_selector.widget.dart';
 import 'package:flutter/material.dart';

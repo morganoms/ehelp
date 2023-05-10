@@ -7,7 +7,7 @@ import 'package:ehelp/features/professional/call_now/views/components/go_to_clie
 import 'package:ehelp/features/professional/call_now/views/components/service_prove_professional.widget.dart';
 import 'package:ehelp/features/professional/call_now/views/components/started_service_professional.widget.dart';
 import 'package:ehelp/features/professional/call_now/views/components/waiting_client.widget.dart';
-import 'package:ehelp/locator.dart';
+import 'package:ehelp/core/locator.dart';
 import 'package:ehelp/shared/colors/constants.dart';
 
 import 'package:flutter/material.dart';

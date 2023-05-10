@@ -1,10 +1,8 @@
-import 'package:ehelp/locator.dart';
+import 'package:ehelp/core/locator.dart';
 import 'package:ehelp/shared/colors/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
-import '../../../../routes/ehelp_routes.dart';
-import '../../../../shared/components/generic_button.widget.dart';
 import '../../../../shared/fonts/styles.dart';
 import '../view_model/home_edit_area.view_model.dart';
 

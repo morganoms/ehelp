@@ -1,7 +1,11 @@
+import 'package:ehelp/core/locator.dart';
+import 'package:ehelp/features/login/view_models/login.view_model.dart';
 import 'package:ehelp/routes/ehelp_routes.dart';
 import 'package:ehelp/shared/components/input.widget.dart';
 import 'package:ehelp/shared/fonts/styles.dart';
+import 'package:ehelp/shared/utils/validators.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 
 import '../../../shared/colors/constants.dart';
 import '../../../shared/components/generic_button.widget.dart';
@@ -11,6 +15,8 @@ class LoginView extends StatelessWidget {
   LoginView({required this.userType, final Key? key}) : super(key: key);
   final _formKey = GlobalKey<FormState>();
 
+  final LoginViewModel _viewModel = locator.get<LoginViewModel>();
+
   final UserType userType;
 
   String getTitle() {
@@ -18,6 +24,16 @@ class LoginView extends StatelessWidget {
       return 'Login do Cliente';
     } else {
       return 'Login do Profissional';
+    }
+  }
+
+  Future<void> onSubmit(BuildContext context) async {
+    if (_formKey.currentState!.validate()) {
+      await _viewModel.authenticate(email: 'email', password: 'password');
+
+      await Navigator.of(context).pushNamed(userType == UserType.client
+          ? EhelpRoutes.homeClient
+          : EhelpRoutes.homeProfessional);
     }
   }
 
@@ -136,6 +152,8 @@ class LoginView extends StatelessWidget {
                             children: const [
                               Input(
                                 label: Text('Email'),
+                                keyboardType: TextInputType.emailAddress,
+                                validator: Validators.validateEmail,
                                 icon: Icon(Icons.email_outlined),
                               ),
                               SizedBox(
@@ -143,6 +161,8 @@ class LoginView extends StatelessWidget {
                               ),
                               Input(
                                 label: Text('Senha'),
+                                validator: Validators.emptyValidate,
+                                isPasswordType: true,
                                 icon: Icon(Icons.vpn_key_outlined),
                               )
                             ],
@@ -164,14 +184,15 @@ class LoginView extends StatelessWidget {
                         const SizedBox(
                           height: 48,
                         ),
-                        GenericButton(
-                          label: 'Continuar',
-                          color: ColorConstants.greenDark,
-                          onPressed: () => Navigator.of(context).pushNamed(
-                              userType == UserType.client
-                                  ? EhelpRoutes.homeClient
-                                  : EhelpRoutes.homeProfessional),
-                        ),
+                        Observer(builder: (_) {
+                          return GenericButton(
+                              label: 'Continuar',
+                              loading: _viewModel.isLoading,
+                              color: ColorConstants.greenDark,
+                              onPressed: () async {
+                                await onSubmit(context);
+                              });
+                        }),
                         const SizedBox(
                           height: 24,
                         ),

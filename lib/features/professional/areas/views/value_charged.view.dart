@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 
-import '../../../../locator.dart';
+import '../../../../core/locator.dart';
 import '../../../../shared/components/money_input.widget.dart';
 import '../../../../shared/fonts/styles.dart';
 import '../view_model/home_edit_area.view_model.dart';
