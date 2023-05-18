@@ -9,6 +9,28 @@ part of 'home_client.view_model.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$HomeClientViewModel on _HomeClientViewModelBase, Store {
+  Computed<bool>? _$isLoadingComputed;
+
+  @override
+  bool get isLoading =>
+      (_$isLoadingComputed ??= Computed<bool>(() => super.isLoading,
+              name: '_HomeClientViewModelBase.isLoading'))
+          .value;
+  Computed<bool>? _$hasErrorComputed;
+
+  @override
+  bool get hasError =>
+      (_$hasErrorComputed ??= Computed<bool>(() => super.hasError,
+              name: '_HomeClientViewModelBase.hasError'))
+          .value;
+  Computed<bool>? _$isSuccessComputed;
+
+  @override
+  bool get isSuccess =>
+      (_$isSuccessComputed ??= Computed<bool>(() => super.isSuccess,
+              name: '_HomeClientViewModelBase.isSuccess'))
+          .value;
+
   late final _$bottomBarIndexAtom =
       Atom(name: '_HomeClientViewModelBase.bottomBarIndex', context: context);
 
@@ -57,6 +79,22 @@ mixin _$HomeClientViewModel on _HomeClientViewModelBase, Store {
     });
   }
 
+  late final _$stateAtom =
+      Atom(name: '_HomeClientViewModelBase.state', context: context);
+
+  @override
+  ScreenState get state {
+    _$stateAtom.reportRead();
+    return super.state;
+  }
+
+  @override
+  set state(ScreenState value) {
+    _$stateAtom.reportWrite(value, super.state, () {
+      super.state = value;
+    });
+  }
+
   late final _$valuesRangeAtom =
       Atom(name: '_HomeClientViewModelBase.valuesRange', context: context);
 
@@ -92,6 +130,17 @@ mixin _$HomeClientViewModel on _HomeClientViewModelBase, Store {
         name: '_HomeClientViewModelBase.setbottomBarIndex');
     try {
       return super.setbottomBarIndex(newValue);
+    } finally {
+      _$_HomeClientViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  ScreenState setState(ScreenState newValue) {
+    final _$actionInfo = _$_HomeClientViewModelBaseActionController.startAction(
+        name: '_HomeClientViewModelBase.setState');
+    try {
+      return super.setState(newValue);
     } finally {
       _$_HomeClientViewModelBaseActionController.endAction(_$actionInfo);
     }
@@ -147,7 +196,11 @@ mixin _$HomeClientViewModel on _HomeClientViewModelBase, Store {
 bottomBarIndex: ${bottomBarIndex},
 tabActivityIndex: ${tabActivityIndex},
 serviceSelected: ${serviceSelected},
-valuesRange: ${valuesRange}
+state: ${state},
+valuesRange: ${valuesRange},
+isLoading: ${isLoading},
+hasError: ${hasError},
+isSuccess: ${isSuccess}
     ''';
   }
 }

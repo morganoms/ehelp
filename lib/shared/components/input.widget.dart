@@ -14,6 +14,7 @@ class Input extends StatefulWidget {
     this.initialValue,
     this.keyboardType,
     this.validator,
+    this.onSaved,
     this.isPasswordType = false,
     final Key? key,
   }) : super(key: key);
@@ -22,6 +23,7 @@ class Input extends StatefulWidget {
   final Function? onChanged;
   final Widget? label;
   final BorderRadius? borderRadius;
+  final void Function(String?)? onSaved;
   final int maxLines;
   final String? initialValue;
   final TextEditingController? controller;
@@ -64,6 +66,7 @@ class _InputState extends State<Input> {
         }
       },
       maxLines: widget.maxLines,
+      onSaved: widget.onSaved,
       keyboardType: widget.keyboardType,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: widget.validator,

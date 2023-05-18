@@ -6,8 +6,11 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+import 'features/login/models/entity/user.entity.dart';
+
 class EHelpApp extends StatelessWidget {
-  const EHelpApp({Key? key}) : super(key: key);
+  const EHelpApp({this.userAuthenticated, Key? key}) : super(key: key);
+  final User? userAuthenticated;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +22,9 @@ class EHelpApp extends StatelessWidget {
           fontFamily: 'Lexend',
           dialogBackgroundColor: Colors.white,
           scaffoldBackgroundColor: ColorConstants.whiteBackground),
-      initialRoute: EhelpRoutes.landing,
+      initialRoute: userAuthenticated != null
+          ? EhelpRoutes.homeClient
+          : EhelpRoutes.landing,
       onGenerateRoute: EhelpGeneratedRoutes.generateRoute,
       supportedLocales: const <Locale>[Locale('pt', 'BR')],
       localizationsDelegates: const <LocalizationsDelegate<dynamic>>[

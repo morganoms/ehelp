@@ -34,4 +34,23 @@ class User {
   final int countryId;
   final int regionChId;
   final int comunaId;
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+        'email': email,
+        'phone': phone,
+        'documentNumber': documentNumber,
+        'stateId': stateId,
+        'cityId': cityId,
+        'regionId': regionId,
+        'userTypeId': userTypeId,
+        'password': password,
+        'photoUrl': photoUrl,
+        'statusId': statusId,
+        'languageId': languageId,
+        'countryId': countryId,
+        'regionChId': regionChId,
+        'comunaId': comunaId,
+      };
 }
