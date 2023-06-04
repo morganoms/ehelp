@@ -1,6 +1,6 @@
-import 'package:ehelp/features/login/models/entity/user.entity.dart';
+import 'package:ehelp/shared/entity/user/user.entity.dart';
 
-import '../../../../core/dto_validations.dart';
+import '../../../core/dto_validations.dart';
 
 extension UserDto on User {
   static User fromJson(final Map<String, dynamic> json) {
@@ -20,7 +20,8 @@ extension UserDto on User {
       regionId: DtoValidation.dynamicToInt(json['regionId']),
       stateId: DtoValidation.dynamicToInt(json['stateId']),
       statusId: DtoValidation.dynamicToInt(json['statusId']),
-      userTypeId: DtoValidation.dynamicToInt(json['userTypeId']),
+      userTypeId:
+          DtoValidation.dynamicToInt(json['userTypeId']).convertToUserType(),
     );
   }
 }

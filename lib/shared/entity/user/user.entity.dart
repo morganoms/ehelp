@@ -1,3 +1,31 @@
+enum UserType { adm, contratante, prestador }
+
+extension IntToUserType on int {
+  UserType convertToUserType() {
+    switch (this) {
+      case 1:
+        return UserType.adm;
+      case 2:
+        return UserType.prestador;
+      default:
+        return UserType.contratante;
+    }
+  }
+}
+
+extension UserTypeToInt on UserType {
+  int convertToint() {
+    switch (this) {
+      case UserType.adm:
+        return 1;
+      case UserType.prestador:
+        return 2;
+      default:
+        return 3;
+    }
+  }
+}
+
 class User {
   User({
     required this.id,
@@ -26,7 +54,7 @@ class User {
   final int stateId;
   final int cityId;
   final int regionId;
-  final int userTypeId;
+  final UserType userTypeId;
   final String password;
   final String photoUrl;
   final int statusId;
@@ -44,7 +72,7 @@ class User {
         'stateId': stateId,
         'cityId': cityId,
         'regionId': regionId,
-        'userTypeId': userTypeId,
+        'userTypeId': userTypeId.convertToint(),
         'password': password,
         'photoUrl': photoUrl,
         'statusId': statusId,

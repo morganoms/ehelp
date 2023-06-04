@@ -44,7 +44,7 @@ mixin _$LoginViewModel on _LoginViewModelBase, Store {
       AsyncAction('_LoginViewModelBase.authenticate', context: context);
 
   @override
-  Future<void> authenticate(
+  Future<bool> authenticate(
       {required String username, required String password}) {
     return _$authenticateAsyncAction
         .run(() => super.authenticate(username: username, password: password));

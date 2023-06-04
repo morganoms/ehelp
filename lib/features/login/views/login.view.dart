@@ -1,5 +1,4 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:cool_alert/cool_alert.dart';
 import 'package:ehelp/core/locator.dart';
 import 'package:ehelp/features/login/view_models/login.view_model.dart';
 import 'package:ehelp/routes/ehelp_routes.dart';
@@ -36,18 +35,10 @@ class _LoginViewState extends State<LoginView> {
     super.dispose();
   }
 
-  String getTitle() {
-    if (widget.userType == UserType.client) {
-      return 'Login do Cliente';
-    } else {
-      return 'Login do Profissional';
-    }
-  }
-
   Future<void> onSubmit(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-      await _viewModel.authenticate(
+      final bool isPrestador = await _viewModel.authenticate(
           username: identification.username, password: identification.password);
       if (_viewModel.hasError) {
         await AwesomeDialog(
@@ -60,9 +51,9 @@ class _LoginViewState extends State<LoginView> {
               'Nome de Usuário ou Senha inválido. Por favor, tente novamente.',
         ).show();
       } else {
-        await Navigator.of(context).pushNamed(widget.userType == UserType.client
-            ? EhelpRoutes.homeClient
-            : EhelpRoutes.homeProfessional);
+        await Navigator.of(context).pushNamed(isPrestador
+            ? EhelpRoutes.homeProfessional
+            : EhelpRoutes.homeClient);
       }
     }
   }
@@ -162,9 +153,9 @@ class _LoginViewState extends State<LoginView> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text(
-                          getTitle(),
-                          style: const TextStyle(
+                        const Text(
+                          'Login',
+                          style: TextStyle(
                             fontWeight: FontWeight.w700,
                             fontSize: 27,
                           ),

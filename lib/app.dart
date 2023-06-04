@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-import 'features/login/models/entity/user.entity.dart';
+import 'shared/entity/user/user.entity.dart';
 
 class EHelpApp extends StatelessWidget {
   const EHelpApp({this.userAuthenticated, Key? key}) : super(key: key);

@@ -1,10 +1,10 @@
 import 'dart:convert';
 
-import 'package:ehelp/features/login/models/entity/user.dto.dart';
+import 'package:ehelp/shared/entity/user/user.dto.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../features/login/models/entity/user.entity.dart';
+import '../../shared/entity/user/user.entity.dart';
 
 class UserCoreServise {
   Future<void> saveUser(final User userAuthenticated) async {

@@ -1,5 +1,5 @@
 import 'package:ehelp/core/user/user_core.service.dart';
-import 'package:ehelp/features/login/models/entity/user.entity.dart';
+import 'package:ehelp/shared/entity/user/user.entity.dart';
 import 'package:mobx/mobx.dart';
 part 'user.controller.g.dart';
 

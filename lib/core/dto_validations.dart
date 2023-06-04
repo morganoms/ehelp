@@ -19,9 +19,9 @@ class DtoValidation {
           ? DateTime.parse(field.toString())
           : DateTime.now();
 
-  static T? dynamicToObject<T>(final dynamic field,
+  static T dynamicToObject<T>(final dynamic field,
           final T Function(Map<String, dynamic> json) fromJson) =>
-      field != null && field != '' ? fromJson(field) : null;
+      fromJson(field);
 
   static List<T> dynamicToListObject<T>(
     final dynamic field,

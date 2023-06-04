@@ -1,6 +1,6 @@
 import 'package:ehelp/core/http/http_core.dart';
 import 'package:ehelp/core/user/user.controller.dart';
-import 'package:ehelp/features/login/models/datasource/login_remote.datasource.dart';
+import 'package:ehelp/features/login/model/service/login_remote.service.dart';
 import 'package:ehelp/features/login/view_models/login.view_model.dart';
 import 'package:ehelp/features/professional/call_now/view_model/call_now_professional.view_model.dart';
 import 'package:get_it/get_it.dart';
@@ -16,14 +16,13 @@ import '../features/professional/home/view_model/home_professional.view_model.da
 final GetIt locator = GetIt.instance;
 
 class EHelpDependencies {
-  final LoginRemoteDatasource loginDatasource =
-      LoginRemoteDatasource(HttpCore());
+  final LoginRemoteService loginService = LoginRemoteService(HttpCore());
 
   void setup() {
     locator
       ..registerLazySingleton<HomeClientViewModel>(HomeClientViewModel.new)
       ..registerSingleton<HomeAreaViewModel>(HomeAreaViewModel())
-      ..registerSingleton<UserController>(UserController())
+      ..registerLazySingleton<UserController>(UserController.new)
       ..registerSingleton<HomeEditAreaViewModel>(HomeEditAreaViewModel())
       ..registerSingleton<BookingViewModel>(BookingViewModel())
       ..registerLazySingleton<ServiceDescriptionViewModel>(
@@ -34,6 +33,6 @@ class EHelpDependencies {
           CallNowProfessionalViewModel.new)
       ..registerLazySingleton<CallNowViewModel>(CallNowViewModel.new)
       ..registerLazySingleton<LoginViewModel>(
-          () => LoginViewModel(loginDatasource));
+          () => LoginViewModel(loginService));
   }
 }

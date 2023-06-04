@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 import 'core/locator.dart';
-import 'features/login/models/entity/user.entity.dart';
+import 'shared/entity/user/user.entity.dart';
 
 void main() async {
   final WidgetsBinding widgetsBinding =
