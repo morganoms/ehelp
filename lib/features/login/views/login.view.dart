@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:ehelp/core/locator.dart';
 import 'package:ehelp/features/login/view_models/login.view_model.dart';
 import 'package:ehelp/routes/ehelp_routes.dart';
@@ -9,31 +10,51 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 
 import '../../../shared/colors/constants.dart';
 import '../../../shared/components/generic_button.widget.dart';
+import '../../../shared/models/login_identification.dart';
 import '../../../shared/models/user_type.dart';
 
-class LoginView extends StatelessWidget {
-  LoginView({required this.userType, final Key? key}) : super(key: key);
+class LoginView extends StatefulWidget {
+  const LoginView({required this.userType, final Key? key}) : super(key: key);
+  final UserType userType;
+
+  @override
+  State<LoginView> createState() => _LoginViewState();
+}
+
+class _LoginViewState extends State<LoginView> {
   final _formKey = GlobalKey<FormState>();
 
   final LoginViewModel _viewModel = locator.get<LoginViewModel>();
 
-  final UserType userType;
+  final LoginId identification =
+      LoginId(username: 'email', password: 'password');
 
-  String getTitle() {
-    if (userType == UserType.client) {
-      return 'Login do Cliente';
-    } else {
-      return 'Login do Profissional';
-    }
+  @override
+  void dispose() {
+    locator.resetLazySingleton<LoginViewModel>();
+    super.dispose();
   }
 
   Future<void> onSubmit(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
-      await _viewModel.authenticate(email: 'email', password: 'password');
-
-      await Navigator.of(context).pushNamed(userType == UserType.client
-          ? EhelpRoutes.homeClient
-          : EhelpRoutes.homeProfessional);
+      _formKey.currentState!.save();
+      final bool isPrestador = await _viewModel.authenticate(
+          username: identification.username, password: identification.password);
+      if (_viewModel.hasError) {
+        await AwesomeDialog(
+          context: context,
+          dialogType: DialogType.error,
+          headerAnimationLoop: false,
+          animType: AnimType.rightSlide,
+          title: 'Oops!',
+          desc:
+              'Nome de Usuário ou Senha inválido. Por favor, tente novamente.',
+        ).show();
+      } else {
+        await Navigator.of(context).pushNamed(isPrestador
+            ? EhelpRoutes.homeProfessional
+            : EhelpRoutes.homeClient);
+      }
     }
   }
 
@@ -132,16 +153,13 @@ class LoginView extends StatelessWidget {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text(
-                          getTitle(),
-                          style: const TextStyle(
+                        const Text(
+                          'Login',
+                          style: TextStyle(
                             fontWeight: FontWeight.w700,
                             fontSize: 27,
                           ),
                           textAlign: TextAlign.center,
-                        ),
-                        const SizedBox(
-                          height: 8,
                         ),
                         const SizedBox(
                           height: 36,
@@ -149,21 +167,25 @@ class LoginView extends StatelessWidget {
                         Form(
                           key: _formKey,
                           child: Column(
-                            children: const [
+                            children: [
                               Input(
-                                label: Text('Email'),
+                                label: const Text('Nome do usuário'),
+                                onSaved: (username) =>
+                                    identification.username = username!,
                                 keyboardType: TextInputType.emailAddress,
                                 validator: Validators.validateEmail,
-                                icon: Icon(Icons.email_outlined),
+                                icon: const Icon(Icons.person_outline),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 16,
                               ),
                               Input(
-                                label: Text('Senha'),
+                                label: const Text('Senha'),
+                                onSaved: (senha) =>
+                                    identification.password = senha!,
                                 validator: Validators.emptyValidate,
                                 isPasswordType: true,
-                                icon: Icon(Icons.vpn_key_outlined),
+                                icon: const Icon(Icons.vpn_key_outlined),
                               )
                             ],
                           ),

@@ -2,7 +2,6 @@ import 'package:ehelp/routes/ehelp_routes.dart';
 import 'package:ehelp/shared/colors/constants.dart';
 import 'package:ehelp/shared/components/random_person_image.widget.dart';
 import 'package:ehelp/shared/components/start_score.widget.dart';
-import 'package:ehelp/shared/fonts/styles.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 

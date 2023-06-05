@@ -23,6 +23,7 @@ class HttpCore {
     Map<String, String>? headers,
     Object? body,
     int? timeout,
+    Encoding? encoding,
     Map<String, String>? query,
   }) async {
     try {
@@ -31,6 +32,7 @@ class HttpCore {
         url,
         headers: headers,
         body: body,
+        encoding: encoding,
         timeout: timeout,
       );
 
@@ -61,45 +63,43 @@ class HttpCore {
     String url, {
     Map<String, String>? headers,
     Object? body,
+    Encoding? encoding,
     int? timeout,
   }) async {
     try {
       final Uri sendUri = Uri.parse(url);
+      final Map<String, String> defaultHeader = {
+        'Content-Type': 'application/json',
+      };
 
       switch (httpCommand) {
         case HttpCommand.get:
           return await http
               .get(
                 sendUri,
+                headers: defaultHeader,
               )
               .timeout(Duration(seconds: timeout ?? 60));
         case HttpCommand.post:
           return await http
-              .post(
-                sendUri,
-                body: body,
-              )
+              .post(sendUri,
+                  body: body, encoding: encoding, headers: defaultHeader)
               .timeout(Duration(seconds: timeout ?? 60));
         case HttpCommand.put:
           return await http
-              .put(
-                sendUri,
-                body: body,
-              )
+              .put(sendUri, body: body, headers: defaultHeader)
               .timeout(Duration(seconds: timeout ?? 60));
         case HttpCommand.patch:
           return await http
               .patch(
                 sendUri,
                 body: body,
+                headers: defaultHeader,
               )
               .timeout(Duration(seconds: timeout ?? 60));
         case HttpCommand.delete:
           return await http
-              .delete(
-                sendUri,
-                body: body,
-              )
+              .delete(sendUri, body: body, headers: defaultHeader)
               .timeout(Duration(seconds: timeout ?? 60));
         default:
           throw Exception('Método http não implementado');
@@ -135,6 +135,7 @@ class HttpCore {
         '$baseUrl/$url',
         headers: headers,
         body: body,
+        encoding: encoding,
         timeout: timeout,
       );
 

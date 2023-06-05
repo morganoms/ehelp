@@ -1,0 +1,120 @@
+{
+    "specialities": [
+        {
+            "id": 10,
+            "descriptionPortuguese": "Eletricista",
+            "descriptionSpanish": "Electricista",
+            "descriptionEnglish": "Electrician",
+            "imageUrl": "https://www.abmn.org.br/wp-content/uploads/2020/08/certificados-2-scaled.jpeg",
+            "createdAt": "2022-09-21 22:40:54.3400000"
+          },
+          {
+            "id": 11,
+            "descriptionPortuguese": "Mecânico",
+            "descriptionSpanish": "Mecânico",
+            "descriptionEnglish": "Mecânico",
+            "imageUrl": "https://www.abmn.org.br/wp-content/uploads/2020/08/certificados-2-scaled.jpeg",
+            "createdAt": "2022-09-21 22:40:54.3400000"
+          }
+    ],
+    "latestSearch":[
+        {
+            "userId": 1,
+            "rating": 4.1,
+            "countryId": 10,
+            "name": "Jose Marinho",
+            "photoUrl": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80",
+            "descriptionPortuguese": "Eletricista",
+            "descriptionSpanish": "Administrador",
+            "descriptionEnglish": "Administrator",
+            "minValue": 75.5,
+            "servicesDoneAmount": "1000",
+            "feedback": [
+                {
+                    "id":1,
+                    "menssage": "Excelente Profissional."
+                },
+                {
+                    "id":2,
+                    "menssage": "Muito bom! Bastante atencioso."
+                }
+            ]
+          },
+          {
+            "userId": 2,
+            "rating": 4.1,
+            "countryId": 10,
+            "name": "Fred Martins",
+            "photoUrl": "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=989&q=80",
+            "descriptionPortuguese": "Eletricista",
+            "descriptionSpanish": "Administrador",
+            "descriptionEnglish": "Administrator",
+            "minValue": 75.5,
+            "servicesDoneAmount": "1000",
+            "feedback": [
+                {
+                    "id":1,
+                    "menssage": "Excelente Profissional."
+                },
+                {
+                    "id":2,
+                    "menssage": "Muito bom! Bastante atencioso."
+                }
+            ]
+          }
+    ],
+    "serviceHistory": [
+        {
+            "userId": 2,
+            "rating": 4.1,
+            "countryId": 10,
+            "name": "Arnaldo Mota",
+            "photoUrl": "https://images.unsplash.com/photo-1521119989659-a83eee488004?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1023&q=80",
+            "descriptionPortuguese": "Eletricista",
+            "descriptionSpanish": "Administrador",
+            "descriptionEnglish": "Administrator",
+            "minValue": 75.5,
+            "servicesDoneAmount": "1000",
+            "feedback": [
+                {
+                    "id":1,
+                    "menssage": "Excelente Profissional."
+                },
+                {
+                    "id":2,
+                    "menssage": "Muito bom! Bastante atencioso."
+                }
+            ]
+          }
+    ],
+    "bookedHistory": [
+        {
+            "userId": 2,
+            "rating": 4.1,
+            "countryId": 10,
+            "name": "Arnaldo Mota",
+            "photoUrl": "https://images.unsplash.com/photo-1521119989659-a83eee488004?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1023&q=80",
+            "descriptionPortuguese": "Eletricista",
+            "descriptionSpanish": "Administrador",
+            "descriptionEnglish": "Administrator",
+            "minValue": 75.5,
+            "bookedInfo": {
+                "status": "CONFIRMED",
+                "solicitationDate": "2022-09-21 22:40:54.3400000"
+            },
+            "servicesDoneAmount": "1000",
+            "feedback": [
+                {
+                    "id":1,
+                    "menssage": "Excelente Profissional."
+                },
+                {
+                    "id":2,
+                    "menssage": "Muito bom! Bastante atencioso."
+                }
+            ]
+          }
+    ]
+
+    
+}

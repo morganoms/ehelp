@@ -1,12 +1,20 @@
 import 'package:ehelp/app.dart';
+import 'package:ehelp/core/user/user.controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 import 'core/locator.dart';
+import 'shared/entity/user/user.entity.dart';
 
-void main() {
-  WidgetsFlutterBinding.ensureInitialized();
+void main() async {
+  final WidgetsBinding widgetsBinding =
+      WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   EHelpDependencies().setup();
-
-  runApp(const EHelpApp());
+  final User? userAuthenticated =
+      await locator.get<UserController>().getUserOnDevice();
+  FlutterNativeSplash.remove();
+  runApp(EHelpApp(
+    userAuthenticated: userAuthenticated,
+  ));
 }

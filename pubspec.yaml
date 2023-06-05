@@ -9,7 +9,9 @@ environment:
   sdk: ">=2.16.2 <3.0.0"
 
 dependencies:
+  awesome_dialog: ^3.0.2
   calendar_date_picker2: ^0.3.5
+  cool_alert: ^2.0.1
   cupertino_icons: ^1.0.2
   custom_timer: ^0.2.3
   dropdown_button2: ^1.9.2
@@ -21,6 +23,8 @@ dependencies:
     sdk: flutter
   flutter_masked_text2: ^0.9.1
   flutter_mobx: ^2.0.6+5
+  flutter_native_splash:
+  flutter_svg: ^2.0.5
   flutter_rating_bar: ^4.0.1
   get_it: ^7.2.0
   http: ^0.13.6
@@ -30,6 +34,7 @@ dependencies:
   mobx_codegen: ^2.1.1
   shifting_tabbar: ^1.0.2
   salomon_bottom_bar: ^3.3.1
+  shared_preferences: ^2.1.1
   syncfusion_flutter_sliders: ^20.4.50
   carousel_slider: ^4.2.1
   transparent_image: ^2.0.0
@@ -39,6 +44,14 @@ dev_dependencies:
   flutter_lints: ^1.0.0
   flutter_test:
     sdk: flutter
+
+flutter_native_splash:
+  android: true
+  ios: true
+  web: false
+
+  color: "#0d0d0d"
+  branding: "assets/images/splash-logo.png"
 
 flutter:
   uses-material-design: true

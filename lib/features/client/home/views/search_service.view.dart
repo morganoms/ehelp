@@ -1,8 +1,5 @@
-import 'dart:math';
-
+import 'package:ehelp/core/user/user.controller.dart';
 import 'package:ehelp/shared/components/dropdown_search.widget.dart';
-import 'package:ehelp/shared/components/generic_button.widget.dart';
-import 'package:ehelp/shared/components/header_background.widget.dart';
 import 'package:ehelp/shared/components/header_black.widget.dart';
 import 'package:ehelp/shared/fonts/styles.dart';
 import 'package:flutter/material.dart';
@@ -11,10 +8,8 @@ import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 import '../../../../core/locator.dart';
 import '../../../../shared/colors/constants.dart';
-import '../../../../shared/components/default_dialog.widget.dart';
 import '../../../../shared/components/person_picture.widget.dart';
 import '../view_model/home_client.view_model.dart';
-import 'components/adress_dialog.widget.dart';
 import 'components/service_item.widget.dart';
 
 class SearchServiceView extends StatefulWidget {
@@ -26,9 +21,11 @@ class SearchServiceView extends StatefulWidget {
 
 class _SearchServiceViewState extends State<SearchServiceView> {
   late HomeClientViewModel _controller;
+  late UserController _userController;
 
   @override
   void initState() {
+    _userController = locator.get<UserController>();
     _controller = locator.get<HomeClientViewModel>();
     super.initState();
   }
@@ -171,7 +168,9 @@ class _SearchServiceViewState extends State<SearchServiceView> {
                     children: [
                       Row(
                         children: [
-                          const PersonPicture(),
+                          PersonPicture(
+                              pathImageNetwork:
+                                  _userController.userAuthenticated?.photoUrl),
                           Padding(
                             padding: const EdgeInsets.only(left: 16),
                             child: Column(
@@ -179,7 +178,7 @@ class _SearchServiceViewState extends State<SearchServiceView> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  'Olá, Morgan!',
+                                  'Olá, ${_userController.userAuthenticated?.name}!',
                                   style: FontStyles.size16Weight700White,
                                 ),
                                 Text(
