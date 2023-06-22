@@ -70,9 +70,9 @@ class _HomeProfessionalViewState extends State<HomeProfessionalView> {
         return PageView(
           onPageChanged: (pageIndex) => _viewModel.onPageSlide(pageIndex),
           controller: _viewModel.pageController,
-          children: const <Widget>[
-            HistoryProfessionalView(),
-            ProfessionalCallsView(),
+          children: <Widget>[
+            const HistoryProfessionalView(),
+            const ProfessionalCallsView(),
             SettingsProfesssionalView(),
           ],
         );

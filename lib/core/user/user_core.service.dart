@@ -26,4 +26,11 @@ class UserCoreServise {
       return null;
     }
   }
+
+  Future<bool> removeUser() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final bool result = await prefs.remove('userAuthenticated');
+    debugPrint('User removed ');
+    return result;
+  }
 }

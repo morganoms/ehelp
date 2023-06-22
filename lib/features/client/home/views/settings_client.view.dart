@@ -1,3 +1,5 @@
+import 'package:ehelp/core/locator.dart';
+import 'package:ehelp/core/user/user.controller.dart';
 import 'package:ehelp/routes/ehelp_routes.dart';
 import 'package:ehelp/shared/fonts/styles.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +9,9 @@ import '../../../../shared/components/generic_button.widget.dart';
 import '../../../../shared/components/header_black.widget.dart';
 
 class SettingsClientView extends StatelessWidget {
-  const SettingsClientView({Key? key}) : super(key: key);
+  SettingsClientView({Key? key}) : super(key: key);
+
+  final UserController _userController = locator.get<UserController>();
 
   Widget _buildItemSetting({
     required String name,
@@ -66,7 +70,7 @@ class SettingsClientView extends StatelessWidget {
                     icon: Icons.person_2_outlined,
                     name: 'Minha conta',
                     context: context,
-                    route: EhelpRoutes.professionalProfile),
+                    route: EhelpRoutes.clientProfile),
                 const SizedBox(height: 48),
                 _buildItemSetting(
                     icon: Icons.location_on_outlined,
@@ -89,14 +93,15 @@ class SettingsClientView extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 24),
             alignment: Alignment.bottomCenter,
             child: GenericButton(
-              label: 'Sair da conta',
-              color: Colors.transparent,
-              labelStyle: FontStyles.size16Weight500blue,
-              borderColor: ColorConstants.primaryLight,
-              onPressed: () => Navigator.of(context).popUntil(
-                ModalRoute.withName(EhelpRoutes.landing),
-              ),
-            ),
+                label: 'Sair da conta',
+                color: Colors.transparent,
+                labelStyle: FontStyles.size16Weight500blue,
+                borderColor: ColorConstants.primaryLight,
+                onPressed: () {
+                  _userController.removeUserOnDevice().then((value) =>
+                      Navigator.of(context)
+                          .popUntil(ModalRoute.withName(EhelpRoutes.landing)));
+                }),
           ),
         )
       ],

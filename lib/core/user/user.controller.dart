@@ -29,4 +29,9 @@ abstract class _UserControllerBase with Store {
     userAuthenticated = userTemp;
     return userTemp;
   }
+
+  @action
+  Future<void> removeUserOnDevice() async {
+    await userServise.removeUser();
+  }
 }

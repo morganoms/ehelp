@@ -17,6 +17,7 @@ class EhelpRoutes {
   static const clientCallNowDescription = '/call_now/service_description';
   static const clientAdresses = '/adresses';
   static const clientCreditCard = '/credit_card';
+  static const clientProfile = '/client/profile';
 
   //Professional
   static const personalData = '/professional/sign_in/personal_data';

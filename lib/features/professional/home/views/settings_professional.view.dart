@@ -3,12 +3,15 @@ import 'package:ehelp/shared/components/generic_button.widget.dart';
 import 'package:ehelp/shared/fonts/styles.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/locator.dart';
+import '../../../../core/user/user.controller.dart';
 import '../../../../shared/colors/constants.dart';
-import '../../../../shared/components/header_background.widget.dart';
 import '../../../../shared/components/header_black.widget.dart';
 
 class SettingsProfesssionalView extends StatelessWidget {
-  const SettingsProfesssionalView({Key? key}) : super(key: key);
+  SettingsProfesssionalView({Key? key}) : super(key: key);
+
+  final UserController _userController = locator.get<UserController>();
 
   Widget _buildItemSetting({
     required String name,
@@ -105,14 +108,15 @@ class SettingsProfesssionalView extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 24),
             alignment: Alignment.bottomCenter,
             child: GenericButton(
-              label: 'Sair da conta',
-              color: Colors.transparent,
-              labelStyle: FontStyles.size16Weight500blue,
-              borderColor: ColorConstants.primaryLight,
-              onPressed: () => Navigator.of(context).popUntil(
-                ModalRoute.withName(EhelpRoutes.landing),
-              ),
-            ),
+                label: 'Sair da conta',
+                color: Colors.transparent,
+                labelStyle: FontStyles.size16Weight500blue,
+                borderColor: ColorConstants.primaryLight,
+                onPressed: () {
+                  _userController.removeUserOnDevice().then((value) =>
+                      Navigator.of(context)
+                          .popUntil(ModalRoute.withName(EhelpRoutes.landing)));
+                }),
           ),
         ),
       ],

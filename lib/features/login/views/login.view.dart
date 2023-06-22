@@ -11,11 +11,9 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import '../../../shared/colors/constants.dart';
 import '../../../shared/components/generic_button.widget.dart';
 import '../../../shared/models/login_identification.dart';
-import '../../../shared/models/user_type.dart';
 
 class LoginView extends StatefulWidget {
-  const LoginView({required this.userType, final Key? key}) : super(key: key);
-  final UserType userType;
+  const LoginView({final Key? key}) : super(key: key);
 
   @override
   State<LoginView> createState() => _LoginViewState();

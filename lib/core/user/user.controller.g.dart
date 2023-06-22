@@ -41,6 +41,15 @@ mixin _$UserController on _UserControllerBase, Store {
     return _$getUserOnDeviceAsyncAction.run(() => super.getUserOnDevice());
   }
 
+  late final _$removeUserOnDeviceAsyncAction =
+      AsyncAction('_UserControllerBase.removeUserOnDevice', context: context);
+
+  @override
+  Future<void> removeUserOnDevice() {
+    return _$removeUserOnDeviceAsyncAction
+        .run(() => super.removeUserOnDevice());
+  }
+
   late final _$_UserControllerBaseActionController =
       ActionController(name: '_UserControllerBase', context: context);
 

@@ -6,16 +6,20 @@ import 'package:transparent_image/transparent_image.dart';
 
 class RandomPersonImage extends StatelessWidget {
   const RandomPersonImage({
+    required this.widthtImage,
     this.heightImage = 75,
     this.indexImage = 3,
-    required this.widthtImage,
+    this.path,
     this.marginRight = true,
     Key? key,
   }) : super(key: key);
+
   final double heightImage;
   final double widthtImage;
   final bool marginRight;
   final int indexImage;
+  final String? path;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,9 +35,10 @@ class RandomPersonImage extends StatelessWidget {
         child: FadeInImage(
           placeholder: MemoryImage(kTransparentImage),
           fit: BoxFit.cover,
-          image: AssetImage(
-            'assets/images/person$indexImage.jpg',
-          ),
+          image: path != null
+              ? NetworkImage(path!)
+              : AssetImage('assets/images/person$indexImage.jpg')
+                  as ImageProvider,
         ),
       ),
     );

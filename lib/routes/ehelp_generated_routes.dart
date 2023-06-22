@@ -7,8 +7,6 @@ import 'package:ehelp/features/professional/home/views/bank_professional.view.da
 import 'package:ehelp/features/professional/sign_in/views/adress_professional.view.dart';
 import 'package:ehelp/features/professional/sign_in/views/banking_professional.view.dart';
 import 'package:ehelp/routes/ehelp_routes.dart';
-import 'package:ehelp/shared/components/credit_card.widget.dart';
-import 'package:ehelp/shared/models/user_type.dart';
 import 'package:flutter/material.dart';
 
 import '../features/client/booking/views/confirmation.view.dart';
@@ -18,6 +16,7 @@ import '../features/client/booking/views/step3.view.dart';
 import '../features/client/call_now/views/call_now.view.dart';
 import '../features/client/call_now/views/payment.view.dart';
 import '../features/client/call_now/views/service_drecription.view.dart';
+import '../features/client/home/views/account_client.view.dart';
 import '../features/client/home/views/adresses_client.view.dart';
 import '../features/client/home/views/credit_card_client.view.dart';
 import '../features/client/home/views/home_client.view.dart';
@@ -37,9 +36,7 @@ extension EhelpGeneratedRoutes on EhelpRoutes {
   static Map<String, WidgetBuilderArgs> get routes =>
       <String, WidgetBuilderArgs>{
         EhelpRoutes.landing: (context, args) => const LandingView(),
-        EhelpRoutes.login: (context, args) => LoginView(
-              userType: args as UserType,
-            ),
+        EhelpRoutes.login: (context, args) => const LoginView(),
         EhelpRoutes.homeClient: (context, args) => const HomeClientView(),
         EhelpRoutes.clientBookingStep1: (context, args) => const Step1View(),
         EhelpRoutes.clientBookingStep2: (context, args) => Step2View(),
@@ -81,7 +78,8 @@ extension EhelpGeneratedRoutes on EhelpRoutes {
         EhelpRoutes.clientCreditCard: (context, args) =>
             const CreditCardClientView(),
         EhelpRoutes.callNowProfessional: (context, args) =>
-            const CallNowProfessionalView()
+            const CallNowProfessionalView(),
+        EhelpRoutes.clientProfile: (context, args) => AccaountView(),
       };
 
   static Route<dynamic>? generateRoute(RouteSettings settings) {

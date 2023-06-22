@@ -83,9 +83,9 @@ class _HomeClientViewState extends State<HomeClientView> {
             return PageView(
               onPageChanged: (pageIndex) => _viewModel.onPageSlide(pageIndex),
               controller: _viewModel.pageController,
-              children: const <Widget>[
-                ActivitiesClientView(),
-                SearchServiceView(),
+              children: <Widget>[
+                const ActivitiesClientView(),
+                const SearchServiceView(),
                 SettingsClientView(),
               ],
             );

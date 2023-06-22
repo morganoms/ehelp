@@ -1,6 +1,5 @@
 import 'package:ehelp/shared/colors/constants.dart';
 import 'package:ehelp/shared/components/back_button.widget.dart';
-import 'package:ehelp/shared/components/header_background.widget.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../routes/ehelp_routes.dart';

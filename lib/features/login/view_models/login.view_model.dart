@@ -1,5 +1,6 @@
 import 'package:ehelp/core/http/http_core_error.dart';
 import 'package:ehelp/core/locator.dart';
+import 'package:ehelp/core/token/token.controller.dart';
 import 'package:ehelp/core/user/user.controller.dart';
 import 'package:ehelp/features/login/model/service/login.service.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +8,7 @@ import 'package:mobx/mobx.dart';
 
 import '../../../shared/models/screen_state.dart';
 import '../../../shared/entity/user/user.entity.dart';
+import '../../../shared/models/user_type.dart';
 part 'login.view_model.g.dart';
 
 class LoginViewModel = _LoginViewModelBase with _$LoginViewModel;
@@ -16,6 +18,7 @@ abstract class _LoginViewModelBase with Store {
 
   final LoginService datasource;
   final UserController userController = locator.get<UserController>();
+  final TokenController tokenController = locator.get<TokenController>();
 
   @observable
   ScreenState state = ScreenState.idle;

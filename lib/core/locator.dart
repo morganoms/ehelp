@@ -1,4 +1,5 @@
 import 'package:ehelp/core/http/http_core.dart';
+import 'package:ehelp/core/token/token.controller.dart';
 import 'package:ehelp/core/user/user.controller.dart';
 import 'package:ehelp/features/login/model/service/login_remote.service.dart';
 import 'package:ehelp/features/login/view_models/login.view_model.dart';
@@ -23,6 +24,7 @@ class EHelpDependencies {
       ..registerLazySingleton<HomeClientViewModel>(HomeClientViewModel.new)
       ..registerSingleton<HomeAreaViewModel>(HomeAreaViewModel())
       ..registerLazySingleton<UserController>(UserController.new)
+      ..registerLazySingleton<TokenController>(TokenController.new)
       ..registerSingleton<HomeEditAreaViewModel>(HomeEditAreaViewModel())
       ..registerSingleton<BookingViewModel>(BookingViewModel())
       ..registerLazySingleton<ServiceDescriptionViewModel>(
