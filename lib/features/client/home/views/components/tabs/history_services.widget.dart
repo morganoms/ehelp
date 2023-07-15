@@ -2,10 +2,14 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+import '../../../model/entity/service_for_client.entity.dart';
 import '../service_item.widget.dart';
 
 class HistoryServicesWidget extends StatelessWidget {
-  const HistoryServicesWidget({Key? key}) : super(key: key);
+  const HistoryServicesWidget({required this.screenData, Key? key})
+      : super(key: key);
+
+  final List<ServiceForClientEntity> screenData;
 
   @override
   Widget build(BuildContext context) {
@@ -13,14 +17,16 @@ class HistoryServicesWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Column(
         children: [
-          ...List.generate(
-              10,
-              (index) => Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    child: ServiceItemWidget(
-                      indexImage: index % 5,
-                    ),
-                  )),
+          ...screenData.map(
+            (e) => Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              child: ServiceItemWidget(
+                expansive: true,
+                indexImage: 5,
+                cardData: e,
+              ),
+            ),
+          )
         ],
       ),
     );

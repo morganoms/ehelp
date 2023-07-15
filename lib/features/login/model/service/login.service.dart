@@ -1,5 +1,6 @@
-import '../../../../shared/entity/user/user.entity.dart';
+import 'package:ehelp/shared/entity/user/authenticate.entity.dart';
 
 abstract class LoginService {
-  Future<User> authenticate(final String username, final String password);
+  Future<Authenticate> authenticate(
+      final String username, final String password);
 }

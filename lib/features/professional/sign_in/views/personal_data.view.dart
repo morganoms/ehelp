@@ -1,3 +1,5 @@
+import 'package:ehelp/core/locator.dart';
+import 'package:ehelp/core/user/user.controller.dart';
 import 'package:ehelp/shared/colors/constants.dart';
 import 'package:ehelp/shared/components/back_button.widget.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +25,14 @@ class ProfessionalPersonalDataView extends StatefulWidget {
 
 class _ProfessionalPersonalDataViewState
     extends State<ProfessionalPersonalDataView> {
+  late UserController _userController;
+
+  @override
+  void initState() {
+    _userController = locator.get<UserController>();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,10 +79,11 @@ class _ProfessionalPersonalDataViewState
                       ),
                     ),
                   if (widget.isEditing)
-                    const RandomPersonImage(
+                    RandomPersonImage(
                       heightImage: 150,
                       widthtImage: 150,
                       marginRight: false,
+                      path: _userController.userAuthenticated?.photoUrl,
                     )
                   else
                     Container(
@@ -99,7 +110,9 @@ class _ProfessionalPersonalDataViewState
                   const SizedBox(
                     height: 32,
                   ),
-                  FormPersonalDataWidget(isEditing: widget.isEditing),
+                  FormPersonalDataWidget(
+                      isEditing: widget.isEditing,
+                      userAuthenticated: _userController.userAuthenticated),
                 ],
               ),
             ),

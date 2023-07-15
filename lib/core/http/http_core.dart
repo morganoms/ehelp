@@ -1,10 +1,13 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:ehelp/core/http/http_core_error.dart';
+import 'package:ehelp/core/locator.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 
+import '../token/token.controller.dart';
 import 'http_core_response.dart';
 
 enum HttpCommand {
@@ -36,9 +39,9 @@ class HttpCore {
         timeout: timeout,
       );
 
-      debugPrint('Request => ${response.request}');
-      debugPrint('Response => (${response.statusCode}) => '
-          '${jsonEncode(response.body)}');
+      // log('Request => ${response.request}');
+      // log('Response: (${response.statusCode}) => '
+      //     '${response.body}');
 
       if (response.statusCode >= 200 && response.statusCode < 300) {
         return HttpCoreResponse(response);
@@ -68,8 +71,10 @@ class HttpCore {
   }) async {
     try {
       final Uri sendUri = Uri.parse(url);
+      final String token = getToken();
       final Map<String, String> defaultHeader = {
         'Content-Type': 'application/json',
+        'Authorization': 'bearer $token'
       };
 
       switch (httpCommand) {
@@ -181,4 +186,9 @@ class HttpCore {
         headers: headers,
         timeout: timeout,
       );
+
+  String getToken() {
+    final TokenController controller = locator.get<TokenController>();
+    return controller.token ?? '';
+  }
 }

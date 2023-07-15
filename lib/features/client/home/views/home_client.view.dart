@@ -1,4 +1,7 @@
+import 'package:ehelp/features/client/home/model/entity/home_client.entity.dart';
+import 'package:ehelp/features/client/home/view_model/screen_state/home_client.screen_state.dart';
 import 'package:ehelp/features/client/home/views/settings_client.view.dart';
+import 'package:ehelp/shared/components/generic_error.widget.dart';
 import 'package:ehelp/shared/models/screen_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -8,7 +11,7 @@ import '../../../../core/locator.dart';
 import '../../../../shared/colors/constants.dart';
 
 import '../../../../shared/components/generic_loading.widget.dart';
-import '../view_model/home_client.view_model.dart';
+import '../view_model/controllers/home_client.view_model.dart';
 import 'activities_client.view.dart';
 import 'search_service.view.dart';
 
@@ -25,10 +28,11 @@ class _HomeClientViewState extends State<HomeClientView> {
   @override
   void initState() {
     _viewModel = locator.get<HomeClientViewModel>();
-    Future.delayed(const Duration(seconds: 3))
-        .then((value) => _viewModel.setState(ScreenState.success));
+    WidgetsBinding.instance.addPostFrameCallback((final _) => loadData());
     super.initState();
   }
+
+  Future<void> loadData() async => _viewModel.getHomeClient();
 
   @override
   void dispose() {
@@ -42,16 +46,18 @@ class _HomeClientViewState extends State<HomeClientView> {
       return true;
     }, child: Observer(builder: (_) {
       return Scaffold(
-        body: AnimatedSwitcher(
-            duration: const Duration(milliseconds: 300),
-            child: _viewModel.isLoading
-                ? const GenericLoading()
-                : _buildSuccess()),
-      );
+          body: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 300),
+        child: _viewModel.isLoading
+            ? const GenericLoading()
+            : _viewModel.isSuccess
+                ? _buildSuccess((_viewModel.state as Success).data)
+                : const GenericError(),
+      ));
     }));
   }
 
-  Widget _buildSuccess() => Scaffold(
+  Widget _buildSuccess(final HomeClientEntity data) => Scaffold(
         bottomNavigationBar: Observer(
           builder: (_) {
             return SalomonBottomBar(
@@ -84,8 +90,8 @@ class _HomeClientViewState extends State<HomeClientView> {
               onPageChanged: (pageIndex) => _viewModel.onPageSlide(pageIndex),
               controller: _viewModel.pageController,
               children: <Widget>[
-                const ActivitiesClientView(),
-                const SearchServiceView(),
+                ActivitiesClientView(screenData: data),
+                SearchServiceView(screenData: data),
                 SettingsClientView(),
               ],
             );

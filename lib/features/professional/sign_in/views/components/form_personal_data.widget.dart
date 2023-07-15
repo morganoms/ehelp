@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../shared/components/input.widget.dart';
+import '../../../../../shared/entity/user/user.entity.dart';
 
 class FormPersonalDataWidget extends StatelessWidget {
-  FormPersonalDataWidget({this.isEditing = false, Key? key}) : super(key: key);
+  FormPersonalDataWidget(
+      {this.isEditing = false, this.userAuthenticated, Key? key})
+      : super(key: key);
   final bool isEditing;
   final _formKey = GlobalKey<FormState>();
+  final User? userAuthenticated;
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +20,7 @@ class FormPersonalDataWidget extends StatelessWidget {
         children: [
           Input(
               label: const Text('Nome Completo'),
-              initialValue:
-                  isEditing ? 'Morgan Oliveira Melo de Siqueira' : null),
+              initialValue: isEditing ? userAuthenticated!.name : null),
           const SizedBox(
             height: 16,
           ),

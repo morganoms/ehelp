@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import '../fonts/styles.dart';
 
 class StarScore extends StatelessWidget {
-  const StarScore({Key? key}) : super(key: key);
+  const StarScore({this.value, Key? key}) : super(key: key);
+
+  final double? value;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,7 @@ class StarScore extends StatelessWidget {
           Icons.star_border_outlined,
           color: Colors.yellow.shade700,
         ),
-        Text('0.0', style: FontStyles.size14Weight700),
+        Text(value.toString(), style: FontStyles.size14Weight700),
       ]),
     );
   }

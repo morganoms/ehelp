@@ -76,8 +76,16 @@ class _HomeAreaViewState extends State<HomeAreaView> {
                   color: ColorConstants.blackSoft,
                   padding:
                       const EdgeInsets.only(left: 24, bottom: 16, right: 24),
-                  child: DropdownSearch2Widget(
-                      items: items,
+                  child: DropdownSearch2Widget<String>(
+                      items: items
+                          .map(
+                            (item) => DropdownMenuItem<String>(
+                              value: item,
+                              child:
+                                  Text(item, style: FontStyles.size16Weight400),
+                            ),
+                          )
+                          .toList(),
                       textEditingController: textEditingController,
                       initValue: _controller.serviceSelected,
                       hintText: 'Serviços...',

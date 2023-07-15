@@ -33,6 +33,14 @@ mixin _$TokenController on TokenControllerBase, Store {
     return _$saveTokenOnDeviceAsyncAction.run(() => super.saveTokenOnDevice());
   }
 
+  late final _$getTokenOnDeviceAsyncAction =
+      AsyncAction('TokenControllerBase.getTokenOnDevice', context: context);
+
+  @override
+  Future<String?> getTokenOnDevice() {
+    return _$getTokenOnDeviceAsyncAction.run(() => super.getTokenOnDevice());
+  }
+
   late final _$TokenControllerBaseActionController =
       ActionController(name: 'TokenControllerBase', context: context);
 

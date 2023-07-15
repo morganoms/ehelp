@@ -21,4 +21,11 @@ abstract class TokenControllerBase with Store {
       await tokenService.saveToken(token!);
     }
   }
+
+  @action
+  Future<String?> getTokenOnDevice() async {
+    final String? tokenTemp = await tokenService.getToken();
+    token = tokenTemp;
+    return tokenTemp;
+  }
 }

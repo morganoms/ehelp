@@ -1,17 +1,19 @@
 import 'package:ehelp/shared/colors/constants.dart';
-import 'package:ehelp/shared/components/header_background.widget.dart';
 import 'package:ehelp/shared/components/header_black.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 import '../../../../core/locator.dart';
-import '../../../../shared/fonts/styles.dart';
-import '../view_model/home_client.view_model.dart';
+import '../model/entity/home_client.entity.dart';
+import '../view_model/controllers/home_client.view_model.dart';
 import 'components/tabs/booked_services.widget.dart';
 import 'components/tabs/history_services.widget.dart';
 
 class ActivitiesClientView extends StatefulWidget {
-  const ActivitiesClientView({Key? key}) : super(key: key);
+  const ActivitiesClientView({required this.screenData, Key? key})
+      : super(key: key);
+
+  final HomeClientEntity screenData;
 
   @override
   State<ActivitiesClientView> createState() => _ActivitiesClientViewState();
@@ -21,6 +23,7 @@ class _ActivitiesClientViewState extends State<ActivitiesClientView>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   late HomeClientViewModel _viewModel;
+  late HomeClientEntity _screenData;
 
   @override
   void dispose() {
@@ -31,6 +34,7 @@ class _ActivitiesClientViewState extends State<ActivitiesClientView>
   @override
   void initState() {
     super.initState();
+    _screenData = widget.screenData;
     _viewModel = locator.get<HomeClientViewModel>();
     _tabController = TabController(length: 2, vsync: this);
     _tabController.addListener(_handleTabControllerTick);
@@ -40,9 +44,9 @@ class _ActivitiesClientViewState extends State<ActivitiesClientView>
 
   Widget _tabsContent() {
     if (_viewModel.tabActivityIndex == 0) {
-      return const BookedServicesWidegt();
+      return BookedServicesWidegt(screenData: _screenData.bookedHistory);
     } else {
-      return const HistoryServicesWidget();
+      return HistoryServicesWidget(screenData: _screenData.serviceHistory);
     }
   }
 

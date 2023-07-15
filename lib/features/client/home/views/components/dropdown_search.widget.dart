@@ -4,7 +4,8 @@ import 'package:ehelp/shared/components/default_dialog.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
-import '../../view_model/home_client.view_model.dart';
+import '../../../../../shared/entity/speciality.entity.dart';
+import '../../view_model/controllers/home_client.view_model.dart';
 import 'adress_dialog.widget.dart';
 
 // ignore: must_be_immutable
@@ -44,11 +45,9 @@ class DropdownSearchWidget extends StatelessWidget {
                     ),
                   ))
               .toList(),
-          value: _controller.serviceSelected.isEmpty
-              ? null
-              : _controller.serviceSelected,
+          value: _controller.serviceSelected,
           onChanged: (value) {
-            _controller.setServiceSelected(value as String);
+            _controller.setServiceSelected(value as SpecialityEntity);
 
             showDialog(
                 context: context,

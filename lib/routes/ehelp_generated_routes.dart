@@ -16,6 +16,7 @@ import '../features/client/booking/views/step3.view.dart';
 import '../features/client/call_now/views/call_now.view.dart';
 import '../features/client/call_now/views/payment.view.dart';
 import '../features/client/call_now/views/service_drecription.view.dart';
+import '../features/client/home/model/entity/service_for_client.entity.dart';
 import '../features/client/home/views/account_client.view.dart';
 import '../features/client/home/views/adresses_client.view.dart';
 import '../features/client/home/views/credit_card_client.view.dart';
@@ -56,7 +57,8 @@ extension EhelpGeneratedRoutes on EhelpRoutes {
         EhelpRoutes.homeArea: (context, args) =>
             HomeAreaView(isEditing: args as bool),
         EhelpRoutes.clientUserProfessionalProfile: (context, args) =>
-            UserProfessionalProfileView(),
+            UserProfessionalProfileView(
+                serviceForClientEntity: args as ServiceForClientEntity),
         EhelpRoutes.certificationArea: (context, args) =>
             const CertificationAttachView(),
         EhelpRoutes.homeEditArea: (context, args) => const HomeEditAreaView(),

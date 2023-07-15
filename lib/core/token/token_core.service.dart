@@ -8,4 +8,15 @@ class TokenCoreServise {
     await prefs.setString('token', token);
     debugPrint('Token saved => $token');
   }
+
+  Future<String?> getToken() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String? token = prefs.getString('token');
+    if (token != null) {
+      debugPrint('Token retrived => $token');
+      return token;
+    } else {
+      return null;
+    }
+  }
 }
