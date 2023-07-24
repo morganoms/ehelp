@@ -12,11 +12,11 @@ class LocalDataUtils {
       {required final int statusCode, required final String path}) async {
     HttpCoreResponse response;
     try {
-      final String data =
-          await rootBundle.loadString('packages/ehelp/assets/fixtures/$path');
+      final String data = await rootBundle.loadString('assets/fixtures/$path');
 
       response = HttpCoreResponse(Response(data, statusCode));
     } on FlutterError {
+      debugPrint('Fetch File Not Found');
       response = HttpCoreResponse(Response('Not Found', 404));
     }
     return response;

@@ -1,7 +1,9 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:ehelp/core/locator.dart';
+import 'package:ehelp/core/session/session.controller.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/user/user.controller.dart';
 import '../../../../routes/ehelp_routes.dart';
 import '../../../../shared/Colors/constants.dart';
 import '../../../../shared/components/back_button.widget.dart';
@@ -13,7 +15,7 @@ import '../../../../shared/fonts/styles.dart';
 
 class AccaountView extends StatelessWidget {
   AccaountView({Key? key}) : super(key: key) {
-    user = locator.get<UserController>().userAuthenticated!;
+    user = locator.get<SessionController>().session!.userAuthenticated;
   }
 
   late User user;
@@ -55,7 +57,7 @@ class AccaountView extends StatelessWidget {
           label: 'Editar perfil',
           color: ColorConstants.greenDark,
           onPressed: () => Navigator.of(context)
-              .pushNamed(EhelpRoutes.personalData, arguments: true),
+              .pushReplacementNamed(EhelpRoutes.personalData, arguments: true),
         ),
       ),
       body: SingleChildScrollView(
@@ -92,21 +94,12 @@ class AccaountView extends StatelessWidget {
                       context: context),
                   const SizedBox(height: 24),
                   _buildItem(
-                      title: 'CPF',
+                      title: 'Documento',
                       value: user.documentNumber,
                       context: context),
                   const SizedBox(height: 24),
                   _buildItem(
                       title: 'Telefone', value: user.phone, context: context),
-                  const SizedBox(height: 24),
-                  _buildItem(
-                      title: 'Aniversário',
-                      value: '22/01/1998',
-                      context: context),
-                  const SizedBox(height: 24),
-                  _buildItem(
-                      title: 'Genero', value: 'Masculino', context: context),
-                  const SizedBox(height: 24),
                 ],
               ),
             )

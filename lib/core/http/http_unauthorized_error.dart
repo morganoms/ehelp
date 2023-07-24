@@ -1,8 +1,8 @@
 import 'package:ehelp/core/http/http_response.dart';
 import 'package:flutter/services.dart';
 
-class HttpCoreError extends HttpResponse implements Exception {
-  HttpCoreError({
+class HttpUnauthorizedError extends HttpResponse implements Exception {
+  HttpUnauthorizedError({
     String? title,
     String? message,
     int? statusCode,
@@ -21,23 +21,23 @@ class HttpCoreError extends HttpResponse implements Exception {
         _errorCode = errorCode,
         super();
 
-  factory HttpCoreError.fromJson(Map<String, dynamic> json) => HttpCoreError(
+  factory HttpUnauthorizedError.fromJson(Map<String, dynamic> json) =>
+      HttpUnauthorizedError(
         title: json['title'],
         message: json['message'],
         statusCode: json['code'],
-        actionType: json['actionType'],
         body: json['body'],
         imagePath: json['imagePath'],
         buttonFirst: json['buttonFirst'],
         errorCode: json['errorCode'],
       );
 
-  factory HttpCoreError.fromResponse(HttpResponse response) => HttpCoreError(
+  factory HttpUnauthorizedError.fromResponse(HttpResponse response) =>
+      HttpUnauthorizedError(
         title: response.title,
         message: response.message,
         statusCode: response.statusCode,
         body: response.body,
-        actionType: response.actionType,
         imagePath: response.imagePath,
         buttonFirst: response.buttonFirst,
       );

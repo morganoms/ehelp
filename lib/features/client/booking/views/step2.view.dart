@@ -9,7 +9,6 @@ import '../../../../shared/components/back_button.widget.dart';
 import '../../../../shared/components/generic_button.widget.dart';
 import '../../../../shared/components/header_black.widget.dart';
 import '../../../../shared/components/stepper.widget.dart';
-import '../../../../shared/fonts/styles.dart';
 import '../view_model/booking.view_model.dart';
 
 class Step2View extends StatelessWidget {

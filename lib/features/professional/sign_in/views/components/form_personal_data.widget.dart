@@ -4,50 +4,61 @@ import '../../../../../shared/components/input.widget.dart';
 import '../../../../../shared/entity/user/user.entity.dart';
 
 class FormPersonalDataWidget extends StatelessWidget {
-  FormPersonalDataWidget(
-      {this.isEditing = false, this.userAuthenticated, Key? key})
+  const FormPersonalDataWidget(
+      {required this.formKey,
+      required this.userFormValue,
+      this.isEditing = false,
+      this.userAuthenticated,
+      Key? key})
       : super(key: key);
   final bool isEditing;
-  final _formKey = GlobalKey<FormState>();
+
   final User? userAuthenticated;
+  final GlobalKey<FormState> formKey;
+  final Map<String, dynamic> userFormValue;
 
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: _formKey,
+      key: formKey,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           Input(
               label: const Text('Nome Completo'),
+              onSaved: (name) => userFormValue['name'] = name,
               initialValue: isEditing ? userAuthenticated!.name : null),
           const SizedBox(
             height: 16,
           ),
           Input(
-              label: const Text('CPF'),
-              initialValue: isEditing ? '121.099.864-50' : null),
-          const SizedBox(
-            height: 16,
-          ),
-          Input(
-              label: const Text('Data de Nascimento'),
-              initialValue: isEditing ? '22/01/1998' : null),
+              label: const Text('Documento'),
+              onSaved: (documentNumber) =>
+                  userFormValue['documentNumber'] = documentNumber,
+              initialValue:
+                  isEditing ? userAuthenticated!.documentNumber : null),
           const SizedBox(
             height: 16,
           ),
           Input(
               label: const Text('Telefone'),
-              initialValue: isEditing ? '(81) 99521-0087' : null),
-          const SizedBox(
-            height: 16,
-          ),
-          Input(
-              label: const Text('Gênero'),
-              initialValue: isEditing ? 'Masculino' : null),
-          const SizedBox(
-            height: 16,
-          ),
+              onSaved: (phone) => userFormValue['phone'] = phone,
+              initialValue: isEditing ? userAuthenticated!.phone : null),
+          // const SizedBox(
+          //   height: 16,
+          // ),
+          // Input(
+          //     label: const Text('Telefone'),
+          //     initialValue: isEditing ? '(81) 99521-0087' : null),
+          // const SizedBox(
+          //   height: 16,
+          // ),
+          // Input(
+          //     label: const Text('Gênero'),
+          //     initialValue: isEditing ? 'Masculino' : null),
+          // const SizedBox(
+          //   height: 16,
+          // ),
         ],
       ),
     );

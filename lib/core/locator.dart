@@ -1,6 +1,5 @@
 import 'package:ehelp/core/http/http_core.dart';
-import 'package:ehelp/core/token/token.controller.dart';
-import 'package:ehelp/core/user/user.controller.dart';
+import 'package:ehelp/core/session/session.controller.dart';
 import 'package:ehelp/features/client/home/model/service/home_client.service.dart';
 import 'package:ehelp/features/login/model/service/login_remote.service.dart';
 import 'package:ehelp/features/login/view_models/login.view_model.dart';
@@ -25,8 +24,7 @@ class EHelpDependencies {
     final HomeClientService homeClientService =
         HomeClientLocalService(httpClient);
     locator
-      ..registerSingleton<UserController>(UserController())
-      ..registerLazySingleton<TokenController>(TokenController.new)
+      ..registerSingleton<SessionController>(SessionController())
       ..registerLazySingleton<LoginViewModel>(
           () => LoginViewModel(loginService))
       ..registerLazySingleton<HomeClientViewModel>(

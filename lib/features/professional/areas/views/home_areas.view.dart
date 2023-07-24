@@ -2,7 +2,6 @@ import 'package:ehelp/features/professional/areas/models/service_area.entity.dar
 import 'package:ehelp/features/professional/areas/view_model/home_area.view_model.dart';
 import 'package:ehelp/shared/components/back_button.widget.dart';
 import 'package:ehelp/shared/components/dropdown_search.widget.dart';
-import 'package:ehelp/shared/components/header_background.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
@@ -11,7 +10,6 @@ import '../../../../routes/ehelp_routes.dart';
 import '../../../../shared/colors/constants.dart';
 import '../../../../shared/components/generic_button.widget.dart';
 import '../../../../shared/components/header_black.widget.dart';
-import '../../../../shared/components/stepper.widget.dart';
 import '../../../../shared/fonts/styles.dart';
 
 class HomeAreaView extends StatefulWidget {

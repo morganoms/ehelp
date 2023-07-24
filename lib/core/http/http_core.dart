@@ -2,12 +2,14 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:ehelp/core/http/http_core_error.dart';
+import 'package:ehelp/core/http/http_response.dart';
+import 'package:ehelp/core/http/http_unauthorized_error.dart';
 import 'package:ehelp/core/locator.dart';
+import 'package:ehelp/core/session/session.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 
-import '../token/token.controller.dart';
 import 'http_core_response.dart';
 
 enum HttpCommand {
@@ -30,7 +32,7 @@ class HttpCore {
     Map<String, String>? query,
   }) async {
     try {
-      final Response response = await _execRequest(
+      Response response = await _execRequest(
         httpCommand,
         url,
         headers: headers,
@@ -39,23 +41,22 @@ class HttpCore {
         timeout: timeout,
       );
 
-      // log('Request => ${response.request}');
-      // log('Response: (${response.statusCode}) => '
-      //     '${response.body}');
-
-      if (response.statusCode >= 200 && response.statusCode < 300) {
-        return HttpCoreResponse(response);
-      } else {
-        final Map<String, dynamic> data = json.decode(response.body);
-        throw HttpCoreError(
-            message: data['message'].toString(),
-            title: data['title'] ?? '',
-            buttonFirst: data['buttonFirst'] ?? '',
-            statusCode: response.statusCode,
-            extraData: data['extraData'] ?? '',
-            body: '',
-            errorCode: data['errorCode']);
+      if (response.statusCode == 401) {
+        await locator.get<SessionController>().refreshSession();
+        response = await _execRequest(
+          httpCommand,
+          url,
+          headers: headers,
+          body: body,
+          encoding: encoding,
+          timeout: timeout,
+        );
       }
+      log('Request => ${response.request}');
+      log('Response: (${response.statusCode}) => '
+          '${response.body}');
+
+      return await handleResponse(response);
     } on Exception catch (_) {
       rethrow;
     }
@@ -188,7 +189,35 @@ class HttpCore {
       );
 
   String getToken() {
-    final TokenController controller = locator.get<TokenController>();
-    return controller.token ?? '';
+    final SessionController controller = locator.get<SessionController>();
+    return controller.session?.token ?? '';
+  }
+
+  Future<HttpCoreResponse> handleResponse(Response response) async {
+    if (response.statusCode >= 200 && response.statusCode < 300) {
+      return HttpCoreResponse(response);
+    } else if (response.statusCode == 401) {
+      final Map<String, dynamic> data = json.decode(response.body);
+      throw HttpUnauthorizedError(
+          message: data['message'].toString(),
+          title: data['title'] ?? '',
+          buttonFirst: data['buttonFirst'] ?? '',
+          statusCode: response.statusCode,
+          actionType: ActionType.login,
+          imagePath: 'expirado.png',
+          body: '',
+          errorCode: data['errorCode']);
+    } else {
+      final Map<String, dynamic> data = json.decode(response.body);
+      throw HttpCoreError(
+          message: data['message'].toString(),
+          title: data['title'] ?? '',
+          buttonFirst: data['buttonFirst'] ?? '',
+          statusCode: response.statusCode,
+          actionType: ActionType.retry,
+          imagePath: 'chateado.png',
+          body: '',
+          errorCode: data['errorCode']);
+    }
   }
 }

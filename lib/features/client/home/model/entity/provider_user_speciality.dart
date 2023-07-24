@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import '../../../../../core/dto_validations.dart';
 
 class ProviderUserSpeciality {

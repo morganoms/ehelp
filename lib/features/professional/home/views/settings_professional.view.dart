@@ -1,17 +1,17 @@
+import 'package:ehelp/core/session/session.controller.dart';
 import 'package:ehelp/routes/ehelp_routes.dart';
 import 'package:ehelp/shared/components/generic_button.widget.dart';
 import 'package:ehelp/shared/fonts/styles.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/locator.dart';
-import '../../../../core/user/user.controller.dart';
 import '../../../../shared/colors/constants.dart';
 import '../../../../shared/components/header_black.widget.dart';
 
 class SettingsProfesssionalView extends StatelessWidget {
   SettingsProfesssionalView({Key? key}) : super(key: key);
 
-  final UserController _userController = locator.get<UserController>();
+  final SessionController _sessionController = locator.get<SessionController>();
 
   Widget _buildItemSetting({
     required String name,
@@ -113,7 +113,7 @@ class SettingsProfesssionalView extends StatelessWidget {
                 labelStyle: FontStyles.size16Weight500blue,
                 borderColor: ColorConstants.primaryLight,
                 onPressed: () {
-                  _userController.removeUserOnDevice().then((value) =>
+                  _sessionController.removeSessionFromDevice().then((value) =>
                       Navigator.of(context)
                           .popUntil(ModalRoute.withName(EhelpRoutes.landing)));
                 }),

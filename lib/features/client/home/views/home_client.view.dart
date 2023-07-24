@@ -2,7 +2,6 @@ import 'package:ehelp/features/client/home/model/entity/home_client.entity.dart'
 import 'package:ehelp/features/client/home/view_model/screen_state/home_client.screen_state.dart';
 import 'package:ehelp/features/client/home/views/settings_client.view.dart';
 import 'package:ehelp/shared/components/generic_error.widget.dart';
-import 'package:ehelp/shared/models/screen_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
@@ -51,8 +50,10 @@ class _HomeClientViewState extends State<HomeClientView> {
         child: _viewModel.isLoading
             ? const GenericLoading()
             : _viewModel.isSuccess
-                ? _buildSuccess((_viewModel.state as Success).data)
-                : const GenericError(),
+                ? _buildSuccess((_viewModel.state as ScreenSuccess).data)
+                : GenericError(
+                    requestError:
+                        (_viewModel.state as ScreenError).requestError),
       ));
     }));
   }

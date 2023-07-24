@@ -4,7 +4,6 @@ import '../../../../routes/ehelp_routes.dart';
 import '../../../../shared/Colors/constants.dart';
 import '../../../../shared/components/back_button.widget.dart';
 import '../../../../shared/components/generic_button.widget.dart';
-import '../../../../shared/components/header_background.widget.dart';
 import '../../../../shared/components/header_black.widget.dart';
 import '../../../../shared/fonts/styles.dart';
 

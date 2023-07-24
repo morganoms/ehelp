@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:ehelp/shared/colors/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:transparent_image/transparent_image.dart';

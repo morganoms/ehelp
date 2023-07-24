@@ -2,12 +2,12 @@ import 'dart:async';
 
 import 'package:custom_timer/custom_timer.dart';
 import 'package:ehelp/features/client/call_now/views/components/card_detail_service.widget.dart';
-import 'package:ehelp/core/locator.dart';
 import 'package:ehelp/shared/colors/constants.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
+import '../../../../core/locator.dart';
 import '../../../../routes/ehelp_routes.dart';
 import '../../../../shared/components/back_button.widget.dart';
 import '../../../../shared/components/default_dialog.widget.dart';
@@ -15,7 +15,6 @@ import '../../../../shared/components/generic_button.widget.dart';
 
 import '../../../../shared/components/header_black.widget.dart';
 import '../../../../shared/fonts/styles.dart';
-import '../../home/views/components/service_item.widget.dart';
 import '../view_model/call_now.view_model.dart';
 import 'components/arrived_professinal.widget.dart';
 import 'components/calling_professional.widget.dart';

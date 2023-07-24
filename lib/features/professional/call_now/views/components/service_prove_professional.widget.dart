@@ -5,9 +5,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../../../core/locator.dart';
-import '../../../../../routes/ehelp_routes.dart';
 import '../../../../../shared/colors/constants.dart';
-import '../../../../../shared/components/generic_button.widget.dart';
 import '../../../../../shared/components/input.widget.dart';
 import '../../../../../shared/fonts/styles.dart';
 import '../../../../../shared/utils/picker.dart';

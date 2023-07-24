@@ -95,6 +95,22 @@ mixin _$HomeClientViewModel on HomeClientViewModelBase, Store {
     });
   }
 
+  late final _$listStateAtom =
+      Atom(name: 'HomeClientViewModelBase.listState', context: context);
+
+  @override
+  ScreenState get listState {
+    _$listStateAtom.reportRead();
+    return super.listState;
+  }
+
+  @override
+  set listState(ScreenState value) {
+    _$listStateAtom.reportWrite(value, super.listState, () {
+      super.listState = value;
+    });
+  }
+
   late final _$orderByListAtom =
       Atom(name: 'HomeClientViewModelBase.orderByList', context: context);
 
@@ -144,8 +160,35 @@ mixin _$HomeClientViewModel on HomeClientViewModelBase, Store {
         .run(() => super.onClickBottomBar(newIndex));
   }
 
+  late final _$getHomeSearchAsyncAction =
+      AsyncAction('HomeClientViewModelBase.getHomeSearch', context: context);
+
+  @override
+  Future<void> getHomeSearch() {
+    return _$getHomeSearchAsyncAction.run(() => super.getHomeSearch());
+  }
+
+  late final _$editProfileAsyncAction =
+      AsyncAction('HomeClientViewModelBase.editProfile', context: context);
+
+  @override
+  Future<bool> editProfile(User newUserEdited) {
+    return _$editProfileAsyncAction.run(() => super.editProfile(newUserEdited));
+  }
+
   late final _$HomeClientViewModelBaseActionController =
       ActionController(name: 'HomeClientViewModelBase', context: context);
+
+  @override
+  void addMainList(List<ServiceForClientEntity> newValue) {
+    final _$actionInfo = _$HomeClientViewModelBaseActionController.startAction(
+        name: 'HomeClientViewModelBase.addMainList');
+    try {
+      return super.addMainList(newValue);
+    } finally {
+      _$HomeClientViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   int setOrderByList(int newValue) {
@@ -203,17 +246,6 @@ mixin _$HomeClientViewModel on HomeClientViewModelBase, Store {
   }
 
   @override
-  List<Widget> buildListServics(HomeClientEntity screenData) {
-    final _$actionInfo = _$HomeClientViewModelBaseActionController.startAction(
-        name: 'HomeClientViewModelBase.buildListServics');
-    try {
-      return super.buildListServics(screenData);
-    } finally {
-      _$HomeClientViewModelBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   void onPageSlide(int newIndexPage) {
     final _$actionInfo = _$HomeClientViewModelBaseActionController.startAction(
         name: 'HomeClientViewModelBase.onPageSlide');
@@ -231,6 +263,7 @@ bottomBarIndex: ${bottomBarIndex},
 tabActivityIndex: ${tabActivityIndex},
 serviceSelected: ${serviceSelected},
 state: ${state},
+listState: ${listState},
 orderByList: ${orderByList},
 valuesRange: ${valuesRange},
 isLoading: ${isLoading},

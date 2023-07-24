@@ -1,15 +1,18 @@
-import 'package:ehelp/core/user/user.controller.dart';
+import 'package:ehelp/core/session/session.controller.dart';
 import 'package:ehelp/shared/components/dropdown_search.widget.dart';
 import 'package:ehelp/shared/components/header_black.widget.dart';
 import 'package:ehelp/shared/entity/speciality.entity.dart';
 import 'package:ehelp/shared/fonts/styles.dart';
+import 'package:ehelp/shared/models/screen_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:lottie/lottie.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 import '../../../../core/locator.dart';
 import '../../../../shared/colors/constants.dart';
 import '../../../../shared/components/person_picture.widget.dart';
+import '../../../../shared/entity/user/user.entity.dart';
 import '../model/entity/home_client.entity.dart';
 import '../view_model/controllers/home_client.view_model.dart';
 import 'components/service_item.widget.dart';
@@ -26,14 +29,16 @@ class SearchServiceView extends StatefulWidget {
 
 class _SearchServiceViewState extends State<SearchServiceView> {
   late HomeClientViewModel _controller;
-  late UserController _userController;
+  late SessionController _sessionController;
   late HomeClientEntity _screenData;
+  late User _user;
 
   @override
   void initState() {
     _screenData = widget.screenData;
-    _userController = locator.get<UserController>();
+    _sessionController = locator.get<SessionController>();
     _controller = locator.get<HomeClientViewModel>();
+    _user = _sessionController.session!.userAuthenticated;
     super.initState();
   }
 
@@ -170,9 +175,7 @@ class _SearchServiceViewState extends State<SearchServiceView> {
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            PersonPicture(
-                                pathImageNetwork: _userController
-                                    .userAuthenticated?.photoUrl),
+                            PersonPicture(pathImageNetwork: _user.photoUrl),
                             Flexible(
                               child: Padding(
                                 padding: const EdgeInsets.only(left: 16),
@@ -181,7 +184,7 @@ class _SearchServiceViewState extends State<SearchServiceView> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      'Olá, ${_userController.userAuthenticated!.name}!',
+                                      'Olá, ${_user.name}!',
                                       style: FontStyles.size16Weight700White,
                                     ),
                                     Text(
@@ -237,9 +240,10 @@ class _SearchServiceViewState extends State<SearchServiceView> {
                             textEditingController: textEditingController,
                             initValue: _controller.serviceSelected,
                             hintText: 'Procurar Serviços',
-                            onChanged: (final newValue) {
+                            onChanged: (final newValue) async {
                               _controller.setServiceSelected(
                                   newValue as SpecialityEntity);
+                              await _controller.getHomeSearch();
                             },
                           ),
                         ),
@@ -253,45 +257,74 @@ class _SearchServiceViewState extends State<SearchServiceView> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Observer(builder: (_) {
-                  return Visibility(
-                    visible: _controller.serviceSelected == null,
-                    replacement: Container(
-                      alignment: Alignment.centerLeft,
-                      child: Text('Resultados encontrados: 2',
-                          style: FontStyles.size16Weight700),
-                    ),
-                    child: Container(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'Pesquisas Recentes',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                          color: Theme.of(context).primaryColor,
+          Observer(builder: (_) {
+            return _controller.listState == ScreenState.idle
+                ? Visibility(
+                    visible: _controller.listProvidersSelected.isNotEmpty,
+                    replacement: Column(
+                      children: [
+                        Image.asset(
+                          'assets/images/pasta-vazia.png',
+                          height: MediaQuery.of(context).size.height / 5,
                         ),
+                        const Text(
+                          'Nenhum prestador foi encontrado.',
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ],
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Visibility(
+                            visible: _controller.serviceSelected == null,
+                            replacement: Container(
+                              alignment: Alignment.centerLeft,
+                              child: Text('Resultados encontrados: 2',
+                                  style: FontStyles.size16Weight700),
+                            ),
+                            child: Container(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                'Pesquisas Recentes',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w400,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 16,
+                          ),
+                          Flexible(
+                            child: Column(
+                              children: _controller.listProvidersSelected
+                                  .map(
+                                    (e) => Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 8),
+                                      child: ServiceItemWidget(
+                                        indexImage: 4,
+                                        cardData: e,
+                                      ),
+                                    ),
+                                  )
+                                  .toList(),
+                            ),
+                          )
+                        ],
                       ),
                     ),
+                  )
+                : Center(
+                    child: Lottie.asset('assets/animations/v-3-black.json',
+                        height: 100),
                   );
-                }),
-                const SizedBox(
-                  height: 16,
-                ),
-                Flexible(
-                  child: Observer(builder: (_) {
-                    return Column(
-                      children: _controller.buildListServics(_screenData),
-                    );
-                  }),
-                )
-              ],
-            ),
-          ),
+          }),
         ],
       ),
     );

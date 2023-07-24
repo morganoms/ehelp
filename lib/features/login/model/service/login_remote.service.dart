@@ -4,7 +4,6 @@ import 'package:ehelp/core/http/http_core.dart';
 import 'package:ehelp/core/http/http_core_error.dart';
 import 'package:ehelp/features/login/model/service/login.service.dart';
 import 'package:ehelp/shared/entity/user/user.dto.dart';
-import 'package:ehelp/shared/entity/user/user.entity.dart';
 
 import '../../../../core/http/http_core_response.dart';
 import '../../../../shared/entity/user/authenticate.entity.dart';
@@ -26,13 +25,13 @@ class LoginRemoteService extends LoginService {
           },
         ),
       );
-      final User user = UserDto.fromJson(json.decode(response.body)['user']);
-      // userController.setUser(user);
-      // await userController.saveUserOnDevice();
-      final String token = json.decode(response.body)['token'];
-      // tokenController.setToken(token);
-      // await tokenController.saveTokenOnDevice();
-      return Authenticate(userAutenticated: user, token: token);
+      final Map<String, dynamic> responseDescoded = json.decode(response.body);
+
+      return Authenticate(
+        userAuthenticated: UserDto.fromJson(responseDescoded['user']),
+        token: responseDescoded['token'],
+        refreshToken: responseDescoded['refreshToken'],
+      );
     } on HttpCoreError catch (_) {
       rethrow;
     } on Exception catch (_) {

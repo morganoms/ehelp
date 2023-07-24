@@ -5,7 +5,6 @@ import '../../../../core/locator.dart';
 import '../../../../shared/Colors/constants.dart';
 import '../../../../shared/components/time_selector.widget.dart';
 import '../../../../shared/fonts/styles.dart';
-import '../models/working_hours.entity.dart';
 import '../view_model/home_edit_area.view_model.dart';
 
 class WorkHoursView extends StatefulWidget {

@@ -1,14 +1,18 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:ehelp/core/locator.dart';
-import 'package:ehelp/core/user/user.controller.dart';
+import 'package:ehelp/core/session/session.controller.dart';
+import 'package:ehelp/features/client/home/view_model/controllers/home_client.view_model.dart';
 import 'package:ehelp/shared/colors/constants.dart';
 import 'package:ehelp/shared/components/back_button.widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 
 import '../../../../routes/ehelp_routes.dart';
 import '../../../../shared/components/generic_button.widget.dart';
 import '../../../../shared/components/header_black.widget.dart';
 import '../../../../shared/components/random_person_image.widget.dart';
 import '../../../../shared/components/stepper.widget.dart';
+import '../../../../shared/entity/user/user.entity.dart';
 import '../../../../shared/fonts/styles.dart';
 import 'components/form_personal_data.widget.dart';
 
@@ -25,12 +29,44 @@ class ProfessionalPersonalDataView extends StatefulWidget {
 
 class _ProfessionalPersonalDataViewState
     extends State<ProfessionalPersonalDataView> {
-  late UserController _userController;
+  late User _userAuthenticated;
+  final _formPersonalDataKey = GlobalKey<FormState>();
+  late HomeClientViewModel _homeClientViewModel;
+  late Map<String, dynamic> userFormScheme;
 
   @override
   void initState() {
-    _userController = locator.get<UserController>();
+    _homeClientViewModel = locator.get<HomeClientViewModel>();
+    _userAuthenticated =
+        locator.get<SessionController>().session!.userAuthenticated;
+    userFormScheme = {
+      'name': _userAuthenticated.name,
+      'documentNumber': _userAuthenticated.documentNumber,
+      'phone': _userAuthenticated.phone,
+    };
     super.initState();
+  }
+
+  Future<void> isEditingConfirm() async {
+    if (_formPersonalDataKey.currentState!.validate()) {
+      _formPersonalDataKey.currentState!.save();
+      final bool hasUserUpdated = await _homeClientViewModel.editProfile(
+          _userAuthenticated.copyWith(
+              name: userFormScheme['name'],
+              documentNumber: userFormScheme['documentNumber'],
+              phone: userFormScheme['phone']));
+
+      await AwesomeDialog(
+        context: context,
+        dialogType: hasUserUpdated ? DialogType.success : DialogType.error,
+        headerAnimationLoop: false,
+        animType: AnimType.rightSlide,
+        title: hasUserUpdated ? 'Tudo certo!' : 'Oops!',
+        desc: hasUserUpdated
+            ? 'Seu usuário atualizado com sucesso'
+            : 'Nome de Usuário ou Senha inválido. Por favor, tente novamente.',
+      ).show();
+    }
   }
 
   @override
@@ -38,14 +74,18 @@ class _ProfessionalPersonalDataViewState
     return Scaffold(
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(24),
-        child: GenericButton(
-          color: ColorConstants.greenDark,
-          label: widget.isEditing ? 'Salvar' : 'Continuar',
-          onPressed: () => widget.isEditing
-              ? Navigator.of(context).pop()
-              : Navigator.of(context)
-                  .pushNamed(EhelpRoutes.addressProfessional, arguments: false),
-        ),
+        child: Observer(builder: (_) {
+          return GenericButton(
+            color: ColorConstants.greenDark,
+            label: widget.isEditing ? 'Salvar' : 'Continuar',
+            loading: _homeClientViewModel.isLoading,
+            onPressed: () => widget.isEditing
+                ? isEditingConfirm()
+                : Navigator.of(context).pushNamed(
+                    EhelpRoutes.addressProfessional,
+                    arguments: false),
+          );
+        }),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -83,7 +123,7 @@ class _ProfessionalPersonalDataViewState
                       heightImage: 150,
                       widthtImage: 150,
                       marginRight: false,
-                      path: _userController.userAuthenticated?.photoUrl,
+                      path: _userAuthenticated.photoUrl,
                     )
                   else
                     Container(
@@ -111,8 +151,10 @@ class _ProfessionalPersonalDataViewState
                     height: 32,
                   ),
                   FormPersonalDataWidget(
+                      userFormValue: userFormScheme,
+                      formKey: _formPersonalDataKey,
                       isEditing: widget.isEditing,
-                      userAuthenticated: _userController.userAuthenticated),
+                      userAuthenticated: _userAuthenticated),
                 ],
               ),
             ),

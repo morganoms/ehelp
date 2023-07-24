@@ -1,0 +1,77 @@
+[
+    {
+        "user": {
+            "userId": 4,
+            "countryId": 1,
+            "name": "Prestador 1",
+            "photoUrl": "https://images.unsplash.com/photo-1504257432389-52343af06ae3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
+            "servicesDoneAmount": 2,
+            "rating": 2.5,
+            "service": [
+                {
+                    "serviceId": 1,
+                    "rating": [
+                        {
+                            "id": 1,
+                            "message": "Teste",
+                            "stars": 2
+                        }
+                    ]
+                },
+                {
+                    "serviceId": 2,
+                    "rating": [
+                        {
+                            "id": 2,
+                            "message": "Teste",
+                            "stars": 3
+                        }
+                    ]
+                }
+            ],
+            "userSpecialty": [
+                {
+                    "minValue": 100,
+                    "specialty": {
+                        "descriptionPortuguese": "Teste",
+                        "descriptionEnglish": "Teste",
+                        "descriptionSpanish": "Teste"
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "user": {
+            "userId": 5,
+            "countryId": 1,
+            "name": "Prestador 3",
+            "photoUrl": "https://images.unsplash.com/photo-1527082395-e939b847da0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=735&q=80",
+            "servicesDoneAmount": 1,
+            "rating": 3.5,
+            "service": [
+                {
+                    "serviceId": 3,
+                    "rating": [
+                        {
+                            "id": 3,
+                            "message": "Teste",
+                            "stars": 4
+                        }
+                    ]
+                }
+            ],
+            "userSpecialty": [
+                {
+                    "minValue": 150,
+                    "specialty": {
+                        "descriptionPortuguese": "Teste",
+                        "descriptionEnglish": "Teste",
+                        "descriptionSpanish": "Teste"
+                    }
+                }
+            ]
+        }
+    }
+]
+

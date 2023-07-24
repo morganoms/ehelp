@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_credit_card/credit_card_form.dart';
 import 'package:flutter_credit_card/credit_card_model.dart';
 import 'package:flutter_credit_card/credit_card_widget.dart';
 
 class CreditCard extends StatefulWidget {
-  CreditCard({Key? key}) : super(key: key);
+  const CreditCard({Key? key}) : super(key: key);
 
   @override
   State<CreditCard> createState() => _CreditCardState();
