@@ -2,17 +2,20 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ehelp/routes/ehelp_routes.dart';
 import 'package:ehelp/shared/components/back_button.widget.dart';
 import 'package:ehelp/shared/components/random_person_image.widget.dart';
+import 'package:ehelp/shared/utils/money.formatter.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../shared/colors/constants.dart';
-import '../../../../shared/components/generic_button.widget.dart';
 import '../../../../shared/components/header_black.widget.dart';
 import '../../../../shared/components/start_score.widget.dart';
 import '../../../../shared/fonts/styles.dart';
+import '../model/entity/service_for_client.entity.dart';
 
 class UserProfessionalProfileView extends StatelessWidget {
-  UserProfessionalProfileView({Key? key}) : super(key: key);
+  UserProfessionalProfileView({required this.serviceForClientEntity, Key? key})
+      : super(key: key);
   final PageController controller = PageController();
+  final ServiceForClientEntity serviceForClientEntity;
 
   @override
   Widget build(BuildContext context) {
@@ -68,23 +71,26 @@ class UserProfessionalProfileView extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const RandomPersonImage(
+                    RandomPersonImage(
                       heightImage: 150,
                       widthtImage: 150,
                       marginRight: false,
+                      path: serviceForClientEntity.photoUrl,
                     ),
                     const SizedBox(
                       height: 16,
                     ),
-                    Text('Morgan Oliveira', style: FontStyles.size20Weight700),
+                    Text(serviceForClientEntity.name,
+                        style: FontStyles.size20Weight700),
                     const SizedBox(
                       height: 4,
                     ),
-                    Text('Eletricista', style: FontStyles.size16Weight400),
+                    Text(serviceForClientEntity.descriptionPortuguese,
+                        style: FontStyles.size16Weight400),
                     const SizedBox(
                       height: 16,
                     ),
-                    const StarScore(),
+                    StarScore(value: serviceForClientEntity.rating),
                     const SizedBox(
                       height: 32,
                     ),
@@ -107,7 +113,9 @@ class UserProfessionalProfileView extends StatelessWidget {
                                 const SizedBox(
                                   height: 8,
                                 ),
-                                Text('1.250',
+                                Text(
+                                    serviceForClientEntity.servicesDoneAmount
+                                        .toString(),
                                     style: FontStyles.size16Weight700),
                               ],
                             ),
@@ -121,7 +129,9 @@ class UserProfessionalProfileView extends StatelessWidget {
                                 const SizedBox(
                                   height: 8,
                                 ),
-                                Text(r'R$ 50,00',
+                                Text(
+                                    Money.format(
+                                        serviceForClientEntity.minValue),
                                     style: FontStyles.size16Weight700),
                               ],
                             ),

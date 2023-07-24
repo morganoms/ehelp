@@ -7,7 +7,6 @@ import '../../../../shared/components/back_button.widget.dart';
 import '../../../../shared/components/generic_button.widget.dart';
 import '../../../../shared/components/header_black.widget.dart';
 import '../../../../shared/components/stepper.widget.dart';
-import '../../../../shared/fonts/styles.dart';
 
 class Step3View extends StatelessWidget {
   const Step3View({Key? key}) : super(key: key);

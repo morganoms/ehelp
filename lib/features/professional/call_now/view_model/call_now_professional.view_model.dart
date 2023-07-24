@@ -1,7 +1,6 @@
 import 'package:image_picker/image_picker.dart';
 import 'package:mobx/mobx.dart';
 
-import '../../../client/call_now/view_model/call_now.view_model.dart';
 part 'call_now_professional.view_model.g.dart';
 
 enum CallNowProfessionalState {

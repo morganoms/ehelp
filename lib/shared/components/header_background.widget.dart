@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../colors/constants.dart';
-
 class HeaderBackground extends StatelessWidget {
   const HeaderBackground({Key? key}) : super(key: key);
 

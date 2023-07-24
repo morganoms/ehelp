@@ -5,37 +5,30 @@ import 'package:ehelp/shared/colors/constants.dart';
 import 'package:ehelp/shared/fonts/styles.dart';
 import 'package:flutter/material.dart';
 
-class DropdownSearch2Widget extends StatelessWidget {
+class DropdownSearch2Widget<T> extends StatelessWidget {
   DropdownSearch2Widget({
-    required this.items,
     required this.textEditingController,
-    required this.initValue,
+    this.initValue,
     required this.hintText,
     required this.onChanged,
+    required this.items,
     Key? key,
   }) : super(key: key);
 
-  final List<String> items;
-  final String initValue;
+  final T? initValue;
   final String hintText;
   void Function(Object?)? onChanged;
   final TextEditingController textEditingController;
+  final List<DropdownMenuItem<T>> items;
 
   @override
   Widget build(BuildContext context) {
     return DropdownButtonHideUnderline(
-      child: DropdownButton2(
+      child: DropdownButton2<T>(
         isExpanded: true,
         hint: Text(hintText, style: FontStyles.size16Weight700),
-        items: items
-            .map(
-              (item) => DropdownMenuItem<String>(
-                value: item,
-                child: Text(item, style: FontStyles.size16Weight400),
-              ),
-            )
-            .toList(),
-        value: initValue.isEmpty ? null : initValue,
+        items: items,
+        value: initValue,
         style: FontStyles.size16Weight700black,
         onChanged: onChanged,
         buttonPadding: const EdgeInsets.only(right: 16),

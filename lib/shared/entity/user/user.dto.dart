@@ -1,4 +1,5 @@
 import 'package:ehelp/shared/entity/user/user.entity.dart';
+import 'package:ehelp/shared/models/user_type.dart';
 
 import '../../../core/dto_validations.dart';
 

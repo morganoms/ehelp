@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:ehelp/features/professional/areas/models/working_hours.entity.dart';
 import 'package:ehelp/shared/colors/constants.dart';
 import 'package:flutter/material.dart';

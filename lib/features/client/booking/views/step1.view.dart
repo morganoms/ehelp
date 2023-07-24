@@ -3,7 +3,6 @@ import 'package:ehelp/routes/ehelp_routes.dart';
 import 'package:ehelp/shared/colors/constants.dart';
 import 'package:ehelp/shared/components/generic_button.widget.dart';
 import 'package:ehelp/shared/components/stepper.widget.dart';
-import 'package:ehelp/shared/fonts/styles.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../shared/components/back_button.widget.dart';

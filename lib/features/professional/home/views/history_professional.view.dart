@@ -1,11 +1,6 @@
-import 'dart:math';
-
 import 'package:ehelp/shared/components/header_black.widget.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../shared/colors/constants.dart';
-import '../../../../shared/fonts/styles.dart';
-import '../../../client/home/views/components/service_item.widget.dart';
 import 'components/service_item_client.widget.dart';
 
 class HistoryProfessionalView extends StatelessWidget {

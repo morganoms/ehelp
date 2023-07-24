@@ -5,7 +5,6 @@ import '../../../../routes/ehelp_routes.dart';
 import '../../../../shared/colors/constants.dart';
 import '../../../../shared/components/back_button.widget.dart';
 import '../../../../shared/components/generic_button.widget.dart';
-import '../../../../shared/components/header_background.widget.dart';
 import '../../../../shared/fonts/styles.dart';
 
 class BankProfessionalView extends StatelessWidget {

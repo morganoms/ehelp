@@ -1,21 +1,24 @@
 import 'package:ehelp/core/http/http_core_error.dart';
 import 'package:ehelp/core/locator.dart';
-import 'package:ehelp/core/user/user.controller.dart';
+import 'package:ehelp/core/session/session.controller.dart';
+
 import 'package:ehelp/features/login/model/service/login.service.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 
+import '../../../shared/entity/user/authenticate.entity.dart';
 import '../../../shared/models/screen_state.dart';
-import '../../../shared/entity/user/user.entity.dart';
+import '../../../shared/models/user_type.dart';
+
 part 'login.view_model.g.dart';
 
 class LoginViewModel = _LoginViewModelBase with _$LoginViewModel;
 
 abstract class _LoginViewModelBase with Store {
   _LoginViewModelBase(this.datasource);
+  final SessionController _sessionController = locator.get<SessionController>();
 
   final LoginService datasource;
-  final UserController userController = locator.get<UserController>();
 
   @observable
   ScreenState state = ScreenState.idle;
@@ -34,11 +37,11 @@ abstract class _LoginViewModelBase with Store {
     try {
       state = ScreenState.loading;
       await Future.delayed(const Duration(seconds: 3));
-      final User user = await datasource.authenticate(username, password);
-      userController.setUser(user);
-      await userController.saveUserOnDevice();
+      final Authenticate authenticate =
+          await datasource.authenticate(username, password);
+      await saveInfoOnDevice(authenticate);
       state = ScreenState.success;
-      return user.userTypeId == UserType.prestador;
+      return authenticate.userAuthenticated.userTypeId == UserType.prestador;
     } on HttpCoreError catch (e) {
       state = ScreenState.error;
       debugPrint(e.message);
@@ -48,5 +51,10 @@ abstract class _LoginViewModelBase with Store {
       debugPrint(e.toString());
       return false;
     }
+  }
+
+  Future<void> saveInfoOnDevice(Authenticate authenticate) async {
+    _sessionController.setSession(authenticate);
+    await _sessionController.saveSessionOnDevice();
   }
 }

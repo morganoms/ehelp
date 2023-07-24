@@ -6,15 +6,17 @@ class HttpCoreError extends HttpResponse implements Exception {
     String? title,
     String? message,
     int? statusCode,
-    Object? extraData,
     String? body,
     String? buttonFirst,
+    String? imagePath,
+    ActionType? actionType,
     int? errorCode,
   })  : _title = title,
         _message = message,
+        _actionType = actionType,
         _statusCode = statusCode,
-        _extraData = extraData,
         _body = body,
+        _imagePath = imagePath,
         _buttonFirst = buttonFirst,
         _errorCode = errorCode,
         super();
@@ -23,8 +25,9 @@ class HttpCoreError extends HttpResponse implements Exception {
         title: json['title'],
         message: json['message'],
         statusCode: json['code'],
-        extraData: json['extraData'],
+        actionType: json['actionType'],
         body: json['body'],
+        imagePath: json['imagePath'],
         buttonFirst: json['buttonFirst'],
         errorCode: json['errorCode'],
       );
@@ -33,8 +36,9 @@ class HttpCoreError extends HttpResponse implements Exception {
         title: response.title,
         message: response.message,
         statusCode: response.statusCode,
-        extraData: response.extraData,
         body: response.body,
+        actionType: response.actionType,
+        imagePath: response.imagePath,
         buttonFirst: response.buttonFirst,
       );
 
@@ -42,16 +46,18 @@ class HttpCoreError extends HttpResponse implements Exception {
   final String? _title;
   final String? _message;
   final int? _statusCode;
-  final Object? _extraData;
   final String? _buttonFirst;
   final int? _errorCode;
+  final String? _imagePath;
+  final ActionType? _actionType;
 
   Map<String, dynamic> toJson() => <String, dynamic>{
         'title': title,
         'message': message,
         'statusCode': statusCode,
-        'extraData': extraData,
+        'imagePath': imagePath,
         'body': body,
+        'actionType': actionType,
         'buttonFirst': buttonFirst,
       };
 
@@ -76,7 +82,7 @@ class HttpCoreError extends HttpResponse implements Exception {
   int get statusCode => _statusCode ?? 0;
 
   @override
-  dynamic get extraData => _extraData;
+  String? get imagePath => _imagePath;
 
   @override
   String? get message => _message;
@@ -86,4 +92,7 @@ class HttpCoreError extends HttpResponse implements Exception {
 
   @override
   String? get title => _title;
+
+  @override
+  ActionType? get actionType => _actionType;
 }

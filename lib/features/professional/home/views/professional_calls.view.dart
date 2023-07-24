@@ -8,10 +8,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import '../../../../core/locator.dart';
 import '../../../../shared/colors/constants.dart';
 import '../../../../shared/components/default_dialog.widget.dart';
-import '../../../../shared/components/header_background.widget.dart';
 import '../../../../shared/fonts/styles.dart';
-import '../../../client/home/views/components/adress_dialog.widget.dart';
-import '../../../client/home/views/components/service_item.widget.dart';
 import '../view_model/home_professional.view_model.dart';
 import 'components/service_item_call.widget.dart';
 

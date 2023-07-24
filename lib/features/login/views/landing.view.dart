@@ -1,6 +1,5 @@
 import 'package:ehelp/routes/ehelp_routes.dart';
 import 'package:ehelp/shared/colors/constants.dart';
-import 'package:ehelp/shared/models/user_type.dart';
 import 'package:flutter/material.dart';
 import 'package:transparent_image/transparent_image.dart';
 
@@ -35,7 +34,7 @@ class LandingView extends StatelessWidget {
             const Align(
               alignment: Alignment.topLeft,
               child: Text(
-                'Selecione abaixo o perfil em que deseja entrar no aplicativo.',
+                'Conecte-se facilmente a prestadores de serviço confiáveis e qualificados com nosso aplicativo, trazendo conveniência e eficiência para suas necessidades diárias.',
                 style: TextStyle(
                   fontSize: 16,
                   color: Colors.white,
@@ -57,23 +56,14 @@ class LandingView extends StatelessWidget {
               height: 36,
             ),
             GenericButton(
-              label: 'Cliente',
+              label: 'ENTRAR',
               color: ColorConstants.greenDark,
               onPressed: () => Navigator.of(context).pushNamed(
                 EhelpRoutes.login,
-                arguments: UserType.client,
               ),
             ),
             const SizedBox(
-              height: 24,
-            ),
-            GenericButton(
-              label: 'Profissional',
-              color: ColorConstants.greenDark,
-              onPressed: () => Navigator.of(context).pushNamed(
-                EhelpRoutes.login,
-                arguments: UserType.professional,
-              ),
+              height: 36,
             ),
           ],
         ),

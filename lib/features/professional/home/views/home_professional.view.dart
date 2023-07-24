@@ -4,7 +4,6 @@ import 'package:ehelp/features/professional/home/views/settings_professional.vie
 import 'package:ehelp/shared/colors/constants.dart';
 import 'package:ehelp/shared/fonts/styles.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
@@ -70,9 +69,9 @@ class _HomeProfessionalViewState extends State<HomeProfessionalView> {
         return PageView(
           onPageChanged: (pageIndex) => _viewModel.onPageSlide(pageIndex),
           controller: _viewModel.pageController,
-          children: const <Widget>[
-            HistoryProfessionalView(),
-            ProfessionalCallsView(),
+          children: <Widget>[
+            const HistoryProfessionalView(),
+            const ProfessionalCallsView(),
             SettingsProfesssionalView(),
           ],
         );

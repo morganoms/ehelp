@@ -8,8 +8,6 @@ import 'package:ehelp/shared/components/person_picture.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:transparent_image/transparent_image.dart';
 
-import '../../../../shared/components/custom_corner_clip_path.widget.dart';
-import '../../../../shared/components/header_background.widget.dart';
 import '../../../../shared/fonts/styles.dart';
 import '../../home/view_model/home_professional.view_model.dart';
 

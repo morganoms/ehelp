@@ -2,19 +2,24 @@ import 'package:ehelp/routes/ehelp_routes.dart';
 import 'package:ehelp/shared/colors/constants.dart';
 import 'package:ehelp/shared/components/random_person_image.widget.dart';
 import 'package:ehelp/shared/components/start_score.widget.dart';
+import 'package:ehelp/shared/utils/money.formatter.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
+
+import '../../model/entity/service_for_client.entity.dart';
 
 // ignore: must_be_immutable
 class ServiceItemWidget extends StatefulWidget {
   ServiceItemWidget({
     required this.indexImage,
+    required this.cardData,
     this.expansive = false,
     Key? key,
   }) : super(key: key);
 
   bool expansive;
   final int indexImage;
+  final ServiceForClientEntity cardData;
 
   @override
   State<ServiceItemWidget> createState() => _ServiceItemWidgetState();
@@ -25,11 +30,12 @@ class _ServiceItemWidgetState extends State<ServiceItemWidget>
   final ExpandableController expandController = ExpandableController();
 
   late final AnimationController _controllerAnimation;
+  late ServiceForClientEntity _cardData;
 
   @override
   void initState() {
     super.initState();
-
+    _cardData = widget.cardData;
     _controllerAnimation = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 300),
@@ -44,6 +50,7 @@ class _ServiceItemWidgetState extends State<ServiceItemWidget>
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           RandomPersonImage(
+            path: _cardData.photoUrl,
             indexImage: widget.indexImage,
             widthtImage: MediaQuery.of(context).size.width / 5,
           ),
@@ -53,21 +60,19 @@ class _ServiceItemWidgetState extends State<ServiceItemWidget>
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Flexible(
+                  Flexible(
                     child: Text(
-                      'Morgan Oliveira',
-                      style: TextStyle(
+                      _cardData.name,
+                      style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w700,
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 16,
-                  ),
+                  const SizedBox(height: 16),
                   Flexible(
                     child: Text(
-                      'Eletricista',
+                      _cardData.descriptionPortuguese,
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w400,
@@ -81,11 +86,11 @@ class _ServiceItemWidgetState extends State<ServiceItemWidget>
                   Flexible(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        StarScore(),
+                      children: [
+                        StarScore(value: _cardData.rating),
                         Text(
-                          r'R$ 50,00',
-                          style: TextStyle(
+                          Money.format(_cardData.minValue),
+                          style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w500,
                             color: ColorConstants.greenDark,
@@ -250,8 +255,9 @@ class _ServiceItemWidgetState extends State<ServiceItemWidget>
         ),
         onTap: widget.expansive
             ? onToggleClick
-            : () => Navigator.of(context)
-                .pushNamed(EhelpRoutes.clientUserProfessionalProfile),
+            : () => Navigator.of(context).pushNamed(
+                EhelpRoutes.clientUserProfessionalProfile,
+                arguments: _cardData),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
