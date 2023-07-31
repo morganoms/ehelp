@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_lambdas
+
 class DtoValidation {
   DtoValidation._();
 
@@ -39,4 +41,9 @@ class DtoValidation {
               .map((final dynamic e) => e.toString())
               .toList()
           : <String>[];
+
+  static List<int> dynamicToListInt(final dynamic field) =>
+      field != null && field != ''
+          ? (field as List<dynamic>).map((final dynamic e) => e as int).toList()
+          : <int>[];
 }

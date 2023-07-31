@@ -61,7 +61,7 @@ class CallDetailProfessionalView extends StatelessWidget {
       body: SingleChildScrollView(
           child: Column(
         children: [
-          const HeaderBlack(
+          HeaderBlack(
             titleLable: 'Detalhe do Chamado',
             iconBack: BackButtonWidget(),
           ),

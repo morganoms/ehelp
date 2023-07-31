@@ -24,7 +24,7 @@ class UserProfessionalProfileView extends StatelessWidget {
         children: [
           HeaderBlack(
             titleLable: 'Perfil do Profissional',
-            iconBack: const BackButtonWidget(),
+            iconBack: BackButtonWidget(),
             child: Container(
               width: MediaQuery.of(context).size.width,
               color: ColorConstants.blackSoft,
@@ -54,8 +54,9 @@ class UserProfessionalProfileView extends StatelessWidget {
                 selected: const <String>{'3'},
                 onSelectionChanged: (Set<String> p0) {
                   if (p0.first == '1') {
-                    Navigator.of(context)
-                        .pushNamed(EhelpRoutes.clientBookingStep1);
+                    Navigator.of(context).pushNamed(
+                        EhelpRoutes.clientBookingStep1,
+                        arguments: serviceForClientEntity.userId);
                   } else {
                     Navigator.of(context)
                         .pushNamed(EhelpRoutes.clientCallNowDescription);

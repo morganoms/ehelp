@@ -63,7 +63,7 @@ class AccaountView extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const HeaderBlack(
+            HeaderBlack(
               titleLable: 'Meu perfil',
               iconBack: BackButtonWidget(),
             ),

@@ -41,7 +41,7 @@ class _AdressProfessionalViewState extends State<AdressProfessionalView> {
             HeaderBlack(
               titleLable:
                   widget.isEditing ? 'Endereço' : 'Cadastro de Profissional',
-              iconBack: const BackButtonWidget(),
+              iconBack: BackButtonWidget(),
               child: widget.isEditing
                   ? null
                   : Container(

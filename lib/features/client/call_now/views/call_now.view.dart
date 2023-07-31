@@ -195,7 +195,7 @@ class _CallNowViewViewState extends State<CallNowView>
           children: [
             HeaderBlack(
               titleLable: 'Chamar Agora',
-              iconBack: const BackButtonWidget(isCancelButton: true),
+              iconBack: BackButtonWidget(isCancelButton: true),
               child: Container(
                 width: double.maxFinite,
                 color: ColorConstants.blackSoft,

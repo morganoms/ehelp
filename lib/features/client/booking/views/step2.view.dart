@@ -1,22 +1,71 @@
 import 'package:ehelp/core/locator.dart';
+import 'package:ehelp/features/client/booking/view_model/screen_state/booking_client.screen_state.dart';
 import 'package:ehelp/routes/ehelp_routes.dart';
-import 'package:ehelp/shared/components/time_selector.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:wheel_chooser/wheel_chooser.dart';
 
 import '../../../../shared/colors/constants.dart';
 import '../../../../shared/components/back_button.widget.dart';
 import '../../../../shared/components/generic_button.widget.dart';
+import '../../../../shared/components/generic_error.widget.dart';
+import '../../../../shared/components/generic_loading.widget.dart';
 import '../../../../shared/components/header_black.widget.dart';
 import '../../../../shared/components/stepper.widget.dart';
-import '../view_model/booking.view_model.dart';
+import '../view_model/controllers/booking.view_model.dart';
 
-class Step2View extends StatelessWidget {
-  Step2View({Key? key}) : super(key: key);
-  final BookingViewModel _controller = locator.get<BookingViewModel>();
+class Step2View extends StatefulWidget {
+  const Step2View({required this.userId, Key? key}) : super(key: key);
+
+  final int userId;
+
+  @override
+  State<Step2View> createState() => _Step2ViewState();
+}
+
+class _Step2ViewState extends State<Step2View> {
+  late BookingViewModel _viewModel;
+
+  @override
+  void initState() {
+    _viewModel = locator.get<BookingViewModel>();
+    _viewModel.setactiveStep(BookingSteps.step2);
+    WidgetsBinding.instance.addPostFrameCallback((final _) async => loadData());
+    super.initState();
+  }
+
+  void loadData() => _viewModel.getWorkHours(widget.userId);
+
+  List<WheelChoice> getChoices(final List<int> bookedHours) {
+    final List<WheelChoice> hourList = [];
+    for (var i = 8; i < 20; i++) {
+      if (!bookedHours.contains(i)) {
+        hourList.add(
+          WheelChoice(value: i, title: '$i:00'),
+        );
+      }
+    }
+    return hourList;
+  }
 
   @override
   Widget build(BuildContext context) {
+    return WillPopScope(onWillPop: () async {
+      _viewModel.setactiveStep(BookingSteps.step1);
+      return true;
+    }, child: Observer(builder: (_) {
+      if (_viewModel.hasError) {
+        return GenericError(
+            requestError: (_viewModel.step2State as ScreenError).requestError);
+      } else if (_viewModel.isSuccess) {
+        return _buildSuccess((_viewModel.step2State as ScreenSuccess).data);
+      } else {
+        return const GenericLoading();
+      }
+    }));
+  }
+
+  Widget _buildSuccess(final List<int> bookedHours) {
     return Scaffold(
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(24),
@@ -27,19 +76,24 @@ class Step2View extends StatelessWidget {
               Navigator.of(context).pushNamed(EhelpRoutes.clientBookingStep3),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            HeaderBlack(
-              titleLable: 'Agendamento',
-              iconBack: const BackButtonWidget(),
-              child: Container(
-                color: ColorConstants.blackSoft,
-                padding: const EdgeInsets.only(bottom: 16, left: 24, right: 14),
-                child: const StepperWidget(totalSteps: 3, totalActiveSteps: 2),
-              ),
+      body: Column(
+        children: [
+          HeaderBlack(
+            titleLable: 'Agendamento',
+            iconBack: BackButtonWidget(
+              onTap: () {
+                _viewModel.setactiveStep(BookingSteps.step2);
+                Navigator.of(context).pop();
+              },
             ),
-            Padding(
+            child: Container(
+              color: ColorConstants.blackSoft,
+              padding: const EdgeInsets.only(bottom: 16, left: 24, right: 14),
+              child: const StepperWidget(totalSteps: 3, totalActiveSteps: 2),
+            ),
+          ),
+          Expanded(
+            child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -51,23 +105,23 @@ class Step2View extends StatelessWidget {
                   const SizedBox(
                     height: 36,
                   ),
-                  Observer(
-                    builder: (_) {
-                      return Flexible(
-                        child: TimeSelector(
-                          workHours: _controller.workHoursList,
-                          // ignore: unnecessary_lambdas
-                          onPressed: (final int index, final bool value) =>
-                              _controller.setSelectionWorkHour(index, value),
-                        ),
-                      );
-                    },
+                  Expanded(
+                    child: WheelChooser<int>.choices(
+                        startPosition: getChoices(bookedHours).length ~/ 2,
+                        selectTextStyle: const TextStyle(
+                            color: ColorConstants.greenDark,
+                            fontSize: 24,
+                            fontWeight: FontWeight.w500),
+                        choices: getChoices(bookedHours),
+                        onChoiceChanged: (value) {
+                          _viewModel.setMainEntity(null, value);
+                        }),
                   )
                 ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -72,11 +72,11 @@ class SettingsClientView extends StatelessWidget {
                     context: context,
                     route: EhelpRoutes.clientProfile),
                 const SizedBox(height: 48),
-                // _buildItemSetting(
-                //     icon: Icons.location_on_outlined,
-                //     name: 'Endereços',
-                //     context: context,
-                //     route: EhelpRoutes.clientAdresses),
+                _buildItemSetting(
+                    icon: Icons.location_on_outlined,
+                    name: 'Endereços',
+                    context: context,
+                    route: EhelpRoutes.clientAdresses),
                 // const SizedBox(height: 48),
                 // _buildItemSetting(
                 //     icon: Icons.credit_card_outlined,
