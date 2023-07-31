@@ -25,6 +25,7 @@ class _HomeAreaViewState extends State<HomeAreaView> {
   late HomeAreaViewModel _controller;
 
   final List<String> items = [
+    '',
     'Eletricista',
     'Mecânico',
     'Pedreiro',
@@ -68,7 +69,7 @@ class _HomeAreaViewState extends State<HomeAreaView> {
               titleLable: widget.isEditing
                   ? 'Editar Especialidade'
                   : 'Cadastro de Profissional',
-              iconBack: const BackButtonWidget(),
+              iconBack: BackButtonWidget(),
               child: Observer(builder: (_) {
                 return Container(
                   color: ColorConstants.blackSoft,

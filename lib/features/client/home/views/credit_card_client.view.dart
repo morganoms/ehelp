@@ -30,7 +30,7 @@ class CreditCardClientView extends StatelessWidget {
               parent: AlwaysScrollableScrollPhysics()),
           child: Column(
             children: [
-              const HeaderBlack(
+              HeaderBlack(
                 titleLable: 'Cartões',
                 iconBack: BackButtonWidget(),
               ),

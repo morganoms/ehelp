@@ -27,6 +27,7 @@ class HttpCore {
     String url, {
     Map<String, String>? headers,
     Object? body,
+    bool? isRefreshRequest,
     int? timeout,
     Encoding? encoding,
     Map<String, String>? query,
@@ -37,6 +38,7 @@ class HttpCore {
         url,
         headers: headers,
         body: body,
+        isRefreshRequest: isRefreshRequest,
         encoding: encoding,
         timeout: timeout,
       );
@@ -68,6 +70,7 @@ class HttpCore {
     Map<String, String>? headers,
     Object? body,
     Encoding? encoding,
+    bool? isRefreshRequest,
     int? timeout,
   }) async {
     try {
@@ -75,8 +78,10 @@ class HttpCore {
       final String token = getToken();
       final Map<String, String> defaultHeader = {
         'Content-Type': 'application/json',
-        'Authorization': 'bearer $token'
       };
+      if (!(isRefreshRequest ?? false)) {
+        defaultHeader['Authorization'] = 'bearer $token';
+      }
 
       switch (httpCommand) {
         case HttpCommand.get:
@@ -134,6 +139,7 @@ class HttpCore {
     Map<String, String>? headers,
     Object? body,
     Encoding? encoding,
+    bool isRefreshRequest = false,
     int? timeout,
   }) async =>
       _genericRequest(
@@ -141,6 +147,7 @@ class HttpCore {
         '$baseUrl/$url',
         headers: headers,
         body: body,
+        isRefreshRequest: isRefreshRequest,
         encoding: encoding,
         timeout: timeout,
       );

@@ -28,7 +28,7 @@ class Step3View extends StatelessWidget {
           children: [
             HeaderBlack(
               titleLable: 'Agendamento',
-              iconBack: const BackButtonWidget(),
+              iconBack: BackButtonWidget(),
               child: Container(
                 color: ColorConstants.blackSoft,
                 padding: const EdgeInsets.only(bottom: 16, left: 24, right: 14),

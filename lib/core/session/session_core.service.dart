@@ -49,6 +49,7 @@ class SessionCoreServise {
     try {
       final HttpCoreResponse response = await httpClient.post(
         'refreshToken',
+        isRefreshRequest: true,
         body: jsonEncode(
           <String, dynamic>{'refresh_token': refreshToken},
         ),

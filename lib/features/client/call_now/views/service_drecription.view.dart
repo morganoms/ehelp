@@ -47,7 +47,7 @@ class _ServiceDescriptionViewState extends State<ServiceDescriptionView> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const HeaderBlack(
+            HeaderBlack(
               titleLable: 'Chamar Agora',
               iconBack: BackButtonWidget(),
             ),

@@ -25,7 +25,7 @@ class BankProfessionalView extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const HeaderBlack(
+            HeaderBlack(
               titleLable: 'Conta bancária',
               iconBack: BackButtonWidget(),
             ),

@@ -29,7 +29,7 @@ class ProfessionalPersonalDataView extends StatefulWidget {
 
 class _ProfessionalPersonalDataViewState
     extends State<ProfessionalPersonalDataView> {
-  late User _userAuthenticated;
+  late User? _userAuthenticated;
   final _formPersonalDataKey = GlobalKey<FormState>();
   late HomeClientViewModel _homeClientViewModel;
   late Map<String, dynamic> userFormScheme;
@@ -37,13 +37,23 @@ class _ProfessionalPersonalDataViewState
   @override
   void initState() {
     _homeClientViewModel = locator.get<HomeClientViewModel>();
-    _userAuthenticated =
-        locator.get<SessionController>().session!.userAuthenticated;
-    userFormScheme = {
-      'name': _userAuthenticated.name,
-      'documentNumber': _userAuthenticated.documentNumber,
-      'phone': _userAuthenticated.phone,
-    };
+    if (widget.isEditing) {
+      _userAuthenticated =
+          locator.get<SessionController>().session!.userAuthenticated;
+      userFormScheme = {
+        'name': _userAuthenticated!.name,
+        'documentNumber': _userAuthenticated!.documentNumber,
+        'phone': _userAuthenticated!.phone,
+      };
+    } else {
+      _userAuthenticated = null;
+      userFormScheme = {
+        'name': null,
+        'documentNumber': null,
+        'phone': null,
+      };
+    }
+
     super.initState();
   }
 
@@ -51,7 +61,7 @@ class _ProfessionalPersonalDataViewState
     if (_formPersonalDataKey.currentState!.validate()) {
       _formPersonalDataKey.currentState!.save();
       final bool hasUserUpdated = await _homeClientViewModel.editProfile(
-          _userAuthenticated.copyWith(
+          _userAuthenticated!.copyWith(
               name: userFormScheme['name'],
               documentNumber: userFormScheme['documentNumber'],
               phone: userFormScheme['phone']));
@@ -94,7 +104,7 @@ class _ProfessionalPersonalDataViewState
               titleLable: widget.isEditing
                   ? 'Dados pessoais'
                   : 'Cadastro de Profissional',
-              iconBack: const BackButtonWidget(),
+              iconBack: BackButtonWidget(),
               child: widget.isEditing
                   ? null
                   : Container(
@@ -123,7 +133,7 @@ class _ProfessionalPersonalDataViewState
                       heightImage: 150,
                       widthtImage: 150,
                       marginRight: false,
-                      path: _userAuthenticated.photoUrl,
+                      path: _userAuthenticated!.photoUrl,
                     )
                   else
                     Container(

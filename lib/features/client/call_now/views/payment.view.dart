@@ -25,7 +25,7 @@ class PaymentView extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const HeaderBlack(
+            HeaderBlack(
               titleLable: 'Chamar Agora',
               iconBack: BackButtonWidget(),
             ),

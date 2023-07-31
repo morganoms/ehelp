@@ -1,12 +1,14 @@
 import 'package:ehelp/core/http/http_core.dart';
 import 'package:ehelp/core/session/session.controller.dart';
+import 'package:ehelp/features/client/booking/models/service/booking_client.service.dart';
+import 'package:ehelp/features/client/booking/models/service/booking_client.service_impl.dart';
 import 'package:ehelp/features/client/home/model/service/home_client.service.dart';
 import 'package:ehelp/features/login/model/service/login_remote.service.dart';
 import 'package:ehelp/features/login/view_models/login.view_model.dart';
 import 'package:ehelp/features/professional/call_now/view_model/call_now_professional.view_model.dart';
 import 'package:get_it/get_it.dart';
 
-import '../features/client/booking/view_model/booking.view_model.dart';
+import '../features/client/booking/view_model/controllers/booking.view_model.dart';
 import '../features/client/call_now/view_model/call_now.view_model.dart';
 import '../features/client/call_now/view_model/service_description.view_Model.dart';
 import '../features/client/home/model/service/home_client_local.service.dart';
@@ -23,15 +25,19 @@ class EHelpDependencies {
     final LoginRemoteService loginService = LoginRemoteService(httpClient);
     final HomeClientService homeClientService =
         HomeClientLocalService(httpClient);
+    final BookingClientService bookingClientService =
+        BookingClientServiceImpl(httpClient);
+
     locator
       ..registerSingleton<SessionController>(SessionController())
       ..registerLazySingleton<LoginViewModel>(
           () => LoginViewModel(loginService))
       ..registerLazySingleton<HomeClientViewModel>(
           () => HomeClientViewModel(homeClientService))
-      ..registerSingleton<HomeAreaViewModel>(HomeAreaViewModel())
-      ..registerSingleton<HomeEditAreaViewModel>(HomeEditAreaViewModel())
-      ..registerSingleton<BookingViewModel>(BookingViewModel())
+      ..registerLazySingleton<HomeAreaViewModel>(HomeAreaViewModel.new)
+      ..registerLazySingleton<HomeEditAreaViewModel>(HomeEditAreaViewModel.new)
+      ..registerLazySingleton<BookingViewModel>(
+          () => BookingViewModel(bookingClientService))
       ..registerLazySingleton<ServiceDescriptionViewModel>(
           ServiceDescriptionViewModel.new)
       ..registerLazySingleton<HomeProfessionalViewModel>(

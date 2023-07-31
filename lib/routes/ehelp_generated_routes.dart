@@ -39,8 +39,10 @@ extension EhelpGeneratedRoutes on EhelpRoutes {
         EhelpRoutes.landing: (context, args) => const LandingView(),
         EhelpRoutes.login: (context, args) => const LoginView(),
         EhelpRoutes.homeClient: (context, args) => const HomeClientView(),
-        EhelpRoutes.clientBookingStep1: (context, args) => const Step1View(),
-        EhelpRoutes.clientBookingStep2: (context, args) => Step2View(),
+        EhelpRoutes.clientBookingStep1: (context, args) =>
+            Step1View(userId: args as int),
+        EhelpRoutes.clientBookingStep2: (context, args) =>
+            Step2View(userId: args as int),
         EhelpRoutes.clientBookingStep3: (context, args) => const Step3View(),
         EhelpRoutes.clientBookingConfirmation: (context, args) =>
             const ConfirmationView(),

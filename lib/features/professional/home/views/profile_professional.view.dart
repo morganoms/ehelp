@@ -59,7 +59,7 @@ class _ProfileProfessionalViewState extends State<ProfileProfessionalView> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const HeaderBlack(
+            HeaderBlack(
               titleLable: 'Meu perfil',
               iconBack: BackButtonWidget(),
             ),

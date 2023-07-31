@@ -43,7 +43,7 @@ class _BankingProfessionalViewState extends State<BankingProfessionalView> {
               titleLable: widget.isEditing
                   ? 'Dados bancários'
                   : 'Cadastro de Profissional',
-              iconBack: const BackButtonWidget(),
+              iconBack: BackButtonWidget(),
               child: widget.isEditing
                   ? null
                   : Container(

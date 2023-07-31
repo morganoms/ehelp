@@ -21,7 +21,7 @@ class _AdressesClientViewState extends State<AdressesClientView> {
       body: CustomScrollView(
         physics: const ClampingScrollPhysics(),
         slivers: [
-          const SliverToBoxAdapter(
+          SliverToBoxAdapter(
             child: HeaderBlack(
               titleLable: 'Endereços',
               iconBack: BackButtonWidget(),

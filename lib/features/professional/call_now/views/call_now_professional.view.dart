@@ -1,15 +1,14 @@
 import 'dart:async';
 
 import 'package:custom_timer/custom_timer.dart';
+import 'package:ehelp/core/locator.dart';
 import 'package:ehelp/features/client/call_now/views/components/card_detail_service.widget.dart';
 import 'package:ehelp/features/professional/call_now/views/components/finished_service_professional.widget.dart';
 import 'package:ehelp/features/professional/call_now/views/components/go_to_client.widget.dart';
 import 'package:ehelp/features/professional/call_now/views/components/service_prove_professional.widget.dart';
 import 'package:ehelp/features/professional/call_now/views/components/started_service_professional.widget.dart';
 import 'package:ehelp/features/professional/call_now/views/components/waiting_client.widget.dart';
-import 'package:ehelp/core/locator.dart';
 import 'package:ehelp/shared/colors/constants.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
@@ -17,7 +16,6 @@ import '../../../../routes/ehelp_routes.dart';
 import '../../../../shared/components/back_button.widget.dart';
 import '../../../../shared/components/default_dialog.widget.dart';
 import '../../../../shared/components/generic_button.widget.dart';
-
 import '../../../../shared/components/header_black.widget.dart';
 import '../../../../shared/fonts/styles.dart';
 import '../view_model/call_now_professional.view_model.dart';
@@ -196,7 +194,7 @@ class _CallNowProfessionalViewViewState extends State<CallNowProfessionalView>
           children: [
             HeaderBlack(
               titleLable: 'Chamar Agora',
-              iconBack: const BackButtonWidget(isCancelButton: true),
+              iconBack: BackButtonWidget(isCancelButton: true),
               child: Container(
                 width: double.maxFinite,
                 color: ColorConstants.blackSoft,
