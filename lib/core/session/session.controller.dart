@@ -1,8 +1,8 @@
+import 'package:ehelp/core/new_http/http_client.dart';
 import 'package:ehelp/core/session/session_core.service.dart';
 import 'package:ehelp/shared/entity/user/authenticate.entity.dart';
 import 'package:mobx/mobx.dart';
 
-import '../http/http_core.dart';
 part 'session.controller.g.dart';
 
 class SessionController = _SessionControllerBase with _$SessionController;
@@ -10,7 +10,8 @@ class SessionController = _SessionControllerBase with _$SessionController;
 abstract class _SessionControllerBase with Store {
   _SessionControllerBase();
 
-  final SessionCoreServise sessionServise = SessionCoreServise(HttpCore());
+  final SessionCoreServise sessionServise =
+      SessionCoreServise(HttpCoreClient());
 
   @observable
   Authenticate? session;
@@ -39,7 +40,6 @@ abstract class _SessionControllerBase with Store {
   }
 
   @action
-  Future<void> refreshSession() async {
-    await sessionServise.refreshToken(session?.refreshToken ?? '');
-  }
+  Future<String> refreshSession() =>
+      sessionServise.refreshToken(session?.refreshToken ?? '');
 }

@@ -19,16 +19,16 @@ class HomeClientEntity {
 }
 
 extension HomeClientDto on HomeClientEntity {
-  static HomeClientEntity fromJson(final Map<String, dynamic> json) {
+  static HomeClientEntity fromJson(final Map<String, dynamic>? json) {
     return HomeClientEntity(
       specialities: DtoValidation.dynamicToListObject(
-          json['specialities'], SpecialityDto.fromJson),
+          json?['specialities'], SpecialityDto.fromJson),
       lastestSearch: DtoValidation.dynamicToListObject(
-          json['latestSearch'], ServiceForClientDto.fromJson),
+          json?['latestSearch'], ServiceForClientDto.fromJson),
       serviceHistory: DtoValidation.dynamicToListObject(
-          json['serviceHistory'], ServiceForClientDto.fromJson),
+          json?['serviceHistory'], ServiceForClientDto.fromJson),
       bookedHistory: DtoValidation.dynamicToListObject(
-          json['bookedHistory'], ServiceForClientDto.fromJson),
+          json?['bookedHistory'], ServiceForClientDto.fromJson),
     );
   }
 }

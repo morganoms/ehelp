@@ -5,44 +5,44 @@ import 'package:ehelp/features/client/home/model/service/home_client.service.dar
 import 'package:ehelp/shared/entity/speciality.entity.dart';
 
 import '../../../../../core/dto_validations.dart';
-import '../../../../../core/http/http_core.dart';
-import '../../../../../core/http/http_core_response.dart';
 
+import '../../../../../core/new_http/http_client.dart';
+import '../../../../../core/new_http/models/client_response.dart';
 import '../../../../../shared/entity/user/user.dto.dart';
 import '../../../../../shared/entity/user/user.entity.dart';
 import '../entity/service_for_client.entity.dart';
 
 class HomeClientLocalService extends HomeClientService {
   HomeClientLocalService(this.client);
-  final HttpCore client;
+  final HttpCoreClient client;
 
   @override
   Future<HomeClientEntity> getHomeClient() async {
-    final HttpCoreResponse response = await client.get(
+    final ClientResponse response = await client.get(
       'customerDashboard/3',
     );
 
-    return HomeClientDto.fromJson(json.decode(response.body));
+    return HomeClientDto.fromJson(response.body);
   }
 
   @override
   Future<List<ServiceForClientEntity>> getProvidersBySpecialities(
       SpecialityEntity speciality) async {
-    final HttpCoreResponse response = await client.get(
+    final ClientResponse response = await client.get(
       'findUserSpecialtyDetail/${speciality.id}',
     );
 
     return DtoValidation.dynamicToListObject(
-        json.decode(response.body), ServiceForClientDto.fromJson);
+        response.body, ServiceForClientDto.fromJson);
   }
 
   @override
   Future<User> editProfile(final User newEditedUser) async {
-    final HttpCoreResponse response = await client.put(
+    final ClientResponse response = await client.put(
       'update',
       body: jsonEncode(newEditedUser.toJson()),
     );
 
-    return UserDto.fromJson(json.decode(response.body));
+    return UserDto.fromJson(response.body);
   }
 }

@@ -55,14 +55,6 @@ mixin _$SessionController on _SessionControllerBase, Store {
         .run(() => super.removeSessionFromDevice());
   }
 
-  late final _$refreshSessionAsyncAction =
-      AsyncAction('_SessionControllerBase.refreshSession', context: context);
-
-  @override
-  Future<void> refreshSession() {
-    return _$refreshSessionAsyncAction.run(() => super.refreshSession());
-  }
-
   late final _$_SessionControllerBaseActionController =
       ActionController(name: '_SessionControllerBase', context: context);
 
@@ -72,6 +64,17 @@ mixin _$SessionController on _SessionControllerBase, Store {
         name: '_SessionControllerBase.setSession');
     try {
       return super.setSession(newValue);
+    } finally {
+      _$_SessionControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  Future<String> refreshSession() {
+    final _$actionInfo = _$_SessionControllerBaseActionController.startAction(
+        name: '_SessionControllerBase.refreshSession');
+    try {
+      return super.refreshSession();
     } finally {
       _$_SessionControllerBaseActionController.endAction(_$actionInfo);
     }

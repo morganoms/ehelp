@@ -1,4 +1,3 @@
-import 'package:ehelp/core/http/http_core.dart';
 import 'package:ehelp/core/session/session.controller.dart';
 import 'package:ehelp/features/client/booking/models/service/booking_client.service.dart';
 import 'package:ehelp/features/client/booking/models/service/booking_client.service_impl.dart';
@@ -16,17 +15,18 @@ import '../features/client/home/view_model/controllers/home_client.view_model.da
 import '../features/professional/areas/view_model/home_area.view_model.dart';
 import '../features/professional/areas/view_model/home_edit_area.view_model.dart';
 import '../features/professional/home/view_model/home_professional.view_model.dart';
+import 'new_http/http_client.dart';
 
 final GetIt locator = GetIt.instance;
 
 class EHelpDependencies {
   void setup() {
-    final httpClient = HttpCore();
-    final LoginRemoteService loginService = LoginRemoteService(httpClient);
+    final httpCoreClient = HttpCoreClient();
+    final LoginRemoteService loginService = LoginRemoteService(httpCoreClient);
     final HomeClientService homeClientService =
-        HomeClientLocalService(httpClient);
+        HomeClientLocalService(httpCoreClient);
     final BookingClientService bookingClientService =
-        BookingClientServiceImpl(httpClient);
+        BookingClientServiceImpl(httpCoreClient);
 
     locator
       ..registerSingleton<SessionController>(SessionController())

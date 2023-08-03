@@ -1,7 +1,7 @@
+import 'package:ehelp/core/new_http/models/client_exception.dart';
 import 'package:mobx/mobx.dart';
 import 'package:multiple_result/multiple_result.dart';
 
-import '../../../../../core/http/http_core_error.dart';
 import '../../../../../shared/constants/default_area.dart';
 import '../../../../../shared/utils/mathod_handler.dart';
 import '../../../../professional/areas/models/working_hours.entity.dart';
@@ -98,7 +98,7 @@ abstract class _BookingViewModelBase with Store {
   @action
   Future<void> getWorkDays(final int providerId) async {
     step1State = BookingClientScreenStatus.loading();
-    final Result<List<int>, HttpCoreError> response =
+    final Result<List<int>, ClientException> response =
         await MethodHandler.errorState<List<int>>(
             () => service.getWorkDays(providerId));
 
@@ -111,7 +111,7 @@ abstract class _BookingViewModelBase with Store {
   @action
   Future<void> getWorkHours(final int providerId) async {
     step2State = BookingClientScreenStatus.loading();
-    final Result<List<int>, HttpCoreError> response =
+    final Result<List<int>, ClientException> response =
         await MethodHandler.errorState<List<int>>(
             () => service.getWorkHours(providerId, mainEntity.selectedDay!));
 

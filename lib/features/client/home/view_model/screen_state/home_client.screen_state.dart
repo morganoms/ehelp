@@ -1,5 +1,4 @@
-import 'package:ehelp/core/http/http_core_error.dart';
-
+import '../../../../../core/new_http/models/client_exception.dart';
 import '../../model/entity/home_client.entity.dart';
 
 class HomeClientScreenStatus {
@@ -7,7 +6,7 @@ class HomeClientScreenStatus {
 
   factory HomeClientScreenStatus.success(final HomeClientEntity data) =
       ScreenSuccess;
-  factory HomeClientScreenStatus.error(final HttpCoreError requestError) =
+  factory HomeClientScreenStatus.error(final ClientException requestError) =
       ScreenError;
   factory HomeClientScreenStatus.loading() = ScreenLoading;
 }
@@ -15,7 +14,7 @@ class HomeClientScreenStatus {
 class ScreenError extends HomeClientScreenStatus {
   ScreenError(this.requestError) : super._();
 
-  final HttpCoreError requestError;
+  final ClientException requestError;
 }
 
 class ScreenSuccess extends HomeClientScreenStatus {

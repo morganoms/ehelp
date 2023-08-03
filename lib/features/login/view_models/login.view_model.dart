@@ -1,4 +1,3 @@
-import 'package:ehelp/core/http/http_core_error.dart';
 import 'package:ehelp/core/locator.dart';
 import 'package:ehelp/core/session/session.controller.dart';
 
@@ -6,6 +5,7 @@ import 'package:ehelp/features/login/model/service/login.service.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 
+import '../../../core/new_http/models/client_exception.dart';
 import '../../../shared/entity/user/authenticate.entity.dart';
 import '../../../shared/models/screen_state.dart';
 import '../../../shared/models/user_type.dart';
@@ -42,7 +42,7 @@ abstract class _LoginViewModelBase with Store {
       await saveInfoOnDevice(authenticate);
       state = ScreenState.success;
       return authenticate.userAuthenticated.userTypeId == UserType.prestador;
-    } on HttpCoreError catch (e) {
+    } on ClientException catch (e) {
       state = ScreenState.error;
       debugPrint(e.message);
       return false;
