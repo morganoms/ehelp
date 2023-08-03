@@ -3,21 +3,19 @@ import 'package:ehelp/core/session/session.controller.dart';
 import 'package:ehelp/shared/components/generic_button.widget.dart';
 import 'package:flutter/material.dart';
 
-import '../../core/http/http_core_error.dart';
+import '../../core/new_http/models/client_exception.dart';
 import '../../routes/ehelp_routes.dart';
 
 class GenericError extends StatelessWidget {
   GenericError({required this.requestError, Key? key}) : super(key: key);
 
-  final HttpCoreError requestError;
+  final ClientException requestError;
   final SessionController _sessionController = locator.get<SessionController>();
 
   void onActionButtonClick(BuildContext context) {
-    if (requestError.actionType?.isLogin ?? false) {
-      _sessionController.removeSessionFromDevice().then((value) =>
-          Navigator.of(context)
-              .popUntil(ModalRoute.withName(EhelpRoutes.landing)));
-    }
+    _sessionController.removeSessionFromDevice().then((value) =>
+        Navigator.of(context)
+            .popUntil(ModalRoute.withName(EhelpRoutes.landing)));
   }
 
   @override

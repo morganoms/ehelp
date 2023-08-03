@@ -5,9 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:multiple_result/multiple_result.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
-
-import '../../../../../core/http/http_core_error.dart';
 import '../../../../../core/locator.dart';
+import '../../../../../core/new_http/models/client_exception.dart';
 import '../../../../../core/session/session.controller.dart';
 import '../../../../../shared/entity/speciality.entity.dart';
 import '../../../../../shared/entity/user/authenticate.entity.dart';
@@ -86,7 +85,7 @@ abstract class HomeClientViewModelBase with Store {
   @action
   Future<void> getHomeClient() async {
     state = HomeClientScreenStatus.loading();
-    final Result<HomeClientEntity, HttpCoreError> response =
+    final Result<HomeClientEntity, ClientException> response =
         await MethodHandler.errorState<HomeClientEntity>(service.getHomeClient);
 
     response.when(
@@ -121,7 +120,7 @@ abstract class HomeClientViewModelBase with Store {
   @action
   Future<void> getHomeSearch() async {
     listState = ScreenState.loading;
-    final Result<List<ServiceForClientEntity>, HttpCoreError> response =
+    final Result<List<ServiceForClientEntity>, ClientException> response =
         await MethodHandler.errorState<List<ServiceForClientEntity>>(
             () => service.getProvidersBySpecialities(serviceSelected!));
 
@@ -136,7 +135,7 @@ abstract class HomeClientViewModelBase with Store {
   Future<bool> editProfile(final User newUserEdited) async {
     listState = ScreenState.loading;
     bool hasEditdWorked = false;
-    final Result<User, HttpCoreError> response =
+    final Result<User, ClientException> response =
         await MethodHandler.errorState<User>(
             () => service.editProfile(newUserEdited));
     response.when(

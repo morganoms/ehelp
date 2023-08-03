@@ -1,17 +1,16 @@
 import 'dart:convert';
 
+import 'package:ehelp/core/new_http/models/client_response.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../shared/entity/user/authenticate.entity.dart';
-import '../http/http_core.dart';
-import '../http/http_core_error.dart';
-import '../http/http_core_response.dart';
+import '../new_http/http_client.dart';
 
 class SessionCoreServise {
   SessionCoreServise(this.httpClient);
 
-  final HttpCore httpClient;
+  final HttpCoreClient httpClient;
 
   Future<void> saveSession(final Authenticate session) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -45,23 +44,22 @@ class SessionCoreServise {
     return result;
   }
 
-  Future<void> refreshToken(final String refreshToken) async {
+  Future<String> refreshToken(final String refreshToken) async {
     try {
-      final HttpCoreResponse response = await httpClient.post(
+      final ClientResponse response = await httpClient.post(
         'refreshToken',
-        isRefreshRequest: true,
         body: jsonEncode(
           <String, dynamic>{'refresh_token': refreshToken},
         ),
       );
       debugPrint('Session was refreshed');
-      final Map<String, dynamic> responseDescoded = json.decode(response.body);
       final Authenticate? oldSession = await getSession();
       await saveSession(Authenticate(
           userAuthenticated: oldSession!.userAuthenticated,
-          token: responseDescoded['token'],
-          refreshToken: responseDescoded['refreshToken']));
-    } on HttpCoreError catch (_) {
+          token: response.body?['token'],
+          refreshToken: response.body?['refreshToken']));
+      return response.body?['token'];
+    } on HttpCoreClient catch (_) {
       rethrow;
     } on Exception catch (_) {
       rethrow;
