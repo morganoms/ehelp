@@ -56,7 +56,7 @@ class UserProfessionalProfileView extends StatelessWidget {
                   if (p0.first == '1') {
                     Navigator.of(context).pushNamed(
                         EhelpRoutes.clientBookingStep1,
-                        arguments: serviceForClientEntity.userId);
+                        arguments: serviceForClientEntity);
                   } else {
                     Navigator.of(context)
                         .pushNamed(EhelpRoutes.clientCallNowDescription);

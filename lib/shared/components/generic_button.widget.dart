@@ -40,29 +40,39 @@ class GenericButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-        onPressed: disabled ? null : onPressed,
-        style: ElevatedButton.styleFrom(
-          elevation: 5,
-          backgroundColor: getButtonColor(),
-          shadowColor: Colors.transparent.withOpacity(0),
-          shape: RoundedRectangleBorder(
-            side: BorderSide(
-              color: borderColor ?? Colors.transparent,
+    const double buttonHeight = 48;
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+      width: width ?? MediaQuery.of(context).size.width,
+      height: buttonHeight,
+      child: ElevatedButton(
+          onPressed: disabled ? null : onPressed,
+          style: ElevatedButton.styleFrom(
+            elevation: 5,
+            backgroundColor: getButtonColor(),
+            shadowColor: Colors.transparent.withOpacity(0),
+            shape: RoundedRectangleBorder(
+              side: BorderSide(
+                color: borderColor ?? Colors.transparent,
+              ),
+              borderRadius: BorderRadius.circular(18),
             ),
-            borderRadius: BorderRadius.circular(18),
           ),
-        ),
-        child: _buildButtonContent(context));
+          child: _buildButtonContent(context, buttonHeight)),
+    );
   }
 
-  Widget _buildButtonContent(final BuildContext context) {
+  Widget _buildButtonContent(
+      final BuildContext context, final double buttonHeight) {
     return AnimatedCrossFade(
       crossFadeState:
           loading ? CrossFadeState.showFirst : CrossFadeState.showSecond,
       duration: const Duration(milliseconds: 100),
       firstChild: Center(
         child: SizedBox(
+          height: buttonHeight,
+          width: buttonHeight,
           child: Lottie.asset('assets/animations/v-3.json', height: 50),
         ),
       ),

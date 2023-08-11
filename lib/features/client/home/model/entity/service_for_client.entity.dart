@@ -2,6 +2,7 @@
 import 'package:ehelp/features/client/booking/models/entity/booked_info/booked_info.entity.dart';
 import 'package:ehelp/features/client/home/model/entity/feedback.entity.dart';
 import 'package:ehelp/features/client/home/model/entity/provider_user.entity.dart';
+import 'package:ehelp/shared/entity/service_status.entity.dart';
 
 import '../../../../../core/dto_validations.dart';
 
@@ -18,6 +19,8 @@ class ServiceForClientEntity {
   final int servicesDoneAmount;
   final BookedInfoEntity? bookedInfo;
   final List<FeedbackEntity> feedback;
+  final DateTime? serviceDate;
+  final ServiceStatus? serviceStatus;
 
   ServiceForClientEntity(
       {required this.userId,
@@ -31,7 +34,9 @@ class ServiceForClientEntity {
       required this.minValue,
       required this.servicesDoneAmount,
       required this.feedback,
-      this.bookedInfo});
+      this.bookedInfo,
+      this.serviceDate,
+      this.serviceStatus});
 }
 
 extension ServiceForClientDto on ServiceForClientEntity {
@@ -40,6 +45,13 @@ extension ServiceForClientDto on ServiceForClientEntity {
         DtoValidation.dynamicToObject(json['user'], ProviderUserDto.fromJson);
 
     return ServiceForClientEntity(
+      serviceStatus: json['statusId'] != null
+          ? DtoValidation.dynamicToInt(json['statusId'])
+              .convertToServiceStatus()
+          : null,
+      serviceDate: json['serviceDate'] != null
+          ? DtoValidation.dynamicToDateTime(json['serviceDate'])
+          : null,
       userId: _userProvider.userId,
       rating: _userProvider.rating,
       countryId: _userProvider.countryId,

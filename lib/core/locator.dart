@@ -10,7 +10,7 @@ import 'package:get_it/get_it.dart';
 import '../features/client/booking/view_model/controllers/booking.view_model.dart';
 import '../features/client/call_now/view_model/call_now.view_model.dart';
 import '../features/client/call_now/view_model/service_description.view_Model.dart';
-import '../features/client/home/model/service/home_client_local.service.dart';
+import '../features/client/home/model/service/home_client_remote.service.dart';
 import '../features/client/home/view_model/controllers/home_client.view_model.dart';
 import '../features/professional/areas/view_model/home_area.view_model.dart';
 import '../features/professional/areas/view_model/home_edit_area.view_model.dart';

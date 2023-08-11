@@ -48,9 +48,7 @@ class SessionCoreServise {
     try {
       final ClientResponse response = await httpClient.post(
         'refreshToken',
-        body: jsonEncode(
-          <String, dynamic>{'refresh_token': refreshToken},
-        ),
+        body: <String, dynamic>{'refresh_token': refreshToken},
       );
       debugPrint('Session was refreshed');
       final Authenticate? oldSession = await getSession();

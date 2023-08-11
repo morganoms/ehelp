@@ -29,7 +29,7 @@ class ClientRequestData {
     return 'RequestData('
         'path: $path, uri: $uri, method: ${method?.name}, '
         'headers: ${jsonEncode(headers)}, query: ${jsonEncode(query)}, '
-        'body: ${jsonEncode(body)}, timeout: $timeout)';
+        'body: ${jsonEncode(body)})';
   }
 
   BaseRequest toRequest() {

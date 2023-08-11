@@ -40,10 +40,11 @@ extension EhelpGeneratedRoutes on EhelpRoutes {
         EhelpRoutes.login: (context, args) => const LoginView(),
         EhelpRoutes.homeClient: (context, args) => const HomeClientView(),
         EhelpRoutes.clientBookingStep1: (context, args) =>
-            Step1View(userId: args as int),
+            Step1View(userProvider: args as ServiceForClientEntity),
         EhelpRoutes.clientBookingStep2: (context, args) =>
-            Step2View(userId: args as int),
-        EhelpRoutes.clientBookingStep3: (context, args) => const Step3View(),
+            Step2View(userProvider: args as ServiceForClientEntity),
+        EhelpRoutes.clientBookingStep3: (context, args) =>
+            Step3View(userProvider: args as ServiceForClientEntity),
         EhelpRoutes.clientBookingConfirmation: (context, args) =>
             const ConfirmationView(),
         EhelpRoutes.clientCallNowPayment: (context, args) =>
