@@ -13,11 +13,12 @@ import '../../../../shared/components/back_button.widget.dart';
 import '../../../../shared/components/generic_error.widget.dart';
 import '../../../../shared/components/generic_loading.widget.dart';
 import '../../../../shared/components/header_black.widget.dart';
+import '../../home/model/entity/service_for_client.entity.dart';
 
 class Step1View extends StatefulWidget {
-  const Step1View({required this.userId, Key? key}) : super(key: key);
+  const Step1View({required this.userProvider, Key? key}) : super(key: key);
 
-  final int userId;
+  final ServiceForClientEntity userProvider;
 
   @override
   State<Step1View> createState() => _Step1ViewState();
@@ -41,7 +42,7 @@ class _Step1ViewState extends State<Step1View> {
     super.dispose();
   }
 
-  void loadData() => _viewModel.getWorkDays(widget.userId);
+  void loadData() => _viewModel.getWorkDays(widget.userProvider.userId);
 
   bool defineSelectableDays(DateTime day) {
     final List<int> workDays = (_viewModel.step1State as ScreenSuccess).data;
@@ -57,13 +58,13 @@ class _Step1ViewState extends State<Step1View> {
     return WillPopScope(onWillPop: () async {
       return true;
     }, child: Observer(builder: (_) {
-      if (_viewModel.hasError) {
+      if (_viewModel.step1State is ScreenError) {
         return GenericError(
             requestError: (_viewModel.step1State as ScreenError).requestError);
-      } else if (_viewModel.isSuccess) {
-        return _buildSuccess();
-      } else {
+      } else if (_viewModel.step1State is ScreenLoading) {
         return const GenericLoading();
+      } else {
+        return _buildSuccess();
       }
     }));
   }
@@ -79,7 +80,7 @@ class _Step1ViewState extends State<Step1View> {
             color: ColorConstants.greenDark,
             onPressed: () => Navigator.of(context).pushNamed(
                 EhelpRoutes.clientBookingStep2,
-                arguments: widget.userId),
+                arguments: widget.userProvider),
           );
         }),
       ),

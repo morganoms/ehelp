@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:ehelp/core/new_http/http_client.dart';
 import 'package:ehelp/features/login/model/service/login.service.dart';
 import 'package:ehelp/shared/entity/user/user.dto.dart';
@@ -18,12 +16,10 @@ class LoginRemoteService extends LoginService {
     try {
       final ClientResponse response = await client.post(
         'login',
-        body: jsonEncode(
-          <String, dynamic>{
-            'username': username,
-            'password': password,
-          },
-        ),
+        body: <String, dynamic>{
+          'username': username,
+          'password': password,
+        },
       );
 
       return Authenticate(

@@ -1,25 +1,65 @@
+import 'package:ehelp/features/client/booking/view_model/screen_state/book_service.screen_state.dart';
+import 'package:ehelp/features/client/home/view_model/controllers/home_client.view_model.dart';
 import 'package:ehelp/shared/fonts/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:lottie/lottie.dart';
 
+import '../../../../core/locator.dart';
+import '../../../../routes/ehelp_routes.dart';
 import '../../../../shared/colors/constants.dart';
 import '../../../../shared/components/generic_button.widget.dart';
+import '../../../../shared/components/generic_error.widget.dart';
+import '../../../../shared/components/generic_loading.widget.dart';
 import '../../../../shared/components/header_black.widget.dart';
+import '../view_model/controllers/booking.view_model.dart';
 
-class ConfirmationView extends StatelessWidget {
+class ConfirmationView extends StatefulWidget {
   const ConfirmationView({Key? key}) : super(key: key);
 
   @override
+  State<ConfirmationView> createState() => _ConfirmationViewState();
+}
+
+class _ConfirmationViewState extends State<ConfirmationView> {
+  late BookingViewModel _viewModel;
+
+  @override
+  void initState() {
+    _viewModel = locator.get<BookingViewModel>();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    return WillPopScope(onWillPop: () async {
+      return true;
+    }, child: Observer(builder: (_) {
+      if (_viewModel.step3State is BookError) {
+        return GenericError(
+          requestError: (_viewModel.step3State as BookError).requestError,
+        );
+      } else if (_viewModel.step3State is BookLoading) {
+        return const GenericLoading();
+      } else {
+        return _buildSuccess(context);
+      }
+    }));
+  }
+
+  Widget _buildSuccess(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(24),
         child: GenericButton(
-          label: 'Voltar ao início',
-          color: ColorConstants.greenDark,
-          onPressed: () => Navigator.of(context)
-              .popUntil(ModalRoute.withName('/home_client')),
-        ),
+            label: 'Voltar ao início',
+            color: ColorConstants.greenDark,
+            onPressed: () {
+              locator.resetLazySingleton<HomeClientViewModel>();
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  EhelpRoutes.homeClient,
+                  (final Route<dynamic> route) => false);
+            }),
       ),
       body: SingleChildScrollView(
         child: Column(

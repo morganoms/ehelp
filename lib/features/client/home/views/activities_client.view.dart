@@ -52,94 +52,94 @@ class _ActivitiesClientViewState extends State<ActivitiesClientView>
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          HeaderBlack(
-            titleLable: 'Atividades',
-            child: Observer(builder: (_) {
-              return Container(
-                color: ColorConstants.blackSoft,
-                padding: const EdgeInsets.only(
-                  bottom: 16,
-                ),
-                child: Container(
-                  padding: const EdgeInsets.symmetric(vertical: 4),
-                  margin: const EdgeInsets.symmetric(horizontal: 24),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
-                      color: ColorConstants.primaryColor),
-                  child: TabBar(
-                    labelColor: ColorConstants.blackSoft,
-                    unselectedLabelColor:
-                        Theme.of(context).primaryColor.withOpacity(0.5),
-                    indicatorColor: Colors.transparent,
-                    labelStyle: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
-                    unselectedLabelStyle: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w400,
-                    ),
-                    controller: _tabController,
-                    onTap: (value) => _viewModel.setTabActivityIndex(value),
-                    tabs: [
-                      Visibility(
-                        replacement: const Text(
-                          'Agendados',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        visible: _viewModel.tabActivityIndex == 0,
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 16, vertical: 8),
-                          decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withOpacity(0.5),
-                                  spreadRadius: -5,
-                                  blurRadius: 10,
-                                ),
-                              ],
-                              borderRadius: BorderRadius.circular(100),
-                              color: ColorConstants.greenStrong),
-                          child: const Text(
-                            'Agendados',
-                          ),
-                        ),
-                      ),
-                      Visibility(
-                        replacement: const Text(
-                          'Histórico',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        visible: _viewModel.tabActivityIndex == 1,
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 16, vertical: 8),
-                          decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withOpacity(0.5),
-                                  spreadRadius: -5,
-                                  blurRadius: 10,
-                                ),
-                              ],
-                              borderRadius: BorderRadius.circular(100),
-                              color: ColorConstants.greenStrong),
-                          child: const Text(
-                            'Histórico',
-                          ),
-                        ),
-                      ),
-                    ],
+    return Column(
+      children: [
+        HeaderBlack(
+          titleLable: 'Atividades',
+          child: Observer(builder: (_) {
+            return Container(
+              color: ColorConstants.blackSoft,
+              padding: const EdgeInsets.only(
+                bottom: 16,
+              ),
+              child: Container(
+                padding: const EdgeInsets.symmetric(vertical: 4),
+                margin: const EdgeInsets.symmetric(horizontal: 24),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(100),
+                    color: ColorConstants.primaryColor),
+                child: TabBar(
+                  labelColor: ColorConstants.blackSoft,
+                  unselectedLabelColor:
+                      Theme.of(context).primaryColor.withOpacity(0.5),
+                  indicatorColor: Colors.transparent,
+                  labelStyle: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
                   ),
+                  unselectedLabelStyle: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                  ),
+                  controller: _tabController,
+                  onTap: (value) => _viewModel.setTabActivityIndex(value),
+                  tabs: [
+                    Visibility(
+                      replacement: const Text(
+                        'Agendados',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      visible: _viewModel.tabActivityIndex == 0,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 8),
+                        decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.5),
+                                spreadRadius: -5,
+                                blurRadius: 10,
+                              ),
+                            ],
+                            borderRadius: BorderRadius.circular(100),
+                            color: ColorConstants.greenStrong),
+                        child: const Text(
+                          'Agendados',
+                        ),
+                      ),
+                    ),
+                    Visibility(
+                      replacement: const Text(
+                        'Histórico',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      visible: _viewModel.tabActivityIndex == 1,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 8),
+                        decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.5),
+                                spreadRadius: -5,
+                                blurRadius: 10,
+                              ),
+                            ],
+                            borderRadius: BorderRadius.circular(100),
+                            color: ColorConstants.greenStrong),
+                        child: const Text(
+                          'Histórico',
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              );
-            }),
-          ),
-          Column(
+              ),
+            );
+          }),
+        ),
+        Expanded(
+          child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               Observer(builder: (_) {
@@ -147,8 +147,8 @@ class _ActivitiesClientViewState extends State<ActivitiesClientView>
               }),
             ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

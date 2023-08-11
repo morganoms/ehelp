@@ -1,4 +1,6 @@
-import 'package:flutter/material.dart';
+import 'dart:developer';
+
+import 'package:flutter_credit_card/extension.dart';
 
 import '../../locator.dart';
 import '../../session/session.controller.dart';
@@ -19,12 +21,12 @@ extension MountRequestStep on ClientRequestData {
     final Map<String, String> headers = await _mountHeader(
         requestData: this,
         accessToken: accessToken,
-        showAcessToken: useAccessToken);
+        showAcessToken: useAccessToken && accessToken.isNotNullAndNotEmpty);
 
     this.uri = uri;
     this.headers = headers;
 
-    debugPrint('[http-client] mountedRequest => $this');
+    log('[http-client] mountedRequest => $this');
     return this;
   }
 

@@ -127,6 +127,22 @@ mixin _$BookingViewModel on _BookingViewModelBase, Store {
     });
   }
 
+  late final _$step3StateAtom =
+      Atom(name: '_BookingViewModelBase.step3State', context: context);
+
+  @override
+  BookServiceStatus get step3State {
+    _$step3StateAtom.reportRead();
+    return super.step3State;
+  }
+
+  @override
+  set step3State(BookServiceStatus value) {
+    _$step3StateAtom.reportWrite(value, super.step3State, () {
+      super.step3State = value;
+    });
+  }
+
   late final _$getWorkDaysAsyncAction =
       AsyncAction('_BookingViewModelBase.getWorkDays', context: context);
 
@@ -141,6 +157,14 @@ mixin _$BookingViewModel on _BookingViewModelBase, Store {
   @override
   Future<void> getWorkHours(int providerId) {
     return _$getWorkHoursAsyncAction.run(() => super.getWorkHours(providerId));
+  }
+
+  late final _$bookServiceAsyncAction =
+      AsyncAction('_BookingViewModelBase.bookService', context: context);
+
+  @override
+  Future<void> bookService(int providerId) {
+    return _$bookServiceAsyncAction.run(() => super.bookService(providerId));
   }
 
   late final _$_BookingViewModelBaseActionController =
@@ -199,6 +223,7 @@ activeStep: ${activeStep},
 workHoursList: ${workHoursList},
 step1State: ${step1State},
 step2State: ${step2State},
+step3State: ${step3State},
 isLoading: ${isLoading},
 hasError: ${hasError},
 isSuccess: ${isSuccess}

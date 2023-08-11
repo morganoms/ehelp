@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:ehelp/features/client/home/model/entity/home_client.entity.dart';
 import 'package:ehelp/features/client/home/model/service/home_client.service.dart';
 import 'package:ehelp/shared/entity/speciality.entity.dart';
@@ -33,14 +31,14 @@ class HomeClientLocalService extends HomeClientService {
     );
 
     return DtoValidation.dynamicToListObject(
-        response.body, ServiceForClientDto.fromJson);
+        response.body?['data'], ServiceForClientDto.fromJson);
   }
 
   @override
   Future<User> editProfile(final User newEditedUser) async {
     final ClientResponse response = await client.put(
       'update',
-      body: jsonEncode(newEditedUser.toJson()),
+      body: newEditedUser.toJson(),
     );
 
     return UserDto.fromJson(response.body);

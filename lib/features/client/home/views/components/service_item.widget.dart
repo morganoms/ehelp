@@ -2,10 +2,12 @@ import 'package:ehelp/routes/ehelp_routes.dart';
 import 'package:ehelp/shared/colors/constants.dart';
 import 'package:ehelp/shared/components/random_person_image.widget.dart';
 import 'package:ehelp/shared/components/start_score.widget.dart';
+import 'package:ehelp/shared/entity/service_status.entity.dart';
 import 'package:ehelp/shared/utils/money.formatter.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../shared/utils/custom_date.dart';
 import '../../model/entity/service_for_client.entity.dart';
 
 // ignore: must_be_immutable
@@ -133,17 +135,19 @@ class _ServiceItemWidgetState extends State<ServiceItemWidget>
                   ),
                 ),
               ),
-              const Flexible(
-                child: Text(
-                  'Confirmado',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.green,
+              if (_cardData.serviceStatus != null)
+                Flexible(
+                  flex: 2,
+                  child: Text(
+                    _cardData.serviceStatus!.convertToString(),
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.green,
+                    ),
+                    textAlign: TextAlign.right,
                   ),
-                  textAlign: TextAlign.right,
                 ),
-              ),
             ],
           ),
         ),
@@ -157,7 +161,7 @@ class _ServiceItemWidgetState extends State<ServiceItemWidget>
             children: [
               Flexible(
                 child: Text(
-                  'Data de Solicitação',
+                  'Agendado para',
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
@@ -167,7 +171,7 @@ class _ServiceItemWidgetState extends State<ServiceItemWidget>
               ),
               Flexible(
                 child: Text(
-                  '25/10/2022',
+                  CustomDate.format(_cardData.serviceDate),
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,

@@ -12,12 +12,13 @@ import '../../../../shared/components/generic_error.widget.dart';
 import '../../../../shared/components/generic_loading.widget.dart';
 import '../../../../shared/components/header_black.widget.dart';
 import '../../../../shared/components/stepper.widget.dart';
+import '../../home/model/entity/service_for_client.entity.dart';
 import '../view_model/controllers/booking.view_model.dart';
 
 class Step2View extends StatefulWidget {
-  const Step2View({required this.userId, Key? key}) : super(key: key);
+  const Step2View({required this.userProvider, Key? key}) : super(key: key);
 
-  final int userId;
+  final ServiceForClientEntity userProvider;
 
   @override
   State<Step2View> createState() => _Step2ViewState();
@@ -30,11 +31,12 @@ class _Step2ViewState extends State<Step2View> {
   void initState() {
     _viewModel = locator.get<BookingViewModel>();
     _viewModel.setactiveStep(BookingSteps.step2);
+
     WidgetsBinding.instance.addPostFrameCallback((final _) async => loadData());
     super.initState();
   }
 
-  void loadData() => _viewModel.getWorkHours(widget.userId);
+  void loadData() => _viewModel.getWorkHours(widget.userProvider.userId);
 
   List<WheelChoice> getChoices(final List<int> bookedHours) {
     final List<WheelChoice> hourList = [];
@@ -45,6 +47,11 @@ class _Step2ViewState extends State<Step2View> {
         );
       }
     }
+    final int middleItem = hourList.length ~/ 2;
+    _viewModel.setMainEntity(
+      null,
+      hourList[middleItem].value,
+    );
     return hourList;
   }
 
@@ -54,13 +61,13 @@ class _Step2ViewState extends State<Step2View> {
       _viewModel.setactiveStep(BookingSteps.step1);
       return true;
     }, child: Observer(builder: (_) {
-      if (_viewModel.hasError) {
+      if (_viewModel.step2State is ScreenError) {
         return GenericError(
             requestError: (_viewModel.step2State as ScreenError).requestError);
-      } else if (_viewModel.isSuccess) {
-        return _buildSuccess((_viewModel.step2State as ScreenSuccess).data);
-      } else {
+      } else if (_viewModel.step2State is ScreenLoading) {
         return const GenericLoading();
+      } else {
+        return _buildSuccess((_viewModel.step2State as ScreenSuccess).data);
       }
     }));
   }
@@ -72,8 +79,9 @@ class _Step2ViewState extends State<Step2View> {
         child: GenericButton(
           color: ColorConstants.greenDark,
           label: 'Continuar',
-          onPressed: () =>
-              Navigator.of(context).pushNamed(EhelpRoutes.clientBookingStep3),
+          onPressed: () => Navigator.of(context).pushNamed(
+              EhelpRoutes.clientBookingStep3,
+              arguments: widget.userProvider),
         ),
       ),
       body: Column(

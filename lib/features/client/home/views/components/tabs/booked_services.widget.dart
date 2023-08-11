@@ -11,9 +11,9 @@ class BookedServicesWidegt extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: SingleChildScrollView(
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Column(
           children: [
             ...screenData.map(

@@ -34,27 +34,19 @@ class _HomeClientViewState extends State<HomeClientView> {
   Future<void> loadData() async => _viewModel.getHomeClient();
 
   @override
-  void dispose() {
-    locator.resetLazySingleton<HomeClientViewModel>();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return WillPopScope(onWillPop: () async {
       return true;
     }, child: Observer(builder: (_) {
-      return Scaffold(
-          body: AnimatedSwitcher(
-        duration: const Duration(milliseconds: 300),
-        child: _viewModel.isLoading
-            ? const GenericLoading()
-            : _viewModel.isSuccess
-                ? _buildSuccess((_viewModel.state as ScreenSuccess).data)
-                : GenericError(
-                    requestError:
-                        (_viewModel.state as ScreenError).requestError),
-      ));
+      if (_viewModel.isLoading) {
+        return const GenericLoading();
+      } else if (_viewModel.hasError) {
+        return GenericError(
+            requestError: (_viewModel.state as ScreenError).requestError,
+            onActionButtonClick: loadData);
+      } else {
+        return _buildSuccess((_viewModel.state as ScreenSuccess).data);
+      }
     }));
   }
 
