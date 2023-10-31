@@ -34,7 +34,8 @@ class _Step3ViewState extends State<Step3View> {
   }
 
   Future<void> onBook() async {
-    await _viewModel.bookService(widget.userProvider.userId);
+    await _viewModel.bookService(
+        widget.userProvider.userId, widget.userProvider.specialtyId);
     await Navigator.of(context)
         .pushNamed(EhelpRoutes.clientBookingConfirmation);
   }

@@ -1,10 +1,11 @@
+import 'package:ehelp/features/client/home/views/address/address_client_form.view.dart';
 import 'package:ehelp/features/login/views/landing.view.dart';
 import 'package:ehelp/features/login/views/login.view.dart';
 import 'package:ehelp/features/professional/areas/views/home_areas.view.dart';
 import 'package:ehelp/features/professional/areas/views/home_edit_area.view.dart';
 import 'package:ehelp/features/professional/call_now/views/call_now_professional.view.dart';
 import 'package:ehelp/features/professional/home/views/bank_professional.view.dart';
-import 'package:ehelp/features/professional/sign_in/views/adress_professional.view.dart';
+import 'package:ehelp/features/professional/sign_in/views/address_professional.view.dart';
 import 'package:ehelp/features/professional/sign_in/views/banking_professional.view.dart';
 import 'package:ehelp/routes/ehelp_routes.dart';
 import 'package:flutter/material.dart';
@@ -16,9 +17,10 @@ import '../features/client/booking/views/step3.view.dart';
 import '../features/client/call_now/views/call_now.view.dart';
 import '../features/client/call_now/views/payment.view.dart';
 import '../features/client/call_now/views/service_drecription.view.dart';
+
 import '../features/client/home/model/entity/service_for_client.entity.dart';
 import '../features/client/home/views/account_client.view.dart';
-import '../features/client/home/views/adresses_client.view.dart';
+import '../features/client/home/views/address/adresses_client.view.dart';
 import '../features/client/home/views/credit_card_client.view.dart';
 import '../features/client/home/views/home_client.view.dart';
 import '../features/client/home/views/user_professional_profile.view.dart';
@@ -54,7 +56,7 @@ extension EhelpGeneratedRoutes on EhelpRoutes {
         EhelpRoutes.personalData: (context, args) =>
             ProfessionalPersonalDataView(isEditing: args as bool),
         EhelpRoutes.addressProfessional: (context, args) =>
-            AdressProfessionalView(isEditing: args as bool),
+            AdressProfessionalView(adressClient: args as Map<String, dynamic>),
         EhelpRoutes.bankingProfessional: (context, args) =>
             BankingProfessionalView(isEditing: args as bool),
         EhelpRoutes.homeArea: (context, args) =>
@@ -85,6 +87,8 @@ extension EhelpGeneratedRoutes on EhelpRoutes {
         EhelpRoutes.callNowProfessional: (context, args) =>
             const CallNowProfessionalView(),
         EhelpRoutes.clientProfile: (context, args) => AccaountView(),
+        EhelpRoutes.addressClient: (context, args) =>
+            AdressClientFormView(adressClient: args as Map<String, dynamic>)
       };
 
   static Route<dynamic>? generateRoute(RouteSettings settings) {

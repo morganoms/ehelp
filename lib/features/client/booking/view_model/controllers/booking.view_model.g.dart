@@ -163,8 +163,9 @@ mixin _$BookingViewModel on _BookingViewModelBase, Store {
       AsyncAction('_BookingViewModelBase.bookService', context: context);
 
   @override
-  Future<void> bookService(int providerId) {
-    return _$bookServiceAsyncAction.run(() => super.bookService(providerId));
+  Future<void> bookService(int providerId, int specialtyId) {
+    return _$bookServiceAsyncAction
+        .run(() => super.bookService(providerId, specialtyId));
   }
 
   late final _$_BookingViewModelBaseActionController =

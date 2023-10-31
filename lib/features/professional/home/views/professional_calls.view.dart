@@ -4,10 +4,13 @@ import 'package:ehelp/shared/components/header_black.widget.dart';
 import 'package:ehelp/shared/components/person_picture.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../../../core/locator.dart';
+import '../../../../core/session/session.controller.dart';
 import '../../../../shared/colors/constants.dart';
 import '../../../../shared/components/default_dialog.widget.dart';
+import '../../../../shared/entity/user/user.entity.dart';
 import '../../../../shared/fonts/styles.dart';
 import '../view_model/home_professional.view_model.dart';
 import 'components/service_item_call.widget.dart';
@@ -21,9 +24,11 @@ class ProfessionalCallsView extends StatefulWidget {
 
 class _ProfessionalCallsViewState extends State<ProfessionalCallsView> {
   late HomeProfessionalViewModel _viewModel;
+  late User _user;
 
   @override
   void initState() {
+    _user = locator.get<SessionController>().session!.userAuthenticated;
     _viewModel = locator.get<HomeProfessionalViewModel>();
     super.initState();
   }
@@ -69,17 +74,18 @@ class _ProfessionalCallsViewState extends State<ProfessionalCallsView> {
                               ? ColorConstants.greenDark
                               : Colors.white),
                       child: IconButton(
-                          icon: Icon(
-                            _viewModel.isAvaliableNow
-                                ? Icons.link_rounded
-                                : Icons.link_off_rounded,
-                            color: _viewModel.isAvaliableNow
-                                ? Colors.white
-                                : Colors.black,
-                          ),
+                          icon: _viewModel.loadingAvaliable
+                              ? Lottie.asset('assets/animations/v-3-black.json')
+                              : Icon(
+                                  _viewModel.isAvaliableNow
+                                      ? Icons.link_rounded
+                                      : Icons.link_off_rounded,
+                                  color: _viewModel.isAvaliableNow
+                                      ? Colors.white
+                                      : Colors.black,
+                                ),
                           onPressed: () {
-                            _viewModel
-                                .setAvaliableNow(!_viewModel.isAvaliableNow);
+                            _viewModel.setAvaliableNow(_user.id);
                             Future.delayed(const Duration(seconds: 2))
                                 .then((value) {
                               if (_viewModel.showCallNow) {

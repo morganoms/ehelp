@@ -1,5 +1,5 @@
 import 'package:ehelp/features/client/home/model/entity/home_client.entity.dart';
-import 'package:ehelp/features/client/home/model/service/home_client.service.dart';
+
 import 'package:ehelp/shared/models/screen_state.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
@@ -13,6 +13,7 @@ import '../../../../../shared/entity/user/authenticate.entity.dart';
 import '../../../../../shared/entity/user/user.entity.dart';
 import '../../../../../shared/utils/mathod_handler.dart';
 import '../../model/entity/service_for_client.entity.dart';
+import '../../model/service/home_client/home_client.service.dart';
 import '../screen_state/home_client.screen_state.dart';
 part 'home_client.view_model.g.dart';
 

@@ -10,6 +10,7 @@ class EhelpRoutes {
   static const clientBookingStep1 = '/booking/step1';
   static const clientBookingStep2 = '/booking/step2';
   static const clientBookingStep3 = '/booking/step3';
+  static const addressClient = '/client/address';
   static const clientBookingConfirmation = '/booking/confirmation';
   static const clientCallNowPayment = '/call_now/payment';
   static const clientCallNowCalling = '/call_now/calling';

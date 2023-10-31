@@ -90,15 +90,15 @@ class _BankingProfessionalViewState extends State<BankingProfessionalView> {
                         const SizedBox(
                           height: 16,
                         ),
-                        InputDropdown(
-                            value: widget.isEditing ? 'Conta Corrente' : null,
-                            items: const [
-                              'Conta Corrente',
-                              'Conta Salário',
-                              'Conta Poupança'
-                            ],
-                            hintText: 'Tipo de Conta',
-                            onChanged: (final _) {})
+                        // InputDropdown(
+                        //     value: widget.isEditing ? 'Conta Corrente' : null,
+                        //     items: const [
+                        //       'Conta Corrente',
+                        //       'Conta Salário',
+                        //       'Conta Poupança'
+                        //     ],
+                        //     hintText: 'Tipo de Conta',
+                        //     onChanged: (final _) {})
                       ],
                     ),
                   ),

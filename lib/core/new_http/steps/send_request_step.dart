@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart';
 
@@ -24,7 +26,23 @@ extension SendRequestStep on ClientRequestData {
   }
 
   Future<Response> _sendRequest(Client httpClient) async {
-    final StreamedResponse response = await httpClient.send(toRequest());
+    StreamedResponse response = StreamedResponse(
+        Stream.value(
+          List<int>.from(List.filled(1000000, 1)),
+        ),
+        200);
+    await HttpOverrides.runWithHttpOverrides(() async {
+      response = await httpClient.send(toRequest());
+    }, IgnoreCertificateErrorOverrides());
     return Response.fromStream(response);
+  }
+}
+
+class IgnoreCertificateErrorOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
   }
 }
