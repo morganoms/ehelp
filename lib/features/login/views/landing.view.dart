@@ -1,6 +1,10 @@
+import 'dart:convert';
+
 import 'package:ehelp/routes/ehelp_routes.dart';
 import 'package:ehelp/shared/colors/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 import '../../../shared/components/generic_button.widget.dart';
@@ -75,5 +79,29 @@ class LandingView extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  teste() async {
+    Map scope = {
+      'username': 'contratante@ehelpresidencial.com',
+      'password': '123456'
+    };
+
+    var body = json.encode(scope);
+
+    var request = Request(
+      'GET',
+      Uri.parse('https://api.ehelpresidencial.com/api/v1/auth/login'),
+    )
+      ..headers.addAll({"Content-Type": "application/json"})
+      ..body = body;
+
+    final response = await http.Client().send(request as http.BaseRequest);
+
+    // final response = await http.Client().send(http.BaseRequest(
+
+    //     body: body,
+    //     headers: {"Content-Type": "application/json"});
+    debugPrint(response.statusCode.toString());
   }
 }
