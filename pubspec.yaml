@@ -39,6 +39,7 @@ dependencies:
   syncfusion_flutter_sliders: ^20.4.50
   carousel_slider: ^4.2.1
   transparent_image: ^2.0.0
+  socket_io_client: ^2.0.3+1
   wheel_chooser: ^1.1.2
 
 dev_dependencies:
@@ -62,6 +63,7 @@ flutter:
     - assets/images/
     - assets/animations/
     - assets/fixtures/
+    - assets/ca/
 
 
   fonts:

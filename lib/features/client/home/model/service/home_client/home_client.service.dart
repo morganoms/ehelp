@@ -2,9 +2,9 @@
 
 import 'package:ehelp/shared/entity/speciality.entity.dart';
 
-import '../../../../../shared/entity/user/user.entity.dart';
-import '../entity/home_client.entity.dart';
-import '../entity/service_for_client.entity.dart';
+import '../../../../../../shared/entity/user/user.entity.dart';
+import '../../entity/home_client.entity.dart';
+import '../../entity/service_for_client.entity.dart';
 
 abstract class HomeClientService {
   Future<HomeClientEntity> getHomeClient();

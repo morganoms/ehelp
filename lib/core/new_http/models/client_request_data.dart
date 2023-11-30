@@ -38,6 +38,6 @@ class ClientRequestData {
       uri ?? Uri.parse(path ?? ''),
     )
       ..headers.addAll(headers ?? {})
-      ..body = jsonEncode(body);
+      ..body = jsonEncode(body ?? {});
   }
 }

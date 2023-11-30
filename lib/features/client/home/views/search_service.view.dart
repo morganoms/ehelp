@@ -1,3 +1,5 @@
+// ignore_for_file: cascade_invocations
+
 import 'package:ehelp/core/session/session.controller.dart';
 import 'package:ehelp/shared/components/dropdown_search.widget.dart';
 import 'package:ehelp/shared/components/header_black.widget.dart';
@@ -9,10 +11,14 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:lottie/lottie.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
+import 'package:socket_io_client/socket_io_client.dart' as IO;
+
 import '../../../../core/locator.dart';
 import '../../../../shared/colors/constants.dart';
+import '../../../../shared/components/empty.widget.dart';
 import '../../../../shared/components/person_picture.widget.dart';
 import '../../../../shared/entity/user/user.entity.dart';
+import '../../../professional/home/views/components/service_item_call.widget.dart';
 import '../model/entity/home_client.entity.dart';
 import '../view_model/controllers/home_client.view_model.dart';
 import 'components/service_item.widget.dart';
@@ -32,6 +38,7 @@ class _SearchServiceViewState extends State<SearchServiceView> {
   late SessionController _sessionController;
   late HomeClientEntity _screenData;
   late User _user;
+  late IO.Socket socket;
 
   @override
   void initState() {
@@ -39,7 +46,25 @@ class _SearchServiceViewState extends State<SearchServiceView> {
     _sessionController = locator.get<SessionController>();
     _controller = locator.get<HomeClientViewModel>();
     _user = _sessionController.session!.userAuthenticated;
+    initSocket();
     super.initState();
+  }
+
+  void initSocket() {
+    print('Connecting...');
+    socket = IO.io('ws://websocket.ehelpresidencial.com', <String, dynamic>{
+      'autoConnect': true,
+      'transports': ['websocket'],
+    });
+
+    socket.onConnect((_) {
+      print('Connection established');
+      socket.emit('getServiceStatus', '2');
+    });
+    socket.on('serviceStatus', (data) => print(data));
+    socket.onConnectError((err) => print(err));
+    socket.onDisconnect((_) => print('Connection Disconnection'));
+    socket.onError((err) => print(err));
   }
 
   final TextEditingController textEditingController = TextEditingController();
@@ -261,23 +286,17 @@ class _SearchServiceViewState extends State<SearchServiceView> {
             return _controller.listState == ScreenState.idle
                 ? Visibility(
                     visible: _controller.listProvidersSelected.isNotEmpty,
-                    replacement: Column(
-                      children: [
-                        Image.asset(
-                          'assets/images/pasta-vazia.png',
-                          height: MediaQuery.of(context).size.height / 5,
-                        ),
-                        const Text(
-                          'Nenhum prestador foi encontrado.',
-                          style: TextStyle(fontSize: 16),
-                        ),
-                      ],
-                    ),
+                    replacement: const EmptyWidget(
+                        subtitle: 'Nenhum prestador foi encontrado.'),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 24),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
+                          ServiceItemCallWidget(),
+                          SizedBox(
+                            height: 24,
+                          ),
                           Visibility(
                             visible: _controller.serviceSelected == null,
                             replacement: Container(

@@ -203,7 +203,7 @@ class _ServiceItemWidgetState extends State<ServiceItemWidget>
               ),
               Flexible(
                 child: Text(
-                  '09 : 30',
+                  CustomDate.timeFormat(_cardData.serviceTime).toString(),
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,

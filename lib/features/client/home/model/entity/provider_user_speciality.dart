@@ -6,9 +6,11 @@ class ProviderUserSpeciality {
     required this.descriptionPortuguese,
     required this.descriptionEnglish,
     required this.descriptionSpanish,
+    required this.specialtyId,
   });
 
   final int minValue;
+  final int specialtyId;
   final String descriptionPortuguese;
   final String descriptionEnglish;
   final String descriptionSpanish;
@@ -38,6 +40,7 @@ extension ProviderUserSpecialityDto on ProviderUserSpeciality {
       descriptionEnglish: DtoValidation.dynamicToString(
           json['specialty']['descriptionEnglish']),
       minValue: DtoValidation.dynamicToInt(json['minValue']),
+      specialtyId: DtoValidation.dynamicToInt(json['specialtyId']),
     );
   }
 }

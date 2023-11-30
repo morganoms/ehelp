@@ -13,4 +13,7 @@ class CustomDate {
 
   static String formatToDayMonth(final DateTime? date) =>
       date != null ? DateFormat.Md('pt_BR').format(date) : '';
+
+  static String? timeFormat(final int? time) =>
+      time != null ? '$time:00' : null;
 }

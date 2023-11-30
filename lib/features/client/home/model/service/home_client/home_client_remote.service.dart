@@ -1,14 +1,13 @@
 import 'package:ehelp/features/client/home/model/entity/home_client.entity.dart';
-import 'package:ehelp/features/client/home/model/service/home_client.service.dart';
 import 'package:ehelp/shared/entity/speciality.entity.dart';
 
-import '../../../../../core/dto_validations.dart';
-
-import '../../../../../core/new_http/http_client.dart';
-import '../../../../../core/new_http/models/client_response.dart';
-import '../../../../../shared/entity/user/user.dto.dart';
-import '../../../../../shared/entity/user/user.entity.dart';
-import '../entity/service_for_client.entity.dart';
+import '../../../../../../core/dto_validations.dart';
+import '../../../../../../core/new_http/http_client.dart';
+import '../../../../../../core/new_http/models/client_response.dart';
+import '../../../../../../shared/entity/user/user.dto.dart';
+import '../../../../../../shared/entity/user/user.entity.dart';
+import '../../entity/service_for_client.entity.dart';
+import 'home_client.service.dart';
 
 class HomeClientLocalService extends HomeClientService {
   HomeClientLocalService(this.client);

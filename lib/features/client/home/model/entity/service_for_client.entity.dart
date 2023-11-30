@@ -16,10 +16,12 @@ class ServiceForClientEntity {
   final String descriptionSpanish;
   final String descriptionEnglish;
   final int minValue;
+  final int specialtyId;
   final int servicesDoneAmount;
   final BookedInfoEntity? bookedInfo;
   final List<FeedbackEntity> feedback;
   final DateTime? serviceDate;
+  final int? serviceTime;
   final ServiceStatus? serviceStatus;
 
   ServiceForClientEntity(
@@ -34,6 +36,8 @@ class ServiceForClientEntity {
       required this.minValue,
       required this.servicesDoneAmount,
       required this.feedback,
+      required this.specialtyId,
+      this.serviceTime,
       this.bookedInfo,
       this.serviceDate,
       this.serviceStatus});
@@ -41,8 +45,9 @@ class ServiceForClientEntity {
 
 extension ServiceForClientDto on ServiceForClientEntity {
   static ServiceForClientEntity fromJson(final Map<String, dynamic> json) {
+    final key = json['userProvider'] ?? (json['user'] ?? json);
     final ProviderUser _userProvider =
-        DtoValidation.dynamicToObject(json['user'], ProviderUserDto.fromJson);
+        DtoValidation.dynamicToObject(key, ProviderUserDto.fromJson);
 
     return ServiceForClientEntity(
       serviceStatus: json['statusId'] != null
@@ -52,6 +57,7 @@ extension ServiceForClientDto on ServiceForClientEntity {
       serviceDate: json['serviceDate'] != null
           ? DtoValidation.dynamicToDateTime(json['serviceDate'])
           : null,
+      serviceTime: DtoValidation.dynamicToInt(json['serviceTime']),
       userId: _userProvider.userId,
       rating: _userProvider.rating,
       countryId: _userProvider.countryId,
@@ -62,6 +68,7 @@ extension ServiceForClientDto on ServiceForClientEntity {
       descriptionSpanish: _userProvider.userSpecialty[0].descriptionSpanish,
       descriptionEnglish: _userProvider.userSpecialty[0].descriptionEnglish,
       minValue: _userProvider.userSpecialty[0].minValue,
+      specialtyId: _userProvider.userSpecialty[0].specialtyId,
       servicesDoneAmount: _userProvider.servicesDoneAmount,
       feedback: DtoValidation.dynamicToListObject(
           json['ranting'], FeedbackDto.fromJson),

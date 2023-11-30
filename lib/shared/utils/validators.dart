@@ -10,8 +10,8 @@ class Validators {
     return null;
   }
 
-  static String? emptyValidate(final String? value) {
-    if (value == null || value.isEmpty) {
+  static String? emptyValidate(final dynamic value) {
+    if (value == null || value.toString().isEmpty) {
       return 'Este campo é obrigatório!';
     }
     return null;

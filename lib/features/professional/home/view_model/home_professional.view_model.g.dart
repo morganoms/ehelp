@@ -8,9 +8,9 @@ part of 'home_professional.view_model.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
-mixin _$HomeProfessionalViewModel on _HomeProfessionalViewModelBase, Store {
+mixin _$HomeProfessionalViewModel on HomeProfessionalViewModelBase, Store {
   late final _$bottomBarIndexAtom = Atom(
-      name: '_HomeProfessionalViewModelBase.bottomBarIndex', context: context);
+      name: 'HomeProfessionalViewModelBase.bottomBarIndex', context: context);
 
   @override
   int get bottomBarIndex {
@@ -26,8 +26,7 @@ mixin _$HomeProfessionalViewModel on _HomeProfessionalViewModelBase, Store {
   }
 
   late final _$tabActivityIndexAtom = Atom(
-      name: '_HomeProfessionalViewModelBase.tabActivityIndex',
-      context: context);
+      name: 'HomeProfessionalViewModelBase.tabActivityIndex', context: context);
 
   @override
   int get tabActivityIndex {
@@ -43,7 +42,7 @@ mixin _$HomeProfessionalViewModel on _HomeProfessionalViewModelBase, Store {
   }
 
   late final _$serviceSelectedAtom = Atom(
-      name: '_HomeProfessionalViewModelBase.serviceSelected', context: context);
+      name: 'HomeProfessionalViewModelBase.serviceSelected', context: context);
 
   @override
   String get serviceSelected {
@@ -59,7 +58,7 @@ mixin _$HomeProfessionalViewModel on _HomeProfessionalViewModelBase, Store {
   }
 
   late final _$isAvaliableNowAtom = Atom(
-      name: '_HomeProfessionalViewModelBase.isAvaliableNow', context: context);
+      name: 'HomeProfessionalViewModelBase.isAvaliableNow', context: context);
 
   @override
   bool get isAvaliableNow {
@@ -74,8 +73,8 @@ mixin _$HomeProfessionalViewModel on _HomeProfessionalViewModelBase, Store {
     });
   }
 
-  late final _$showCallNowAtom = Atom(
-      name: '_HomeProfessionalViewModelBase.showCallNow', context: context);
+  late final _$showCallNowAtom =
+      Atom(name: 'HomeProfessionalViewModelBase.showCallNow', context: context);
 
   @override
   bool get showCallNow {
@@ -90,8 +89,34 @@ mixin _$HomeProfessionalViewModel on _HomeProfessionalViewModelBase, Store {
     });
   }
 
+  late final _$loadingAvaliableAtom = Atom(
+      name: 'HomeProfessionalViewModelBase.loadingAvaliable', context: context);
+
+  @override
+  bool get loadingAvaliable {
+    _$loadingAvaliableAtom.reportRead();
+    return super.loadingAvaliable;
+  }
+
+  @override
+  set loadingAvaliable(bool value) {
+    _$loadingAvaliableAtom.reportWrite(value, super.loadingAvaliable, () {
+      super.loadingAvaliable = value;
+    });
+  }
+
+  late final _$setAvaliableNowAsyncAction = AsyncAction(
+      'HomeProfessionalViewModelBase.setAvaliableNow',
+      context: context);
+
+  @override
+  Future<bool> setAvaliableNow(int userId) {
+    return _$setAvaliableNowAsyncAction
+        .run(() => super.setAvaliableNow(userId));
+  }
+
   late final _$onClickBottomBarAsyncAction = AsyncAction(
-      '_HomeProfessionalViewModelBase.onClickBottomBar',
+      'HomeProfessionalViewModelBase.onClickBottomBar',
       context: context);
 
   @override
@@ -100,63 +125,50 @@ mixin _$HomeProfessionalViewModel on _HomeProfessionalViewModelBase, Store {
         .run(() => super.onClickBottomBar(newIndex));
   }
 
-  late final _$_HomeProfessionalViewModelBaseActionController =
-      ActionController(
-          name: '_HomeProfessionalViewModelBase', context: context);
-
-  @override
-  bool setAvaliableNow(bool newValue) {
-    final _$actionInfo = _$_HomeProfessionalViewModelBaseActionController
-        .startAction(name: '_HomeProfessionalViewModelBase.setAvaliableNow');
-    try {
-      return super.setAvaliableNow(newValue);
-    } finally {
-      _$_HomeProfessionalViewModelBaseActionController.endAction(_$actionInfo);
-    }
-  }
+  late final _$HomeProfessionalViewModelBaseActionController =
+      ActionController(name: 'HomeProfessionalViewModelBase', context: context);
 
   @override
   int setbottomBarIndex(int newValue) {
-    final _$actionInfo = _$_HomeProfessionalViewModelBaseActionController
-        .startAction(name: '_HomeProfessionalViewModelBase.setbottomBarIndex');
+    final _$actionInfo = _$HomeProfessionalViewModelBaseActionController
+        .startAction(name: 'HomeProfessionalViewModelBase.setbottomBarIndex');
     try {
       return super.setbottomBarIndex(newValue);
     } finally {
-      _$_HomeProfessionalViewModelBaseActionController.endAction(_$actionInfo);
+      _$HomeProfessionalViewModelBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   String setServiceSelected(String newValue) {
-    final _$actionInfo = _$_HomeProfessionalViewModelBaseActionController
-        .startAction(name: '_HomeProfessionalViewModelBase.setServiceSelected');
+    final _$actionInfo = _$HomeProfessionalViewModelBaseActionController
+        .startAction(name: 'HomeProfessionalViewModelBase.setServiceSelected');
     try {
       return super.setServiceSelected(newValue);
     } finally {
-      _$_HomeProfessionalViewModelBaseActionController.endAction(_$actionInfo);
+      _$HomeProfessionalViewModelBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   int setTabActivityIndex(int newValue) {
-    final _$actionInfo =
-        _$_HomeProfessionalViewModelBaseActionController.startAction(
-            name: '_HomeProfessionalViewModelBase.setTabActivityIndex');
+    final _$actionInfo = _$HomeProfessionalViewModelBaseActionController
+        .startAction(name: 'HomeProfessionalViewModelBase.setTabActivityIndex');
     try {
       return super.setTabActivityIndex(newValue);
     } finally {
-      _$_HomeProfessionalViewModelBaseActionController.endAction(_$actionInfo);
+      _$HomeProfessionalViewModelBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void onPageSlide(int newIndexPage) {
-    final _$actionInfo = _$_HomeProfessionalViewModelBaseActionController
-        .startAction(name: '_HomeProfessionalViewModelBase.onPageSlide');
+    final _$actionInfo = _$HomeProfessionalViewModelBaseActionController
+        .startAction(name: 'HomeProfessionalViewModelBase.onPageSlide');
     try {
       return super.onPageSlide(newIndexPage);
     } finally {
-      _$_HomeProfessionalViewModelBaseActionController.endAction(_$actionInfo);
+      _$HomeProfessionalViewModelBaseActionController.endAction(_$actionInfo);
     }
   }
 
@@ -167,7 +179,8 @@ bottomBarIndex: ${bottomBarIndex},
 tabActivityIndex: ${tabActivityIndex},
 serviceSelected: ${serviceSelected},
 isAvaliableNow: ${isAvaliableNow},
-showCallNow: ${showCallNow}
+showCallNow: ${showCallNow},
+loadingAvaliable: ${loadingAvaliable}
     ''';
   }
 }

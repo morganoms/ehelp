@@ -132,7 +132,7 @@ abstract class _BookingViewModelBase with Store {
   }
 
   @action
-  Future<void> bookService(final int providerId) async {
+  Future<void> bookService(final int providerId, final int specialtyId) async {
     step3State = BookServiceStatus.loading();
     final Result<ClientResponse, ClientException> response =
         await MethodHandler.errorState<ClientResponse>(() =>
@@ -143,7 +143,7 @@ abstract class _BookingViewModelBase with Store {
                     .userAuthenticated
                     .id,
                 userProviderId: providerId,
-                specialtyId: 1,
+                specialtyId: specialtyId,
                 statusId: 4,
                 serviceDate:
                     DateFormat('yyyy-MM-dd').format(mainEntity.selectedDay!),
