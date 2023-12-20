@@ -1,3 +1,4 @@
+import 'package:ehelp/core/socket_io_manager.dart';
 import 'package:ehelp/features/professional/home/views/history_professional.view.dart';
 import 'package:ehelp/features/professional/home/views/professional_calls.view.dart';
 import 'package:ehelp/features/professional/home/views/settings_professional.view.dart';
@@ -8,6 +9,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 import '../../../../core/locator.dart';
+import '../../../../routes/ehelp_routes.dart';
 import '../view_model/home_professional.view_model.dart';
 
 class HomeProfessionalView extends StatefulWidget {
@@ -19,11 +21,17 @@ class HomeProfessionalView extends StatefulWidget {
 
 class _HomeProfessionalViewState extends State<HomeProfessionalView> {
   late HomeProfessionalViewModel _viewModel;
+  final SocketProfessionalManager socket = SocketProfessionalManager();
 
   @override
   void initState() {
     _viewModel = locator.get<HomeProfessionalViewModel>();
     super.initState();
+
+    socket
+      ..connect()
+      ..listenServiceCall((teste) => Navigator.of(context)
+          .pushNamed(EhelpRoutes.callDetail, arguments: false));
   }
 
   @override

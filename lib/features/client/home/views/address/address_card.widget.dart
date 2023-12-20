@@ -58,7 +58,8 @@ class AddressClientCardWidget extends StatelessWidget {
                             EhelpRoutes.addressClient,
                             arguments: address.toJson(),
                           );
-                        } else if (value == 'remove') {
+                        } else if (value == 'remove' &&
+                            !address.isMainAddress) {
                           await onRemoveAddress.call();
                         }
                       },
@@ -67,10 +68,11 @@ class AddressClientCardWidget extends StatelessWidget {
                           value: 'edit',
                           child: Text('Editar'),
                         ),
-                        const PopupMenuItem(
-                          value: 'remove',
-                          child: Text('Excluir'),
-                        ),
+                        if (!address.isMainAddress)
+                          const PopupMenuItem(
+                            value: 'remove',
+                            child: Text('Excluir'),
+                          ),
                       ],
                     ),
                   ],
@@ -82,20 +84,23 @@ class AddressClientCardWidget extends StatelessWidget {
                       isChile ? address.regionName : address.stateName),
                   style: FontStyles.size14Weight500grey,
                 ),
-                const SizedBox(height: 16),
-                Row(
-                  children: [
-                    const Icon(
-                      Icons.location_on_outlined,
-                      color: ColorConstants.greenStrong,
+                if (address.isMainAddress)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 16),
+                    child: Row(
+                      children: [
+                        const Icon(
+                          Icons.location_on_outlined,
+                          color: ColorConstants.greenStrong,
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          'Endereço principal',
+                          style: FontStyles.size14Weight500,
+                        ),
+                      ],
                     ),
-                    const SizedBox(width: 8),
-                    Text(
-                      'Endereço principal',
-                      style: FontStyles.size14Weight500,
-                    ),
-                  ],
-                ),
+                  ),
               ],
             ),
           ),

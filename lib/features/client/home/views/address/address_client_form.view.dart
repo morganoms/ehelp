@@ -74,6 +74,7 @@ class _AdressClientFormViewState extends State<AdressClientFormView> {
         _user = locator.get<SessionController>().session!.userAuthenticated;
         addressScheme['userId'] = _user.id;
         addressScheme.remove('id');
+
         result = await _viewModel.newAddress(DtoValidation.dynamicToObject(
             addressScheme, AdressClientDto.fromJson));
       }

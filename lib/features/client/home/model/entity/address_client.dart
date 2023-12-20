@@ -21,6 +21,7 @@ class AdressClient {
       required this.regionId,
       required this.regionName,
       required this.additionalAddress,
+      required this.isMainAddress,
       this.isChile});
 
   final int? id;
@@ -41,6 +42,7 @@ class AdressClient {
   final String regionName;
   final String additionalAddress;
   final bool? isChile;
+  final bool isMainAddress;
 
   AdressClient copyWith({
     int? id,
@@ -60,6 +62,7 @@ class AdressClient {
     int? regionId,
     String? regionName,
     String? additionalAddress,
+    required bool isMainAddress,
   }) {
     return AdressClient(
         id: id ?? this.id,
@@ -79,7 +82,8 @@ class AdressClient {
         regionId: regionId ?? this.regionId,
         regionName: regionName ?? this.regionName,
         additionalAddress: additionalAddress ?? this.additionalAddress,
-        isChile: isChile ?? this.isChile);
+        isChile: isChile ?? isChile,
+        isMainAddress: isMainAddress);
   }
 
   Map<String, dynamic> toJson() {
@@ -96,7 +100,8 @@ class AdressClient {
       'comunaId': comunaId,
       'regionId': regionId,
       'additionalAddress': additionalAddress,
-      'isChile': isChile
+      'isChile': isChile,
+      'isMainAddress': isMainAddress
     };
   }
 
@@ -119,7 +124,8 @@ class AdressClient {
       'regionId': null,
       'regionName': null,
       'additionalAddress': null,
-      'isChile': null
+      'isChile': null,
+      'isMainAddress': null
     };
   }
 
@@ -132,24 +138,24 @@ class AdressClient {
 extension AdressClientDto on AdressClient {
   static AdressClient fromJson(Map<String, dynamic> map) {
     return AdressClient(
-      id: map['id'] != null ? DtoValidation.dynamicToInt(map['id']) : null,
-      userId: DtoValidation.dynamicToInt(map['userId']),
-      nickname: DtoValidation.dynamicToString(map['nickname']),
-      zipcode: DtoValidation.dynamicToString(map['zipcode']),
-      street: DtoValidation.dynamicToString(map['street']),
-      number: DtoValidation.dynamicToString(map['number']),
-      countryId: DtoValidation.dynamicToInt(map['countryId']),
-      countryName: DtoValidation.dynamicToString(map['countryName']),
-      cityName: DtoValidation.dynamicToString(map['cityName']),
-      comunaName: DtoValidation.dynamicToString(map['comunaName']),
-      stateName: DtoValidation.dynamicToString(map['stateName']),
-      regionName: DtoValidation.dynamicToString(map['regionName']),
-      additionalAddress:
-          DtoValidation.dynamicToString(map['additionalAddress']),
-      stateId: DtoValidation.dynamicToInt(map['stateId']),
-      cityId: DtoValidation.dynamicToInt(map['cityId']),
-      comunaId: DtoValidation.dynamicToInt(map['comunaId']),
-      regionId: DtoValidation.dynamicToInt(map['regionId']),
-    );
+        id: map['id'] != null ? DtoValidation.dynamicToInt(map['id']) : null,
+        userId: DtoValidation.dynamicToInt(map['userId']),
+        nickname: DtoValidation.dynamicToString(map['nickname']),
+        zipcode: DtoValidation.dynamicToString(map['zipcode']),
+        street: DtoValidation.dynamicToString(map['street']),
+        number: DtoValidation.dynamicToString(map['number']),
+        countryId: DtoValidation.dynamicToInt(map['countryId']),
+        countryName: DtoValidation.dynamicToString(map['countryName']),
+        cityName: DtoValidation.dynamicToString(map['cityName']),
+        comunaName: DtoValidation.dynamicToString(map['comunaName']),
+        stateName: DtoValidation.dynamicToString(map['stateName']),
+        regionName: DtoValidation.dynamicToString(map['regionName']),
+        additionalAddress:
+            DtoValidation.dynamicToString(map['additionalAddress']),
+        stateId: DtoValidation.dynamicToInt(map['stateId']),
+        cityId: DtoValidation.dynamicToInt(map['cityId']),
+        comunaId: DtoValidation.dynamicToInt(map['comunaId']),
+        regionId: DtoValidation.dynamicToInt(map['regionId']),
+        isMainAddress: map['isMainAddress'] ?? false);
   }
 }

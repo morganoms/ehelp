@@ -148,9 +148,12 @@ class _CallNowViewViewState extends State<CallNowView>
   Widget _buildBody() {
     switch (_controller.screenState) {
       case CallNowState.waiting:
-        unawaited(Future<void>.delayed(const Duration(seconds: 5))
-            .then((value) => _controller.setScreenState(CallNowState.arrived)));
+        unawaited(
+            Future<void>.delayed(const Duration(seconds: 5)).then((value) {
+          _controller.setScreenState(CallNowState.arrived);
+        }));
         _controller.setStatusTitle('Solicitação Confirmada');
+
         return const WaitingArriveWidget();
       case CallNowState.arrived:
         _controller.setStatusTitle('Profissional Chegou');
@@ -170,8 +173,33 @@ class _CallNowViewViewState extends State<CallNowView>
         _controller.setStatusTitle('Avalie o Profissional');
         return const FeedbackServiceWidget();
       default:
-        unawaited(Future<void>.delayed(const Duration(seconds: 5))
-            .then((value) => _controller.setScreenState(CallNowState.waiting)));
+        unawaited(
+            Future<void>.delayed(const Duration(seconds: 6)).then((value) {
+          showDialog(
+            context: context,
+            builder: (builder) => DefaultDialog(
+              child: Container(
+                padding: const EdgeInsets.all(24),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      'Profissional recusou chamado',
+                      style: FontStyles.size16Weight400,
+                      textAlign: TextAlign.center,
+                    ),
+                    GenericButton(
+                        label: 'Fechar',
+                        onPressed: () => Navigator.of(context).pop())
+                  ],
+                ),
+              ),
+            ),
+          ).whenComplete(() => Navigator.of(context)
+              .popUntil(ModalRoute.withName('/home_client')));
+
+          _controller.setScreenState(CallNowState.waiting);
+        }));
         _controller.setStatusTitle('Chamando Agora');
         return const CallingProfessionalWidget();
     }

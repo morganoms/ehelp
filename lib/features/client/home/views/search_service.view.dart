@@ -293,15 +293,12 @@ class _SearchServiceViewState extends State<SearchServiceView> {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          ServiceItemCallWidget(),
-                          SizedBox(
-                            height: 24,
-                          ),
                           Visibility(
                             visible: _controller.serviceSelected == null,
                             replacement: Container(
                               alignment: Alignment.centerLeft,
-                              child: Text('Resultados encontrados: 2',
+                              child: Text(
+                                  'Resultados encontrados: ${_controller.listProvidersSelected.length}',
                                   style: FontStyles.size16Weight700),
                             ),
                             child: Container(
